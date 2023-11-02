@@ -1,7 +1,7 @@
 #ifndef set_H
 #define set_H
 #include <stdio.h>
-#include "../boolean.h"
+#include "boolean.h"
 
 /* MODUL Set
 Deklarasi stack yang dengan implementasi array eksplisit-statik rata kiri

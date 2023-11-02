@@ -1,0 +1,6 @@
+{
+  "files.associations": {
+    "linemachine.h": "c",
+    "queue.h": "c"
+  }
+}

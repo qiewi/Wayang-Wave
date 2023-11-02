@@ -57,4 +57,6 @@ boolean IsKataEqual(Word S1, char *S2);
 
 int Length(char *S2);
 
+void resetWord();
+
 #endif

@@ -3,8 +3,9 @@
 #include "../../ADT/CharMachine/charmachine.h"
 #include "../../ADT/LineMachine/linemachine.h"
 #include "../Inisialisasi/inisialisasi.h"
+#include "start.h"
 
-void STARTREAD(){
+void STARTREAD(ListPenyanyi * LP){
   STARTKALIMATFILE("config.txt");
 
   int loop = CLine.TabLine[0] - 48;
@@ -17,7 +18,8 @@ void STARTREAD(){
     
     delay(1);
     ADVKALIMAT();
-    printf("\n%sNama Penyanyi %d: %s%s\n", WHITE, i+1, YELLOW, CLine.TabLine);
+    AddPenyanyi(LP, CLine);
+    printf("\n%sNama Penyanyi List%d: %s%s\n", WHITE, i+1, YELLOW, (*LP).NamaPenyanyi[i].TabLine);
     printf("%s--------------------------------------\n", MAGENTA);
     printf("%sJumlah Album: %s%d\n", WHITE, MAGENTA, album);
     printf("--------------------------------------\n");

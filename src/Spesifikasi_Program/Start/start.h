@@ -8,7 +8,8 @@
 #include "../../ADT/WordMachine/wordmachine.h"
 #include "../../ADT/CharMachine/charmachine.h"
 #include "../../ADT/LineMachine/linemachine.h"
+#include "../../ADT/array/ListPenyanyi.h"
 
-void STARTREAD();
+void STARTREAD(ListPenyanyi * LP);
 
 #endif

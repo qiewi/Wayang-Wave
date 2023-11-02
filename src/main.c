@@ -15,24 +15,23 @@
 /* *** ******** ******** ******** ******** ******** ****** *** FILE HEADER *** ****** ******** ******** ******** ******** ******** *** */
 
 #include "ADT/boolean.h"
-#include "ADT/stack/stack.h"
 #include "ADT/queue/queue.h"
+#include "ADT/array/array.h"
 #include "ADT/WordMachine/wordmachine.h"
 #include "Spesifikasi_Program/Inisialisasi/inisialisasi.h"
 #include "Spesifikasi_Program/Start/start.h"
 
 
 /* *** ******** ******** ******** ******** ******** ****** *** PROGRAM UTAMA *** ****** ******** ******** ******** ******** ******** *** */
- 
+int main()
+{   
+    // Kamus
+    boolean mulai = true;
+    ListPenyanyi SingerList;
+    MakeListPenyanyi (&SingerList);
 
 /* *** ******** ******** ******** ******** ******** ****** ** PRINT MAIN MENU ** ****** ******** ******** ******** ******** ******** *** */
 
-
-int main()
-{ 
-    // Kamus
-    boolean mulai = true;
-    // Start Program (tampilin main menu)
     inisialisasi();
 
     printf("%s>> ", WHITE);
@@ -40,7 +39,9 @@ int main()
 
     while (mulai)
     {
-        
+
+/* *** ******** ******** ******** ******** ******** ****** ** COMMAND START ** ****** ******** ******** ******** ******** ******** *** */
+
         if (IsKataEqual(currentWord, "START")){
             delay(1);
             printf("\n%sLoading WayangWave..\n", CYAN);
@@ -49,18 +50,18 @@ int main()
             delay(1);
             printf("..\n");
 
-            STARTREAD();
+            STARTREAD(&SingerList);
+            
         }
+    
+/* *** ******** ******** ******** ******** ******** ****** ** COMMAND LOAD ** ****** ******** ******** ******** ******** ******** *** */
+
         else if (IsKataEqual(currentWord, "LOAD")){
 
         }
         else if (IsKataEqual(currentWord, "QUIT")){
             printf("Babai //");
             mulai = false;
-        }
-        else
-        {
-            printf("Engga ada commandnya mmf\n");
         }
 
         printf("%s>> ", WHITE);

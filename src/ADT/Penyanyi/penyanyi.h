@@ -7,23 +7,33 @@
 #include "boolean.h"
 #include "../Map/map.h"
 #include "../Set/set.h"
+#include "../WordMachine/wordmachine.h"
+#include "../Map/map.h"
 
 #define NMax 500
 
-typedef struct
+// typedef struct
+// {
+//    TabPenyanyi Penyanyi[NMax]; 
+//    int TotalPenyanyi;
+// } ListPenyanyi;
+
+typedef struct 
 {
-   char NamaPenyanyi[NMax]; /* container penyimpan nama Penyanyi */
-   Album ListAlbum[];
+   int idPenyanyi;
+   char NamaPenyanyi[NMax];
 } Penyanyi;
+
 
 typedef struct
 {
    Lagu ArrayLagu[NMax];
-} Album;
+} AlbumPenyanyi;
 
 typedef struct
 {
-   char Lagu[NMax];
+   int IdLagu;
+   Word Title;
 } Lagu;
 
 #endif

@@ -113,3 +113,8 @@ int Length(char * S2){
 
     return i;
 }
+
+void resetWord()
+{
+    currentWord.Length = 0;
+}
