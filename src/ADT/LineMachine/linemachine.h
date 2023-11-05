@@ -36,5 +36,6 @@ void ADVSATUKATA();
 void copyKalimat (Kalimat k1, Kalimat *k2);
 void ResetKalimat();
 
+boolean isKalimatEqual(Kalimat K1, Kalimat K2);
 
 #endif

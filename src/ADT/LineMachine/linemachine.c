@@ -97,5 +97,29 @@ void ResetKalimat() {
         CLine.Length = 0;
     }
 }
+boolean isKalimatEqual(Kalimat K1, Kalimat K2) // belum dites
+{   
+    boolean equal = true;
+    if (K1.Length == K2.Length)
+    {
+        int i = 0;
+        while (i < K1.Length && equal)
+        {
+            if (K1.TabLine[i] != K2.TabLine[i])
+            {
+                equal = false;
+            }
+            else
+            {
+                i++;
+            }
+        }
+        return equal;
+    }
+    else
+    {
+        return false;
+    }
+}
 
 

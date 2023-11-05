@@ -16,7 +16,7 @@
 
 #include "ADT/boolean.h"
 #include "ADT/queue/queue.h"
-#include "ADT/array/array.h"
+#include "ADT/MapSetList/mapsetlist.h"
 #include "ADT/WordMachine/wordmachine.h"
 #include "Spesifikasi_Program/Inisialisasi/inisialisasi.h"
 #include "Spesifikasi_Program/Start/start.h"
@@ -27,8 +27,7 @@ int main()
 {   
     // Kamus
     boolean mulai = true;
-    ListPenyanyi SingerList;
-    MakeListPenyanyi (&SingerList);
+    // MapAlbum MapAlbum;
 
 /* *** ******** ******** ******** ******** ******** ****** ** PRINT MAIN MENU ** ****** ******** ******** ******** ******** ******** *** */
 
@@ -36,6 +35,9 @@ int main()
 
     printf("%s>> ", WHITE);
     STARTWORD();
+
+    ListPenyanyi LP;
+    CreateListPenyanyi(&LP);
 
     while (mulai)
     {
@@ -50,7 +52,7 @@ int main()
             delay(1);
             printf("..\n");
 
-            STARTREAD(&SingerList);
+            STARTREAD(&LP);
             
         }
     

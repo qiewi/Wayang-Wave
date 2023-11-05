@@ -3,13 +3,19 @@
 #include "../../ADT/CharMachine/charmachine.h"
 #include "../../ADT/LineMachine/linemachine.h"
 #include "../Inisialisasi/inisialisasi.h"
+#include "../../ADT/MapSetList/mapsetlist.h"
 #include "start.h"
 
 void STARTREAD(ListPenyanyi * LP){
   STARTKALIMATFILE("config.txt");
 
+  Kalimat NamaPenyanyi;
+  Kalimat NamaAlbum;
+  Kalimat NamaLagu;
+
   int loop = CLine.TabLine[0] - 48;
   printf("\n%sJumlah Penyanyi: %s%d\n", WHITE, MAGENTA, loop);
+
 
   for (int i = 0; i < loop; i++){
     ADVSATUKATA();
@@ -18,8 +24,11 @@ void STARTREAD(ListPenyanyi * LP){
     
     delay(1);
     ADVKALIMAT();
+    
     AddPenyanyi(LP, CLine);
-    printf("\n%sNama Penyanyi List%d: %s%s\n", WHITE, i+1, YELLOW, (*LP).NamaPenyanyi[i].TabLine);
+    NamaPenyanyi = NamaPenyanyiNow(LP);
+
+    printf("\n%sNama Penyanyi ke-%d: %s%s\n", WHITE, i+1, YELLOW, NamaPenyanyi.TabLine);
     printf("%s--------------------------------------\n", MAGENTA);
     printf("%sJumlah Album: %s%d\n", WHITE, MAGENTA, album);
     printf("--------------------------------------\n");
@@ -31,13 +40,21 @@ void STARTREAD(ListPenyanyi * LP){
       int lagu = CLine.TabLine[0] - 48;
 
       ADVKALIMAT();
-      printf("%sNama Album: %s%s\n", WHITE, YELLOW, CLine.TabLine);
+
+      AddAlbum(LP, CLine);
+      NamaAlbum = NamaAlbumNow(LP);
+
+      printf("%sNama Album: %s%s\n", WHITE, YELLOW, NamaAlbum.TabLine);
       printf("%s--------------------------------------\n", MAGENTA);
       delay(1);
       for (int k = 0; k < lagu; k++)
       {
         ADVKALIMAT();
-        printf("%sNama Lagu %d: %s%s\n", WHITE, k+1, MAGENTA, CLine.TabLine);
+
+        AddLagu(LP, CLine);
+        NamaLagu = NamaLaguNow(LP);
+
+        printf("%sNama Lagu %d: %s%s\n", WHITE, k+1, MAGENTA, NamaLagu.TabLine);
         delay(0.5);
       }
       printf("\n");

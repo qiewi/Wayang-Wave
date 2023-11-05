@@ -1,6 +1,11 @@
 {
   "files.associations": {
     "linemachine.h": "c",
-    "queue.h": "c"
+    "queue.h": "c",
+    "listpenyanyi.h": "c",
+    "map.h": "c",
+    "start.h": "c",
+    "wordmachine.h": "c",
+    "boolean.h": "c"
   }
 }
