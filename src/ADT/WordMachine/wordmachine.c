@@ -1,10 +1,12 @@
 #include "wordmachine.h"
+#include "../LineMachine/linemachine.h"
 #include <stdio.h>
 
 
 /* State Mesin Word */
 boolean EndWord;
 Word currentWord;
+Word currentInput;
 
 void IgnoreBlanks(){
     while (CC == BLANK){
@@ -20,6 +22,17 @@ void STARTWORD(){
     } else {
         EndWord = false;
         CopyWord();
+    }
+}
+
+void STARTINPUT(){
+    START();
+    IgnoreBlanks();
+    if (CC == MARK){
+        EndWord = true;
+    } else {
+        EndWord = false;
+        CopyInput();
     }
 }
 
@@ -40,6 +53,17 @@ void CopyWord(){
         if (currentWord.Length < NMax){
             currentWord.TabWord[currentWord.Length] = CC;
             currentWord.Length++;
+        }
+        ADV();
+    }
+}
+
+void CopyInput(){
+    currentInput.Length = 0;
+    while (CC != BLANK && CC != MARK && CC != '\n'){
+        if (currentInput.Length < NMax){
+            currentInput.TabWord[currentInput.Length] = CC;
+            currentInput.Length++;
         }
         ADV();
     }
@@ -104,15 +128,39 @@ boolean IsKataEqual(Word S1, char * S2){
     return equal;
 }
 
-int Length(char * S2){
-    int i = 0;
+// boolean IsInputEqual(Kalimat Kalimat, Word Input)
+// {
+//     boolean equal = true;
+//     int i = 0;
+    
+//     if (Kalimat.Length == Input.Length){
+//         while (i < Input.Length && equal){
+//             if (Kalimat.TabLine[i] != Input.TabWord[i])
+//             {
+//                 equal = false;
+//             }
+//             else
+//             {
+//                 i++;
+//             }
+//         }
+//     }
+//     else{
+//         equal = false;
+//     }
 
-    while (S2[i] != '\0'){
-        i++;
-    }
+//     return equal;
+// }
 
-    return i;
-}
+// int Length(char * S2){
+//     int i = 0;
+
+//     while (S2[i] != '\0'){
+//         i++;
+//     }
+
+//     return i;
+// }
 
 void resetWord()
 {

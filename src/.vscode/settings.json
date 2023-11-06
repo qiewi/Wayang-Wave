@@ -6,6 +6,7 @@
     "map.h": "c",
     "start.h": "c",
     "wordmachine.h": "c",
-    "boolean.h": "c"
+    "boolean.h": "c",
+    "play.h": "c"
   }
 }

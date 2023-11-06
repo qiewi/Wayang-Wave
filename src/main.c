@@ -17,62 +17,133 @@
 #include "ADT/boolean.h"
 #include "ADT/queue/queue.h"
 #include "ADT/MapSetList/mapsetlist.h"
-#include "ADT/WordMachine/wordmachine.h"
+#include "ADT/LineMachine/linemachine.h"
 #include "Spesifikasi_Program/Inisialisasi/inisialisasi.h"
+#include "Spesifikasi_Program/List/List.h"
 #include "Spesifikasi_Program/Start/start.h"
+#include "Spesifikasi_Program/Play/Play.h"
+#include "Spesifikasi_Program/Load/Load.h"
 
 
 /* *** ******** ******** ******** ******** ******** ****** *** PROGRAM UTAMA *** ****** ******** ******** ******** ******** ******** *** */
 int main()
 {   
-    // Kamus
+    // Kondisi
     boolean mulai = true;
+    boolean sesi = false;
     // MapAlbum MapAlbum;
 
 /* *** ******** ******** ******** ******** ******** ****** ** PRINT MAIN MENU ** ****** ******** ******** ******** ******** ******** *** */
 
+    // Print Main Menu
     inisialisasi();
 
-    printf("%s>> ", WHITE);
-    STARTWORD();
-
+    // Kamus
     ListPenyanyi LP;
     CreateListPenyanyi(&LP);
 
+    // Meminta Command
     while (mulai)
     {
 
 /* *** ******** ******** ******** ******** ******** ****** ** COMMAND START ** ****** ******** ******** ******** ******** ******** *** */
-
-        if (IsKataEqual(currentWord, "START")){
+        printf("%s>> ", WHITE);
+        STARTKALIMATINPUT();
+        
+        if (isInputEqual(CInput, "START")){
             delay(1);
-            printf("\n%sLoading WayangWave..\n", CYAN);
+            printf("\n%s[=========", GREEN);
             delay(1);
-            printf("...\n");
+            printf("==========");
             delay(1);
-            printf("..\n");
-
-            STARTREAD(&LP);
+            printf("%s Loading WayangWave.. ", CYAN);
+            delay(1);
+            printf("%s==========", GREEN);
+            delay(1);
+            printf("=========]\n");
+            delay(1);
             
+
+            STARTREAD(&LP, "config.txt");
+
+            printf("\n%sOutput: %sFile konfigurasi aplikasi berhasil dibaca.\n", GREEN, WHITE);
+            delay(1);
+            printf("\n%s[=========", GREEN);
+            printf("==========");
+            delay(1);
+            printf("%s WayangWave Running.. ", CYAN);
+            delay(1);
+            printf("%s==========", GREEN);
+            printf("=========]\n\n");
+            delay(1);
+            
+            sesi = true;
         }
+        
     
 /* *** ******** ******** ******** ******** ******** ****** ** COMMAND LOAD ** ****** ******** ******** ******** ******** ******** *** */
 
-        else if (IsKataEqual(currentWord, "LOAD")){
+        else if (isInputEqual(CInput, "LOAD")){ // to do list: tambahin nama file di setelahnya
+
+            LOADFILE(&LP, "savefile.txt");
 
         }
-        else if (IsKataEqual(currentWord, "QUIT")){
-            printf("Babai //");
+
+/* *** ******** ******** ******** ******** ******** ****** ** COMMAND LIST ** ****** ******** ******** ******** ******** ******** *** */
+
+        else if (isInputEqual(CInput, "LIST DEFAULT")){
+
+            if (!sesi)
+            {
+                printf("%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
+            }
+            else
+            {
+                DisplayListDefault(&LP);
+            }
+            
+    
+        }
+
+/* *** ******** ******** ******** ******** ******** ****** ** COMMAND PLAY ** ****** ******** ******** ******** ******** ******** *** */
+
+        else if (isInputEqual(CInput, "PLAY SONG")){
+
+
+            if (!sesi)
+            {
+                printf("%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
+            }
+            else
+            {
+                PlaySong(&LP);
+            }      
+       
+        }
+
+/* *** ******** ******** ******** ******** ******** ****** ** COMMAND QUIT ** ****** ******** ******** ******** ******** ******** *** */
+
+        else if (isInputEqual(CInput, "QUIT")){
+
+            printf("Kamu keluar dari %sWayangWave.\n", GREEN);
+            printf("%sDadah ^_^/\n", WHITE);
             mulai = false;
+            
+        }
+        
+
+        else
+        {
+            printf("%sERROR: %sCommand tidak diketahui!\n", RED, WHITE);
         }
 
-        printf("%s>> ", WHITE);
-        STARTWORD();
-
+        printf("%s--------------------------------------------------------------------------------------------------------------\n", GREEN);
+    
     }
 
+
+/* *** ******** ******** ******** ******** ******** ****** ** COMMAND START ** ****** ******** ******** ******** ******** ******** *** */
+
     return 0;
-    
-    // }
 }
 

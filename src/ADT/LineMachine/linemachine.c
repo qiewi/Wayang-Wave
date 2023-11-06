@@ -3,13 +3,14 @@
 
 boolean EndKalimat;
 Kalimat CLine;
+Kalimat CInput;
 
 void Ignoreblanks()
 /* Mengabaikan satu atau beberapa BLANK
    I.S. : CC sembarang
    F.S. : CC ≠ BLANK atau CC = MARK */
 {
-    while (CC == BLANK)
+    while (CC == ' ')
     {
         ADV();
     }
@@ -24,6 +25,30 @@ void IgnoreNewline()
     {
         ADV();
     }
+}
+
+void IgnoreTitikKoma()
+/* Mengabaikan satu atau beberapa BLANK
+   I.S. : CC sembarang
+   F.S. : CC ≠ BLANK atau CC = MARK */
+{
+    while (CC == ';')
+    {
+        ADV();
+    }
+}
+
+void SalinInput() {
+    ResetInput();  // Reset array
+    int i = 0;
+    while ((CC != MARK) && (CC != NEWLINE) && (CC != EOF))
+    {
+        CInput.TabLine[i] = CC;
+        // printf("%c", CC);
+        i+= 1;
+        ADV();
+    }
+    CInput.Length = i;
 }
 
 void SalinKalimat() {
@@ -42,13 +67,36 @@ void SalinKalimat() {
 void SalinSatuKata() {
     ResetKalimat();  // Reset array
     int i = 0;
-    while ((CC != BLANK) && (CC != MARK))
+    while ((CC != ' ') && (CC != MARK))
     {
         CLine.TabLine[i] = CC;
         i += 1;
         ADV();
     }
     CLine.Length = i;
+}
+
+void SalinRecord() {
+    ResetKalimat();  // Reset array
+    int i = 0;
+    while ((CC != MARK) && (CC != NEWLINE))
+    {
+        CLine.TabLine[i] = CC;
+        i += 1;
+        ADV();
+    }
+    CLine.Length = i;
+}
+
+void STARTKALIMATINPUT() {
+    START();
+    IgnoreNewline();
+    if (CC == ';'){
+        EndKalimat = true;
+    } else {
+        EndKalimat = false;
+        SalinInput();
+    }
 }
 
 void STARTKALIMATFILE(char filename[]) {
@@ -76,11 +124,23 @@ void ADVKALIMAT(){
 void ADVSATUKATA() {
     Ignoreblanks();
     IgnoreNewline();
-    if (CC == BLANK) {
+    if (CC == ' ') {
         EndKalimat = true;
     } else {
         EndKalimat = false;
         SalinSatuKata();
+    }
+}
+
+void ADVRECORD() {
+    Ignoreblanks();
+    IgnoreNewline();
+    IgnoreTitikKoma();
+    if (CC == ';' || CC == NEWLINE) {
+        EndKalimat = true;
+    } else {
+        EndKalimat = false;
+        SalinRecord();
     }
 }
 
@@ -97,6 +157,14 @@ void ResetKalimat() {
         CLine.Length = 0;
     }
 }
+
+void ResetInput() {
+    for (int i = 0; i < sizeof(CInput.TabLine); i++) {
+        CInput.TabLine[i] = '\0';
+        CInput.Length = 0;
+    }
+}
+
 boolean isKalimatEqual(Kalimat K1, Kalimat K2) // belum dites
 {   
     boolean equal = true;
@@ -120,6 +188,41 @@ boolean isKalimatEqual(Kalimat K1, Kalimat K2) // belum dites
     {
         return false;
     }
+}
+
+boolean isInputEqual(Kalimat Input, char * kata) // belum dites
+{   
+    boolean equal = true;
+    if (Input.Length == Length(kata))
+    {
+        int i = 0;
+        while (i < Input.Length && equal)
+        {
+            if (Input.TabLine[i] != kata[i])
+            {
+                equal = false;
+            }
+            else
+            {
+                i++;
+            }
+        }
+        return equal;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+int Length(char * S2){
+    int i = 0;
+
+    while (S2[i] != '\0'){
+        i++;
+    }
+
+    return i;
 }
 
 
