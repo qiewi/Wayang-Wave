@@ -20,6 +20,7 @@
 #include "ADT/WordMachine/wordmachine.h"
 #include "Spesifikasi_Program/Inisialisasi/inisialisasi.h"
 #include "Spesifikasi_Program/Start/start.h"
+#include "Spesifikasi_Program/Help/help.h"
 
 
 /* *** ******** ******** ******** ******** ******** ****** *** PROGRAM UTAMA *** ****** ******** ******** ******** ******** ******** *** */
@@ -27,6 +28,7 @@ int main()
 {   
     // Kamus
     boolean mulai = true;
+    boolean isStart = false;
     // MapAlbum MapAlbum;
 
 /* *** ******** ******** ******** ******** ******** ****** ** PRINT MAIN MENU ** ****** ******** ******** ******** ******** ******** *** */
@@ -45,6 +47,7 @@ int main()
 /* *** ******** ******** ******** ******** ******** ****** ** COMMAND START ** ****** ******** ******** ******** ******** ******** *** */
 
         if (IsKataEqual(currentWord, "START")){
+            isStart = true;
             delay(1);
             printf("\n%sLoading WayangWave..\n", CYAN);
             delay(1);
@@ -59,13 +62,15 @@ int main()
 /* *** ******** ******** ******** ******** ******** ****** ** COMMAND LOAD ** ****** ******** ******** ******** ******** ******** *** */
 
         else if (IsKataEqual(currentWord, "LOAD")){
-
+            isStart = true;
         }
         else if (IsKataEqual(currentWord, "QUIT")){
             printf("Babai //");
             mulai = false;
         }
-
+         else if (IsKataEqual(currentWord, "HELP")){
+            help(isStart);
+        }
         printf("%s>> ", WHITE);
         STARTWORD();
 
