@@ -7,6 +7,7 @@
     "start.h": "c",
     "wordmachine.h": "c",
     "boolean.h": "c",
-    "play.h": "c"
+    "play.h": "c",
+    "riwayatlagu.h": "c"
   }
 }

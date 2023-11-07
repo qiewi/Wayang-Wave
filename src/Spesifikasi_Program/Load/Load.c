@@ -14,7 +14,7 @@ void LOADFILE(ListPenyanyi * LP, char filename[]){
     Kalimat NamaAlbum;
     Kalimat NamaLagu;
 
-    int loop = CLine.TabLine[0] - 48;
+    int loop = atoi(CLine.TabLine);
 
     if (loop < 0)
     {
@@ -28,7 +28,7 @@ void LOADFILE(ListPenyanyi * LP, char filename[]){
         for (int i = 0; i < loop; i++){
             ADVSATUKATA();
             printf("Kalimat %d: %s\n", 1, CLine.TabLine);
-            int album = CLine.TabLine[0] - 48;
+            int album = atoi(CLine.TabLine);
             
             delay(1);
 
@@ -46,7 +46,7 @@ void LOADFILE(ListPenyanyi * LP, char filename[]){
 
             for (int j = 0; j < album; j++){
             ADVSATUKATA();
-            int lagu = CLine.TabLine[0] - 48;
+            int lagu = atoi(CLine.TabLine);
 
             ADVKALIMAT();
 
@@ -73,7 +73,7 @@ void LOADFILE(ListPenyanyi * LP, char filename[]){
         }
 
         ADVKALIMAT();
-        int loopRecordQ = CLine.TabLine[0] - 48;
+        int loopRecordQ = atoi(CLine.TabLine);
 
         printf("%sDaftar Record Lagu dalam Queue\n", GREEN);
         for (int i = 0; i < loopRecordQ; i++) // Record Queue
@@ -87,7 +87,7 @@ void LOADFILE(ListPenyanyi * LP, char filename[]){
         }
 
         ADVKALIMAT();
-        int loopRecordR = CLine.TabLine[0] - 48;
+        int loopRecordR = atoi(CLine.TabLine);
 
         printf("\n%sDaftar Record Riwayat\n", GREEN);
         for (int i = 0; i < loopRecordR; i++) // Record Riwayat
@@ -101,7 +101,7 @@ void LOADFILE(ListPenyanyi * LP, char filename[]){
         }
 
         ADVKALIMAT();
-        int loopRecordP = CLine.TabLine[0] - 48; // Jumlah Playlist
+        int loopRecordP = atoi(CLine.TabLine); // Jumlah Playlist
         // printf("%d\n", loopRecordP);
 
         printf("\n%sDaftar Playlist\n", GREEN);
@@ -109,7 +109,7 @@ void LOADFILE(ListPenyanyi * LP, char filename[]){
         {
 
             ADVSATUKATA();
-            int LaguPlaylist = CLine.TabLine[0] - 48;
+            int LaguPlaylist = atoi(CLine.TabLine);
             // printf("%d", LaguPlaylist);
 
             ADVKALIMAT();

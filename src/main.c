@@ -17,6 +17,7 @@
 #include "ADT/boolean.h"
 #include "ADT/Queue/queue.h"
 #include "ADT/MapSetList/mapsetlist.h"
+#include "ADT/Stack/RiwayatLagu.h"
 #include "ADT/LineMachine/linemachine.h"
 #include "Spesifikasi_Program/Inisialisasi/inisialisasi.h"
 #include "Spesifikasi_Program/List/List.h"
@@ -48,6 +49,9 @@ int main()
 
     QueueLagu QL;
     CreateQueueLagu(&QL);
+
+    RiwayatLagu RL;
+    CreateRiwayatLagu(&RL);
 
     // Meminta Command
     while (mulai)
@@ -179,12 +183,39 @@ int main()
                 }
                 else
                 {   
-                    // printf("%d\n", length(QL));
-                    printf("%d\n", QL.idxTail);
                     QueueAddLagu(&LP, &QL);
                 }      
 
             }
+
+            else if (isInputEqual(CCommand, "REMOVE"))
+            {
+                ADVCOMMAND();
+                int idQueue = CCommand.TabLine[0] - 48;
+
+                QueueRemoveLagu(&QL, &RL, idQueue);
+
+            }
+
+            else if (isInputEqual(CCommand, "SWAP"))
+            {
+                ADVCOMMAND();
+
+                int id1 = atoi(CCommand.TabLine);
+
+                ADVCOMMAND();
+
+                int id2 = atoi(CCommand.TabLine);
+
+                QueueSwap(&QL, id1, id2);
+
+            }
+
+            else if (isInputEqual(CCommand, "CLEAR"))
+            {
+                QueueClear(&QL);
+            }
+
             else
             {
                 printf("%sERROR: %sCommand tidak diketahui!\n", RED, WHITE);

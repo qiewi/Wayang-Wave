@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "../../ADT/WordMachine/wordmachine.h"
 #include "../../ADT/CharMachine/charmachine.h"
 #include "../../ADT/LineMachine/linemachine.h"
@@ -13,14 +14,14 @@ void STARTREAD(ListPenyanyi * LP, char filename[]){
   Kalimat NamaAlbum;
   Kalimat NamaLagu;
 
-  int loop = CLine.TabLine[0] - 48;
+  int loop = atoi(CLine.TabLine);
   // printf("\n%sJumlah Penyanyi: %s%d\n", WHITE, MAGENTA, loop);
 
 
   for (int i = 0; i < loop; i++){
     ADVSATUKATA();
     // printf("Kalimat %d: %s\n", 1, CLine.TabLine);
-    int album = CLine.TabLine[0] - 48;
+    int album = atoi(CLine.TabLine);
     
     // delay(1);
     ADVKALIMAT();
@@ -37,7 +38,7 @@ void STARTREAD(ListPenyanyi * LP, char filename[]){
 
     for (int j = 0; j < album; j++){
       ADVSATUKATA();
-      int lagu = CLine.TabLine[0] - 48;
+      int lagu = atoi(CLine.TabLine);
 
       ADVKALIMAT();
 

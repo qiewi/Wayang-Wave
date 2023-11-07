@@ -13,8 +13,12 @@ void enqueueLagu(QueueLagu *q, Kalimat JudulLaguQueue, Kalimat NamaAlbumQueue, K
 
 void dequeueLagu(QueueLagu *q, RiwayatLagu * RL, IdQueue id);
 
-void QueueRemoveLagu(QueueLagu * QL, RiwayatLagu * RL);
+void QueueSwap(QueueLagu * QL, IdQueue id1, IdQueue id2);
+
+void QueueRemoveLagu(QueueLagu * QL, RiwayatLagu * RL, int idQueue);
 
 void QueueAddLagu(ListPenyanyi * LP, QueueLagu * QL);
+
+void QueueClear(QueueLagu * QL);
 
 #endif

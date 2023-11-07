@@ -2,6 +2,11 @@
 #include "../../Spesifikasi_Program/Play/Play.h"
 #include "RiwayatLagu.h"
 
+void CreateRiwayatLagu(RiwayatLagu * RL)
+{
+    (*RL).IDXTOP = -1;
+}
+
 void PushRiwayatLagu(RiwayatLagu *RL, Kalimat JudulLagu, Kalimat NamaAlbum, Kalimat NamaPenyanyi)
 {
     if ((*RL).IDXTOP == -1)

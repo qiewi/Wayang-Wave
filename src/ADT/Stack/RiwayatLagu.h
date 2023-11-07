@@ -5,13 +5,10 @@
 #include "../../Spesifikasi_Program/Play/Play.h"
 #include "../LineMachine/linemachine.h"
 
-typedef Kalimat infotypeRiwayat;
-typedef int addressRiwayat; 
-
 typedef struct {
-    Kalimat JudulLagu[50];
-    Kalimat NamaAlbum[50];
-    Kalimat NamaPenyanyi[50];
+    Kalimat JudulLagu[15];
+    Kalimat NamaAlbum[15];
+    Kalimat NamaPenyanyi[15];
     int IDXTOP;
 } RiwayatLagu;
 
@@ -21,7 +18,7 @@ typedef struct {
 #define InfoAlbum(S) (S).NamaAlbum[(S).IDXTOP]
 #define InfoPenyanyi(S) (S).NamaPenyanyi[(S).IDXTOP]
 
-boolean IsEmpty(RiwayatLagu RL);
+void CreateRiwayatLagu(RiwayatLagu * RL);
 
 void PushRiwayatLagu(RiwayatLagu *RL, Kalimat JudulLagu, Kalimat NamaAlbum, Kalimat NamaPenyanyi);
 // {
