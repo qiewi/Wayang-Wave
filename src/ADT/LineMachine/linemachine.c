@@ -4,6 +4,7 @@
 boolean EndKalimat;
 Kalimat CLine;
 Kalimat CInput;
+Kalimat CCommand;
 
 void Ignoreblanks()
 /* Mengabaikan satu atau beberapa BLANK
@@ -99,6 +100,42 @@ void STARTKALIMATINPUT() {
     }
 }
 
+void STARTCOMMAND() {
+    START();
+    IgnoreNewline();
+    if (CC == ';'){
+        EndKalimat = true;
+    } else {
+        EndKalimat = false;
+        SalinCommand();
+    }
+}
+
+void SalinCommand() {
+    ResetCommand();  // Reset array
+    int i = 0;
+    while ((CC != ' ') && (CC != ';') && (CC != EOF))
+    {
+        CCommand.TabLine[i] = CC;
+        // printf("%c", CC);
+        i+= 1;
+        ADV();
+    }
+    CCommand.Length = i;
+}
+
+void ADVCOMMAND(){
+    Ignoreblanks();
+    if (CC == ';'){
+        EndKalimat = true;
+    } else {
+        EndKalimat = false;
+        SalinCommand();
+    }
+}
+
+
+
 void STARTKALIMATFILE(char filename[]) {
     STARTFILE(filename);
     IgnoreNewline();
@@ -162,6 +199,13 @@ void ResetInput() {
     for (int i = 0; i < sizeof(CInput.TabLine); i++) {
         CInput.TabLine[i] = '\0';
         CInput.Length = 0;
+    }
+}
+
+void ResetCommand() {
+    for (int i = 0; i < sizeof(CCommand.TabLine); i++) {
+        CCommand.TabLine[i] = '\0';
+        CCommand.Length = 0;
     }
 }
 

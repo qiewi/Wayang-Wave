@@ -14,6 +14,7 @@
 typedef int IdQueue;
 typedef struct {
 	Kalimat JudulLagu[CAPACITY]; 
+        Kalimat NamaAlbum[CAPACITY];
         Kalimat NamaPenyanyi[CAPACITY];
 	int idxHead;
 	int idxTail;
@@ -21,12 +22,16 @@ typedef struct {
 
 /* ********* AKSES (Selektor) ********* */
 /* Jika q adalah QueueLagu, maka akses elemen : */
-#define IDX_HEAD(q) (q).idxHead
-#define IDX_TAIL(q) (q).idxTail
+#define     IDX_HEAD(q) (q).idxHead
+#define     IDX_TAIL(q) (q).idxTail
+
 #define     LaguAwal(q) (q).JudulLagu[(q).idxHead]
+#define     AlbumAwal(q) (q).NamaAlbum[(q).idxHead]
 #define     PenyanyiAwal(q) (q).NamaPenyanyi[(q).idxHead]
+
 #define     LaguAkhir(q) (q).JudulLagu[(q).idxTail]
-#define     PenyanyiAkhir(q) (q).JudulLagu[(q).idxTail]
+#define     AlbumAkhir(q) (q).NamaAlbum[(q).idxTail]
+#define     PenyanyiAkhir(q) (q).NamaPenyanyi[(q).idxTail]
 
 /* *** Kreator *** */
 void CreateQueueLagu(QueueLagu *q);
@@ -47,12 +52,12 @@ int length(QueueLagu q);
 /* Mengirimkan banyaknya elemen QueueLagu. Mengirimkan 0 jika q kosong. */
 
 /* *** Primitif Add/Delete *** */
-void enqueueLagu(QueueLagu *q, Kalimat JudulLaguQueue, Kalimat NamaPenyanyiQueue);
+// void enqueueLagu(QueueLagu *q, Kalimat JudulLaguQueue, Kalimat NamaAlbumQueue, Kalimat NamaPenyanyiQueue);
 /* Proses: Menambahkan val pada q dengan aturan FIFO */
 /* I.S. q mungkin kosong, tabel penampung elemen q TIDAK penuh */
 /* F.S. val menjadi TAIL yang baru, IDX_TAIL "mundur" dalam buffer melingkar. */
 
-void dequeueLagu(QueueLagu *q, IdQueue id, Kalimat * JudulLaguQueue, Kalimat * NamaPenyanyiQueue); // to do list: tambahin stack riwayat lagu
+// void dequeueLagu(QueueLagu *q, IdQueue id, Kalimat * JudulLaguQueue, Kalimat * NamaAlbumQueue, Kalimat * NamaPenyanyiQueue); // to do list: tambahin stack riwayat lagu
 /* Proses: Menghapus val pada q dengan aturan FIFO */
 /* I.S. q tidak mungkin kosong */
 /* F.S. val = nilai elemen HEAD pd I.S., IDX_HEAD "mundur";

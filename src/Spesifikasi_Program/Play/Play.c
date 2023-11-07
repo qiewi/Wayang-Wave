@@ -4,11 +4,23 @@
 #include "../../ADT/LineMachine/linemachine.h"
 #include "Play.h"
 
-void PlaySong(ListPenyanyi * LP) // to do list: diconnect ke queue
+void CreateCurrentSong(CurrentSong * CS)
 {
-    char ViewAlbum;
-    char ViewLagu;
+    (*CS).status = 0;
+}
 
+void AddSong(ListPenyanyi * LP, CurrentSong * CS, int idPenyanyi, int idAlbum, int idLagu)
+{
+    (*CS).status = 1;
+
+    (*CS).NamaPenyanyi = (*LP).PenyanyiAlbum[idPenyanyi].NamaPenyanyi;
+    (*CS).NamaAlbum = (*LP).PenyanyiAlbum[idPenyanyi].ListAlbum.AlbumLagu[idAlbum].NamaAlbum;
+    (*CS).JudulLagu = (*LP).PenyanyiAlbum[idPenyanyi].ListAlbum.AlbumLagu[idAlbum].IsiLagu.JudulLagu[idLagu];
+}
+
+
+void PlaySong(ListPenyanyi * LP, CurrentSong * CS) // to do list: diconnect ke queue
+{
     int id = -1; // kalau -1 dia undefined (ga ada penyanyi / album)
 
     printf("%sDaftar Penyanyi :\n", GREEN);
@@ -52,21 +64,22 @@ void PlaySong(ListPenyanyi * LP) // to do list: diconnect ke queue
             int idLagu = CInput.TabLine[0] - 49;
             if (idLagu < (*LP).PenyanyiAlbum[idPenyanyi].ListAlbum.AlbumLagu[idAlbum].IsiLagu.Count)
             {
-                printf("%sMemutar lagu %s\"%s\" %soleh %s\"%s\".\n", GREEN, WHITE, (*LP).PenyanyiAlbum[idPenyanyi].ListAlbum.AlbumLagu[idAlbum].IsiLagu.JudulLagu[idLagu].TabLine, GREEN, WHITE, (*LP).PenyanyiAlbum[idPenyanyi].NamaPenyanyi.TabLine);    
+                AddSong(LP, CS, idPenyanyi, idAlbum, idLagu);
+                printf("%sMemutar lagu %s\"%s\" %soleh %s\"%s\".\n", GREEN, WHITE, (*CS).JudulLagu.TabLine, GREEN, WHITE, (*CS).NamaPenyanyi.TabLine);    
             }
             else
             {
-                printf("ID Lagu tidak ada\n");
+                printf("\n%sERROR: %sID Lagu tidak ada.\n", RED, WHITE);
             }
         }
         else
         {
-            printf("Album tidak terdaftar\n");
+            printf("\n%sERROR: %sAlbum tidak terdaftar.\n", RED, WHITE);
         }
     }
     else
     {
-        printf("Penyanyi tidak terdaftar\n");
+        printf("\n%sERROR: %sPenyanyi tidak terdaftar.\n", RED, WHITE);
     }    
 
 

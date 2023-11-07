@@ -18,7 +18,7 @@ void CreateQueueLagu(QueueLagu *q)
 /* ********* Prototype ********* */
 boolean isEmpty(QueueLagu q)
 {
-  return (IDX_HEAD(q)== IDX_UNDEF && IDX_TAIL(q) == IDX_UNDEF);
+  return (IDX_HEAD(q) == IDX_UNDEF && IDX_TAIL(q) == IDX_UNDEF);
 }
 
 /* Mengirim true jika q kosong: lihat definisi di atas */
@@ -48,43 +48,47 @@ int length(QueueLagu q)
 /* Mengirimkan banyaknya elemen QueueLagu. Mengirimkan 0 jika q kosong. */
 
 /* *** Primitif Add/Delete *** */
-void enqueueLagu(QueueLagu *q, Kalimat JudulLaguQueue, Kalimat NamaPenyanyiQueue)
-{
-  if (length(*q) == 0)
-  {
-    IDX_HEAD(*q) = 0;
-    IDX_TAIL(*q) = 0;
-    LaguAwal(*q) = JudulLaguQueue;
-    PenyanyiAwal(*q) = NamaPenyanyiQueue;
-  }
-  else
-  {
-    IDX_TAIL(*q) = (IDX_TAIL(*q) + 1) % CAPACITY;
-    LaguAkhir(*q) = JudulLaguQueue;
-    PenyanyiAkhir(*q) = NamaPenyanyiQueue;
-  }
+// void enqueueLagu(QueueLagu *q, Kalimat JudulLaguQueue, Kalimat NamaAlbumQueue, Kalimat NamaPenyanyiQueue)
+// {
+//   if (length(*q) == 0)
+//   {
+//     IDX_HEAD(*q) = 0;
+//     IDX_TAIL(*q) = 0;
+//     LaguAwal(*q) = JudulLaguQueue;
+//     AlbumAwal(*q) = NamaAlbumQueue;
+//     PenyanyiAwal(*q) = NamaPenyanyiQueue;
+//   }
+//   else
+//   {
+//     IDX_TAIL(*q) = (IDX_TAIL(*q) + 1) % CAPACITY;
+//     LaguAkhir(*q) = JudulLaguQueue;
+//     AlbumAkhir(*q) = NamaAlbumQueue;
+//     PenyanyiAkhir(*q) = NamaPenyanyiQueue;
+//   }
 
-  printf("Berhasil menambahkan lagu \"%s\" oleh \"%s\" ke queue.\n", JudulLaguQueue.TabLine, NamaPenyanyiQueue.TabLine);
-}
+//   // printf("Berhasil menambahkan lagu \"%s\" oleh \"%s\" ke queue.\n", JudulLaguQueue.TabLine, NamaPenyanyiQueue.TabLine);
+// }
 /* Proses: Menambahkan val pada q dengan aturan FIFO */
 /* I.S. q mungkin kosong, tabel penampung elemen q TIDAK penuh */
 /* F.S. val menjadi TAIL yang baru, IDX_TAIL "mundur" dalam buffer melingkar. */
 
-void dequeueLagu(QueueLagu *q, IdQueue id, Kalimat * JudulLaguQueue, Kalimat * NamaPenyanyiQueue) // to do: tambah stack riwayat
-{
-  if (id-1 > IDX_TAIL(*q)) printf("Lagu dengan urutan %d tidak ada.\n");
-  else
-  {
-    (*JudulLaguQueue) = (*q).JudulLagu[id-1];
-    (*NamaPenyanyiQueue) = (*q).NamaPenyanyi[id-1];
-    for (int i = id - 1; i < (IDX_TAIL(*q)); i++)
-    {
-      (*q).JudulLagu[i] = (*q).JudulLagu[i+1];
-      (*q).NamaPenyanyi[i] = (*q).NamaPenyanyi[i+1];
-    }
-    (*q).idxTail -= 1;
-  }
-}
+// void dequeueLagu(QueueLagu *q, IdQueue id, Kalimat * JudulLaguQueue, Kalimat * NamaAlbumQueue, Kalimat * NamaPenyanyiQueue) // to do: tambah stack riwayat
+// {
+//   if (id-1 > IDX_TAIL(*q)) printf("Lagu dengan urutan %d tidak ada.\n");
+//   else
+//   {
+//     (*JudulLaguQueue) = (*q).JudulLagu[id-1];
+//     (*NamaAlbumQueue) = (*q).NamaAlbum[id-1];
+//     (*NamaPenyanyiQueue) = (*q).NamaPenyanyi[id-1];
+//     for (int i = id - 1; i < (IDX_TAIL(*q)); i++)
+//     {
+//       (*q).JudulLagu[i] = (*q).JudulLagu[i+1];
+//       (*q).NamaAlbum[i] = (*q).NamaAlbum[i+1];
+//       (*q).NamaPenyanyi[i] = (*q).NamaPenyanyi[i+1];
+//     }
+//     (*q).idxTail -= 1;
+//   }
+// }
 /* Proses: Menghapus val pada q dengan aturan FIFO */
 /* I.S. q tidak mungkin kosong */
 /* F.S. val = nilai elemen HEAD pd I.S., IDX_HEAD "mundur";

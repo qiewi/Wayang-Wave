@@ -15,7 +15,7 @@
 /* *** ******** ******** ******** ******** ******** ****** *** FILE HEADER *** ****** ******** ******** ******** ******** ******** *** */
 
 #include "ADT/boolean.h"
-#include "ADT/queue/queue.h"
+#include "ADT/Queue/queue.h"
 #include "ADT/MapSetList/mapsetlist.h"
 #include "ADT/LineMachine/linemachine.h"
 #include "Spesifikasi_Program/Inisialisasi/inisialisasi.h"
@@ -23,6 +23,7 @@
 #include "Spesifikasi_Program/Start/start.h"
 #include "Spesifikasi_Program/Play/Play.h"
 #include "Spesifikasi_Program/Load/Load.h"
+#include "Spesifikasi_Program/Queue/Queue.h"
 
 
 /* *** ******** ******** ******** ******** ******** ****** *** PROGRAM UTAMA *** ****** ******** ******** ******** ******** ******** *** */
@@ -42,91 +43,178 @@ int main()
     ListPenyanyi LP;
     CreateListPenyanyi(&LP);
 
+    CurrentSong CS;
+    CreateCurrentSong(&CS);
+
+    QueueLagu QL;
+    CreateQueueLagu(&QL);
+
     // Meminta Command
     while (mulai)
     {
 
 /* *** ******** ******** ******** ******** ******** ****** ** COMMAND START ** ****** ******** ******** ******** ******** ******** *** */
         printf("%s>> ", WHITE);
-        STARTKALIMATINPUT();
+        STARTCOMMAND();
+
+        // printf("%s\n", CCommand.TabLine);
+
+        // ADVCOMMAND();
+
+        // printf("%s\n", CCommand.TabLine);
         
-        if (isInputEqual(CInput, "START")){
-            delay(1);
-            printf("\n%s[=========", GREEN);
-            delay(1);
-            printf("==========");
-            delay(1);
-            printf("%s Loading WayangWave.. ", CYAN);
-            delay(1);
-            printf("%s==========", GREEN);
-            delay(1);
-            printf("=========]\n");
-            delay(1);
-            
+        if (isInputEqual(CCommand, "START")){
 
-            STARTREAD(&LP, "config.txt");
+            if (sesi)
+            {
+                printf("%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
+            }   
+            else
+            {
+                delay(1);
+                printf("\n%s[=========", GREEN);
+                delay(1);
+                printf("==========");
+                delay(1);
+                printf("%s Loading WayangWave.. ", CYAN);
+                delay(1);
+                printf("%s==========", GREEN);
+                delay(1);
+                printf("=========]\n");          
 
-            printf("\n%sOutput: %sFile konfigurasi aplikasi berhasil dibaca.\n", GREEN, WHITE);
-            delay(1);
-            printf("\n%s[=========", GREEN);
-            printf("==========");
-            delay(1);
-            printf("%s WayangWave Running.. ", CYAN);
-            delay(1);
-            printf("%s==========", GREEN);
-            printf("=========]\n\n");
-            delay(1);
-            
-            sesi = true;
+                STARTREAD(&LP, "config.txt");
+
+                printf("\n%sOutput: %sFile konfigurasi aplikasi berhasil dibaca.\n", GREEN, WHITE);
+
+                printf("\n%s[=========", GREEN);
+                printf("==========");
+
+                printf("%s WayangWave Running.. ", CYAN);
+
+                printf("%s==========", GREEN);
+                printf("=========]\n\n");
+
+                
+                sesi = true;
+            }
         }
         
     
 /* *** ******** ******** ******** ******** ******** ****** ** COMMAND LOAD ** ****** ******** ******** ******** ******** ******** *** */
 
-        else if (isInputEqual(CInput, "LOAD")){ // to do list: tambahin nama file di setelahnya
+        else if (isInputEqual(CCommand, "LOAD")){ // to do list: tambahin nama file di setelahnya
+            
+            if (!sesi)
+            {
+                ADVCOMMAND();
 
-            LOADFILE(&LP, "savefile.txt");
+                LOADFILE(&LP, CCommand.TabLine);
+            }
+            else
+            {
+                printf("%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
+            }
 
         }
 
 /* *** ******** ******** ******** ******** ******** ****** ** COMMAND LIST ** ****** ******** ******** ******** ******** ******** *** */
 
-        else if (isInputEqual(CInput, "LIST DEFAULT")){
+        else if (isInputEqual(CCommand, "LIST")){
+            ADVCOMMAND();
 
-            if (!sesi)
+            if (isInputEqual(CCommand, "DEFAULT"))
             {
-                printf("%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
+
+                if (!sesi)
+                {
+                    printf("%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
+                }
+                else
+                {
+                    DisplayListDefault(&LP);
+                }
+
             }
             else
             {
-                DisplayListDefault(&LP);
+                printf("%sERROR: %sCommand tidak diketahui!\n", RED, WHITE);
             }
-            
     
         }
 
 /* *** ******** ******** ******** ******** ******** ****** ** COMMAND PLAY ** ****** ******** ******** ******** ******** ******** *** */
 
-        else if (isInputEqual(CInput, "PLAY SONG")){
+        else if (isInputEqual(CCommand, "PLAY")){
+            ADVCOMMAND();
 
-
-            if (!sesi)
+            if (isInputEqual(CCommand, "SONG"))
             {
-                printf("%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
+
+                if (!sesi)
+                {
+                    printf("%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
+                }
+                else
+                {
+                    PlaySong(&LP, &CS);
+                }      
+
             }
             else
             {
-                PlaySong(&LP);
-            }      
+                printf("%sERROR: %sCommand tidak diketahui!\n", RED, WHITE);
+            }
+        }
+
+
+        else if (isInputEqual(CCommand, "QUEUE")){
+            ADVCOMMAND();
+
+            if (isInputEqual(CCommand, "SONG"))
+            {
+
+                if (!sesi)
+                {
+                    printf("%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
+                }
+                else
+                {   
+                    // printf("%d\n", length(QL));
+                    printf("%d\n", QL.idxTail);
+                    QueueAddLagu(&LP, &QL);
+                }      
+
+            }
+            else
+            {
+                printf("%sERROR: %sCommand tidak diketahui!\n", RED, WHITE);
+            }
        
         }
 
 /* *** ******** ******** ******** ******** ******** ****** ** COMMAND QUIT ** ****** ******** ******** ******** ******** ******** *** */
 
-        else if (isInputEqual(CInput, "QUIT")){
+        else if (isInputEqual(CCommand, "QUIT")){
+            
+            delay(1);
+            printf("\n%s[=========", GREEN);
+            delay(1);
+            printf("==========");
+            printf("%s Logging Out.. ", CYAN);
+            printf("%s==========", GREEN);
+            delay(1);
+            printf("=========]\n");
+            delay(1);
 
-            printf("Kamu keluar dari %sWayangWave.\n", GREEN);
+            printf("\n%sOutput: %sKamu keluar dari %sWayangWave.\n", GREEN, WHITE, GREEN);
             printf("%sDadah ^_^/\n", WHITE);
+
+            printf("\n%s[=========", GREEN);
+            printf("==========");
+            printf("%s  Logged Out!  ", CYAN);
+            printf("%s==========", GREEN);
+            printf("=========]\n\n");
+
             mulai = false;
             
         }

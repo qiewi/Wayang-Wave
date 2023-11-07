@@ -8,7 +8,7 @@ void DisplayListDefault(ListPenyanyi * LP)
   char ViewLagu;
   int id = -1; // kalau -1 dia undefined (ga ada penyanyi / album)
 
-  printf("%sDaftar Penyanyi :\n", GREEN);
+  printf("\n%sDaftar Penyanyi :\n", GREEN);
   for (int i = 0; i < (*LP).NEff; i++)
   {
     printf("  %s%d. %s \n", WHITE, i+1, (*LP).PenyanyiAlbum[i].NamaPenyanyi.TabLine);
@@ -55,14 +55,14 @@ void DisplayListDefault(ListPenyanyi * LP)
             }
             else
             {
-              printf("Album tidak terdaftar\n");
+              printf("\n%sERROR: %sAlbum tidak terdaftar.\n", RED, WHITE);
             }
         }
 
     }
     else
     {
-      printf("Penyanyi tidak terdaftar\n");
+      printf("\n%sERROR: %sPenyanyi tidak terdaftar.\n", RED, WHITE);
     }
   }
 

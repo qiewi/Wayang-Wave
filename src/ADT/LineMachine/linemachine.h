@@ -21,6 +21,7 @@ typedef struct {
 extern boolean EndKalimat;
 extern Kalimat CLine;
 extern Kalimat CInput;
+extern Kalimat CCommand;
 
 
 void IgnoreNewline();
@@ -30,16 +31,20 @@ void IgnoreTitikKoma();
 void SalinKalimat();
 void SalinSatuKata();
 void SalinRecord();
+void SalinCommand();
 
 void STARTKALIMATINPUT();
 void SalinInput();
 void ResetInput();
+void ResetCommand();
 
 void STARTKALIMATFILE(char filename[]);
+void STARTCOMMAND();
 
 void ADVKALIMAT();
 void ADVSATUKATA();
 void ADVRECORD();
+void ADVCOMMAND();
 
 void copyKalimat (Kalimat k1, Kalimat *k2);
 void ResetKalimat();
