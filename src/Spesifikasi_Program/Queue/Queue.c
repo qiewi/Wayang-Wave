@@ -7,6 +7,35 @@
 #include "../../ADT/LineMachine/linemachine.h"
 #include "../Play/Play.h"
 
+void enqueueLaguFirst(QueueLagu *q, Kalimat JudulLaguQueue, Kalimat NamaAlbumQueue, Kalimat NamaPenyanyiQueue)
+{
+  if ((*q).idxHead == IDX_UNDEF || (*q).idxTail == IDX_UNDEF)
+  {
+    IDX_HEAD(*q) = 0;
+    IDX_TAIL(*q) = 0;
+    LaguAwal(*q) = JudulLaguQueue;
+    AlbumAwal(*q) = NamaAlbumQueue;
+    PenyanyiAwal(*q) = NamaPenyanyiQueue;
+  }
+  else
+  {
+    IDX_TAIL(*q) = (IDX_TAIL(*q) + 1) % CAPACITY;
+
+    for (int i = IDX_TAIL(*q); i > IDX_HEAD(*q); i--)
+    {
+      (*q).JudulLagu[i] = (*q).JudulLagu[i-1];
+      (*q).NamaAlbum[i] = (*q).NamaAlbum[i-1];
+      (*q).NamaPenyanyi[i] = (*q).NamaPenyanyi[i-1];
+    }
+
+    LaguAwal(*q) = JudulLaguQueue;
+    AlbumAwal(*q) = NamaAlbumQueue;
+    PenyanyiAwal(*q) = NamaPenyanyiQueue;
+  }
+
+  // printf("Berhasil menambahkan lagu \"%s\" oleh \"%s\" ke queue.\n", JudulLaguQueue.TabLine, NamaPenyanyiQueue.TabLine);
+}
+
 void enqueueLagu(QueueLagu *q, Kalimat JudulLaguQueue, Kalimat NamaAlbumQueue, Kalimat NamaPenyanyiQueue)
 {
   if ((*q).idxHead == IDX_UNDEF || (*q).idxTail == IDX_UNDEF)
@@ -28,19 +57,37 @@ void enqueueLagu(QueueLagu *q, Kalimat JudulLaguQueue, Kalimat NamaAlbumQueue, K
   // printf("Berhasil menambahkan lagu \"%s\" oleh \"%s\" ke queue.\n", JudulLaguQueue.TabLine, NamaPenyanyiQueue.TabLine);
 }
 
-void dequeueLagu(QueueLagu *q, RiwayatLagu * RL, IdQueue id) // to do: tambah stack riwayat
+void dequeueLagu(QueueLagu * QL, RiwayatLagu * RL, IdQueue id) // to do: tambah stack riwayat
 {
-    PushRiwayatLagu(RL, (*q).JudulLagu[id-1], (*q).NamaAlbum[id-1], (*q).NamaPenyanyi[id-1]);
+    PushRiwayatLagu(RL, (*QL).JudulLagu[id-1], (*QL).NamaAlbum[id-1], (*QL).NamaPenyanyi[id-1]);
 
-    for (int i = id - 1; i < (IDX_TAIL(*q)); i++)
+    for (int i = id - 1; i < (IDX_TAIL(*QL)); i++)
     {
-      (*q).JudulLagu[i] = (*q).JudulLagu[i+1];
-      (*q).NamaAlbum[i] = (*q).NamaAlbum[i+1];
-      (*q).NamaPenyanyi[i] = (*q).NamaPenyanyi[i+1];
+      (*QL).JudulLagu[i] = (*QL).JudulLagu[i+1];
+      (*QL).NamaAlbum[i] = (*QL).NamaAlbum[i+1];
+      (*QL).NamaPenyanyi[i] = (*QL).NamaPenyanyi[i+1];
     }
-    (*q).idxTail -= 1;
+    (*QL).idxTail -= 1;
 
 }
+
+void dequeueLaguNext(QueueLagu * QL, CurrentSong * CS) // to do: tambah stack riwayat
+{ 
+
+    (*CS).JudulLagu = (*QL).JudulLagu[0];
+    (*CS).NamaAlbum = (*QL).NamaAlbum[0];
+    (*CS).NamaPenyanyi = (*QL).NamaPenyanyi[0];
+
+    for (int i = 0; i < (IDX_TAIL(*QL)) ; i++)
+    {
+      (*QL).JudulLagu[i] = (*QL).JudulLagu[i+1];
+      (*QL).NamaAlbum[i] = (*QL).NamaAlbum[i+1];
+      (*QL).NamaPenyanyi[i] = (*QL).NamaPenyanyi[i+1];
+    }
+    (*QL).idxTail -= 1;
+
+}
+
 
 void QueueSwap(QueueLagu * QL, IdQueue id1, IdQueue id2)
 {   

@@ -1,3 +1,3 @@
 RUN CODE di main.c:
 
-gcc Spesifikasi_Program/Start/start.c Spesifikasi_Program/Inisialisasi/inisialisasi.c Spesifikasi_Program/List/List.c Spesifikasi_Program/Queue/Queue.c Spesifikasi_Program/Play/Play.c Spesifikasi_Program/Load/Load.c  ADT/CharMachine/charmachine.c ADT/LineMachine/linemachine.c ADT/WordMachine/wordmachine.c ADT/Queue/queue.c ADT/MapSetList/mapsetlist.c main.c -o main
+gcc Spesifikasi_Program/Start/start.c Spesifikasi_Program/Inisialisasi/inisialisasi.c Spesifikasi_Program/List/List.c Spesifikasi_Program/Queue/Queue.c Spesifikasi_Program/Play/Play.c Spesifikasi_Program/Load/Load.c  ADT/CharMachine/charmachine.c ADT/LineMachine/linemachine.c ADT/WordMachine/wordmachine.c ADT/Queue/queue.c ADT/Stack/RiwayatLagu.c ADT/MapSetList/mapsetlist.c main.c -o main

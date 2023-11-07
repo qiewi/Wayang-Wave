@@ -25,7 +25,8 @@
 #include "Spesifikasi_Program/Play/Play.h"
 #include "Spesifikasi_Program/Load/Load.h"
 #include "Spesifikasi_Program/Queue/Queue.h"
-
+#include "Spesifikasi_Program/Help/help.h"
+#include "Spesifikasi_Program/Song/Song.h"
 
 /* *** ******** ******** ******** ******** ******** ****** *** PROGRAM UTAMA *** ****** ******** ******** ******** ******** ******** *** */
 int main()
@@ -170,6 +171,7 @@ int main()
             }
         }
 
+/* *** ******** ******** ******** ******** ******** ****** ** COMMAND QUEUE ** ****** ******** ******** ******** ******** ******** *** */
 
         else if (isInputEqual(CCommand, "QUEUE")){
             ADVCOMMAND();
@@ -189,16 +191,28 @@ int main()
             }
 
             else if (isInputEqual(CCommand, "REMOVE"))
-            {
+            {   
+                if (!sesi)
+                {
+                    printf("%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
+                }
+                else
+                {   
                 ADVCOMMAND();
                 int idQueue = CCommand.TabLine[0] - 48;
 
                 QueueRemoveLagu(&QL, &RL, idQueue);
-
+                }
             }
 
             else if (isInputEqual(CCommand, "SWAP"))
-            {
+            {   
+                if (!sesi)
+                {
+                    printf("%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
+                }
+                else
+                {   
                 ADVCOMMAND();
 
                 int id1 = atoi(CCommand.TabLine);
@@ -208,12 +222,20 @@ int main()
                 int id2 = atoi(CCommand.TabLine);
 
                 QueueSwap(&QL, id1, id2);
+                }
 
             }
 
             else if (isInputEqual(CCommand, "CLEAR"))
-            {
-                QueueClear(&QL);
+            {   
+                if (!sesi)
+                {
+                    printf("%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
+                }
+                else
+                {   
+                    QueueClear(&QL);
+                }
             }
 
             else
@@ -221,6 +243,46 @@ int main()
                 printf("%sERROR: %sCommand tidak diketahui!\n", RED, WHITE);
             }
        
+        }
+
+        else if (isInputEqual(CCommand, "SONG")){
+            ADVCOMMAND();
+
+            if (isInputEqual(CCommand, "NEXT"))
+            {   
+                if (!sesi)
+                {
+                    printf("%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
+                }
+                else
+                {
+                    SongNext(&QL, &RL, &CS);
+                }
+            }
+
+            else if (isInputEqual(CCommand, "PREVIOUS"))
+            {   
+                if (!sesi)
+                {
+                    printf("%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
+                }
+                else
+                {
+                    SongPrev(&QL, &RL, &CS);
+                }
+            }
+
+            else
+            {
+                printf("%sERROR: %sCommand tidak diketahui!\n", RED, WHITE);
+            }
+        }
+
+/* *** ******** ******** ******** ******** ******** ****** ** COMMAND HELP ** ****** ******** ******** ******** ******** ******** *** */
+
+        else if (isInputEqual(CCommand, "HELP")){
+
+            help(sesi);
         }
 
 /* *** ******** ******** ******** ******** ******** ****** ** COMMAND QUIT ** ****** ******** ******** ******** ******** ******** *** */
@@ -250,6 +312,7 @@ int main()
             
         }
         
+/* *** ******** ******** ******** ******** ******** ****** ** INVALID COMMAND ** ****** ******** ******** ******** ******** ******** *** */
 
         else
         {
@@ -259,9 +322,6 @@ int main()
         printf("%s--------------------------------------------------------------------------------------------------------------\n", GREEN);
     
     }
-
-
-/* *** ******** ******** ******** ******** ******** ****** ** COMMAND START ** ****** ******** ******** ******** ******** ******** *** */
 
     return 0;
 }

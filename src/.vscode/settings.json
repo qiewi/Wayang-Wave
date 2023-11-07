@@ -8,6 +8,8 @@
     "wordmachine.h": "c",
     "boolean.h": "c",
     "play.h": "c",
-    "riwayatlagu.h": "c"
+    "riwayatlagu.h": "c",
+    "help.h": "c",
+    "song.h": "c"
   }
 }
