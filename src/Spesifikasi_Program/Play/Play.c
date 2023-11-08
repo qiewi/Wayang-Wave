@@ -1,8 +1,11 @@
 #include "../../ADT/MapSetList/mapsetlist.h"
 #include <stdio.h>
 #include "../../ADT/pcolor/pcolor.h"
+#include "../../ADT/Stack/RiwayatLagu.h"
+#include "../../ADT/Queue/queue.h"
 #include "../../ADT/LineMachine/linemachine.h"
 #include "Play.h"
+
 
 void CreateCurrentSong(CurrentSong * CS)
 {
@@ -19,7 +22,7 @@ void AddSong(ListPenyanyi * LP, CurrentSong * CS, int idPenyanyi, int idAlbum, i
 }
 
 
-void PlaySong(ListPenyanyi * LP, CurrentSong * CS) // to do list: diconnect ke queue
+void PlaySong(ListPenyanyi * LP, CurrentSong * CS, QueueLagu * QL, RiwayatLagu * RL) // to do list: diconnect ke queue
 {
     int id = -1; // kalau -1 dia undefined (ga ada penyanyi / album)
 
@@ -65,6 +68,10 @@ void PlaySong(ListPenyanyi * LP, CurrentSong * CS) // to do list: diconnect ke q
             if (idLagu < (*LP).PenyanyiAlbum[idPenyanyi].ListAlbum.AlbumLagu[idAlbum].IsiLagu.Count)
             {
                 AddSong(LP, CS, idPenyanyi, idAlbum, idLagu);
+
+                (*QL).idxHead = IDX_UNDEF; (*QL).idxTail = IDX_UNDEF;
+                (*RL).IDXTOP = IDX_UNDEF;
+
                 printf("%sMemutar lagu %s\"%s\" %soleh %s\"%s\".\n", GREEN, WHITE, (*CS).JudulLagu.TabLine, GREEN, WHITE, (*CS).NamaPenyanyi.TabLine);    
             }
             else
@@ -83,4 +90,13 @@ void PlaySong(ListPenyanyi * LP, CurrentSong * CS) // to do list: diconnect ke q
     }    
 
 
+}
+
+void PopRiwayatLagu(RiwayatLagu *RL, CurrentSong * CS) // untuk song prev
+{ 
+    (*CS).JudulLagu = InfoLagu(*RL);
+    (*CS).NamaAlbum = InfoAlbum(*RL);
+    (*CS).NamaPenyanyi = InfoPenyanyi(*RL);
+    
+	Top(*RL)--;
 }

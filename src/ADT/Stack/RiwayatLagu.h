@@ -2,7 +2,6 @@
 #define RIWAYAT_LAGU_H
 
 #include "../LineMachine/boolean.h"
-#include "../../Spesifikasi_Program/Play/Play.h"
 #include "../LineMachine/linemachine.h"
 
 typedef struct {
@@ -44,7 +43,7 @@ void PushRiwayatLagu(RiwayatLagu *RL, Kalimat JudulLagu, Kalimat NamaAlbum, Kali
 /* I.S. S mungkin kosong, tabel penampung elemen stack TIDAK penuh */
 /* F.S. TOP bertambah 1, X menjadi TOP yang baru */
 
-void PopRiwayatLagu(RiwayatLagu *S, CurrentSong * CS);
+// void PopRiwayatLagu(RiwayatLagu *S, CurrentSong * CS);
 /* Menghapus X dari Stack S. */
 /* I.S. S  tidak mungkin kosong */
 /* F.S. X adalah nilai elemen TOP yang lama, TOP berkurang 1 */

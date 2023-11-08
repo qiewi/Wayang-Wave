@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include "../../Spesifikasi_Program/Play/Play.h"
 #include "RiwayatLagu.h"
 
 void CreateRiwayatLagu(RiwayatLagu * RL)
@@ -28,11 +27,11 @@ void PushRiwayatLagu(RiwayatLagu *RL, Kalimat JudulLagu, Kalimat NamaAlbum, Kali
     }
 }
 
-void PopRiwayatLagu(RiwayatLagu *RL, CurrentSong * CS) // untuk song prev
-{ 
-    (*CS).JudulLagu = InfoLagu(*RL);
-    (*CS).NamaAlbum = InfoAlbum(*RL);
-    (*CS).NamaPenyanyi = InfoPenyanyi(*RL);
+// void PopRiwayatLagu(RiwayatLagu *RL, CurrentSong * CS) // untuk song prev
+// { 
+//     (*CS).JudulLagu = InfoLagu(*RL);
+//     (*CS).NamaAlbum = InfoAlbum(*RL);
+//     (*CS).NamaPenyanyi = InfoPenyanyi(*RL);
     
-	Top(*RL)--;
-}
+// 	Top(*RL)--;
+// }

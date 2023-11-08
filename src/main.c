@@ -27,6 +27,7 @@
 #include "Spesifikasi_Program/Queue/Queue.h"
 #include "Spesifikasi_Program/Help/help.h"
 #include "Spesifikasi_Program/Song/Song.h"
+#include "Spesifikasi_Program/Status/Status.h"
 
 /* *** ******** ******** ******** ******** ******** ****** *** PROGRAM UTAMA *** ****** ******** ******** ******** ******** ******** *** */
 int main()
@@ -161,7 +162,7 @@ int main()
                 }
                 else
                 {
-                    PlaySong(&LP, &CS);
+                    PlaySong(&LP, &CS, &QL, &RL);
                 }      
 
             }
@@ -277,6 +278,22 @@ int main()
                 printf("%sERROR: %sCommand tidak diketahui!\n", RED, WHITE);
             }
         }
+
+/* *** ******** ******** ******** ******** ******** ****** ** COMMAND STATUS ** ****** ******** ******** ******** ******** ******** *** */
+
+        else if (isInputEqual(CCommand, "STATUS")){
+
+            if (!sesi)
+            {
+                printf("%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
+            }
+            else
+            {
+                Status(&CS, &QL);
+            }
+            
+        }
+
 
 /* *** ******** ******** ******** ******** ******** ****** ** COMMAND HELP ** ****** ******** ******** ******** ******** ******** *** */
 

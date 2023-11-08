@@ -4,8 +4,13 @@
 #include "../Queue/Queue.h"
 
 void SongNext(QueueLagu * QL, RiwayatLagu * RL, CurrentSong * CS)
-{
-    if ((*QL).idxHead == IDX_UNDEF || (*QL).idxTail == IDX_UNDEF)
+{   
+    if ((*CS).status == 0)
+    {
+        printf("\n%sERROR: %sQueue kosong, Current Song juga kosong\n", RED, WHITE);
+        printf("%sTidak ada lagu yang dapat diputar.\n", WHITE);
+    }
+    else if ((*QL).idxHead == IDX_UNDEF || (*QL).idxTail == IDX_UNDEF)
     {
         printf("\n%sOutput: %sQueue kosong, memutar kembali lagu\n", GREEN, WHITE);
         printf("\"%s\" oleh \"%s\"\n", (*CS).JudulLagu.TabLine, (*CS).NamaPenyanyi.TabLine);
