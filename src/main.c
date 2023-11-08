@@ -8,17 +8,20 @@
                                                         /* 18222124 Fadian Alif Mahardika  */
 
 /* *** ******** ******** ******** ******** ******** ****** *** LIBRARY YANG DIGUNAKAN *** ****** ******** ******** ******** ******** ******** *** */
+
 #include <stdio.h>
 #include <stdlib.h>
 
-
-/* *** ******** ******** ******** ******** ******** ****** *** FILE HEADER *** ****** ******** ******** ******** ******** ******** *** */
+/* *** ******** ******** ******** ******** ******** ****** *** FILE HEADER ADT *** ****** ******** ******** ******** ******** ******** *** */
 
 #include "ADT/boolean.h"
 #include "ADT/Queue/queue.h"
 #include "ADT/MapSetList/mapsetlist.h"
 #include "ADT/Stack/RiwayatLagu.h"
 #include "ADT/LineMachine/linemachine.h"
+
+/* *** ******** ******** ******** ******** ******** ****** *** FILE HEADER SPESIFIKASI *** ****** ******** ******** ******** ******** ******** *** */
+
 #include "Spesifikasi_Program/Inisialisasi/inisialisasi.h"
 #include "Spesifikasi_Program/List/List.h"
 #include "Spesifikasi_Program/Start/start.h"
@@ -32,15 +35,16 @@
 /* *** ******** ******** ******** ******** ******** ****** *** PROGRAM UTAMA *** ****** ******** ******** ******** ******** ******** *** */
 int main()
 {   
-    // Kondisi
+    // Kondisi Program
     boolean mulai = true;
     boolean sesi = false;
-    // MapAlbum MapAlbum;
 
 /* *** ******** ******** ******** ******** ******** ****** ** PRINT MAIN MENU ** ****** ******** ******** ******** ******** ******** *** */
 
     // Print Main Menu
     inisialisasi();
+
+/* *** ******** ******** ******** ******** ******** ****** ** STORAGE WAYANGWAVE ** ****** ******** ******** ******** ******** ******** *** */
 
     // Kamus
     ListPenyanyi LP;
@@ -55,20 +59,17 @@ int main()
     RiwayatLagu RL;
     CreateRiwayatLagu(&RL);
 
+
+/* *** ******** ******** ******** ******** ******** ****** ** MULAI COMMAND ** ****** ******** ******** ******** ******** ******** *** */
+
     // Meminta Command
     while (mulai)
     {
-
-/* *** ******** ******** ******** ******** ******** ****** ** COMMAND START ** ****** ******** ******** ******** ******** ******** *** */
         printf("%s>> ", WHITE);
         STARTCOMMAND();
 
-        // printf("%s\n", CCommand.TabLine);
+/* *** ******** ******** ******** ******** ******** ****** ** COMMAND START ** ****** ******** ******** ******** ******** ******** *** */
 
-        // ADVCOMMAND();
-
-        // printf("%s\n", CCommand.TabLine);
-        
         if (isInputEqual(CCommand, "START")){
 
             if (sesi)
@@ -88,7 +89,7 @@ int main()
                 delay(1);
                 printf("=========]\n");          
 
-                STARTREAD(&LP, "config.txt");
+                STARTREAD(&LP, "custom.txt"); // ganti ke config jangan lupa
 
                 printf("\n%sOutput: %sFile konfigurasi aplikasi berhasil dibaca.\n", GREEN, WHITE);
 
@@ -245,6 +246,8 @@ int main()
             }
        
         }
+
+/* *** ******** ******** ******** ******** ******** ****** ** COMMAND SONG ** ****** ******** ******** ******** ******** ******** *** */
 
         else if (isInputEqual(CCommand, "SONG")){
             ADVCOMMAND();
