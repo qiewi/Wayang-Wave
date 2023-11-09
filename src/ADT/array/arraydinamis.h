@@ -12,6 +12,7 @@ typedef int IdxType;
 typedef int ElType;
 typedef struct {
     ElType *A;
+    
     int Capacity;
     int Neff;
 } ArrayDin;

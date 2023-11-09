@@ -10,6 +10,6 @@
 #include "../../ADT/LineMachine/linemachine.h"
 #include "../../ADT/MapSetList/mapsetlist.h"
 
-void STARTREAD(ListPenyanyi * LP);
+void STARTREAD(ListPenyanyi * LP, char filename[]);
 
 #endif

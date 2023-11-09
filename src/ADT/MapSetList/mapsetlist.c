@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "../boolean.h"
+#include "../LineMachine/linemachine.h"
 #include "mapsetlist.h"
 
 /* *** Konstruktor/Kreator *** */
@@ -25,6 +26,24 @@ Kalimat NamaPenyanyiNow(ListPenyanyi * LP)
 	return (*LP).PenyanyiAlbum[indeksPenyanyi].NamaPenyanyi;
 }
 
+int indeksPenyanyi(ListPenyanyi * LP, Kalimat InputPenyanyi)
+{	
+	int i = 0;
+
+	while (i < (*LP).NEff)
+	{
+		if (isKalimatEqual((*LP).PenyanyiAlbum[i].NamaPenyanyi, InputPenyanyi))
+		{
+			return i;
+		}
+		else
+		{
+			i++;
+		}
+	}
+	return -1;
+}
+
 void AddAlbum(ListPenyanyi * LP, Kalimat NamaAlbum)
 {
 	int indeksPenyanyi = (*LP).NEff - 1; // Penyanyi pertama : 1
@@ -38,6 +57,24 @@ Kalimat NamaAlbumNow(ListPenyanyi * LP)
 	int indeksPenyanyi = (*LP).NEff - 1;
 	int indeksAlbum = (*LP).PenyanyiAlbum[indeksPenyanyi].ListAlbum.NEff - 1;
 	return (*LP).PenyanyiAlbum[indeksPenyanyi].ListAlbum.AlbumLagu[indeksAlbum].NamaAlbum;
+}
+
+int indeksAlbum(ListPenyanyi * LP, int indeksPenyanyi, Kalimat InputAlbum)
+{	
+	int i = 0;
+
+	while (i < (*LP).PenyanyiAlbum[indeksPenyanyi].ListAlbum.NEff)
+	{
+		if (isKalimatEqual((*LP).PenyanyiAlbum[indeksPenyanyi].ListAlbum.AlbumLagu[i].NamaAlbum, InputAlbum))
+		{
+			return i;
+		}
+		else
+		{
+			i++;
+		}
+	}
+	return -1;
 }
 
 void AddLagu(ListPenyanyi * LP, Kalimat NamaLagu)

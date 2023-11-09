@@ -60,16 +60,16 @@ address Search (List L, infotype X)
     {
         while (p != Nil)
         {
-            if (Info(p) == X)
+            if (isKalimatEqual(JudulLagu(p), X.JudulLagu) && isKalimatEqual(NamaAlbum(p), X.NamaAlbum) && isKalimatEqual(NamaPenyanyi(p), X.NamaPenyanyi))
             {
-                return p;
+                return true;
             } else
             {
                 p = Next(p);
             }
         }
 
-        return p;
+        return false;
     }
 }
 
@@ -184,7 +184,14 @@ void DelP (List *L, infotype X)
 /* Jika tidak ada elemen list dengan info(P)=X, maka list tetap */
 /* List mungkin menjadi kosong karena penghapusan */
 {
-    address p = Search(*L, X);
+    address p = First(*L);
+    address prev = Nil;
+
+    while (p != Nil && !isKalimatEqual(JudulLagu(p), X.JudulLagu) && !isKalimatEqual(NamaAlbum(p), X.NamaAlbum) && !isKalimatEqual(NamaPenyanyi(p), X.NamaPenyanyi))
+    {
+        prev = p;
+        p = Next(p);
+    }
 
     if (p != Nil)   // X ada
     {
@@ -193,14 +200,6 @@ void DelP (List *L, infotype X)
             DelFirst(L, &p);
         } else
         {
-            address prev = First(*L);
-
-            while (Next(prev) != p)
-            {
-                prev = Next(prev);
-            }
-
-            //Next(prev) = p
             DelAfter(L, &p, prev);
         }
     }
@@ -259,7 +258,7 @@ void PrintInfo (List L)
 
         while (p != Nil)
         {
-            printf("%d", Info(p));
+            printf("{%s, %s, %s}", NamaPenyanyi(p), NamaAlbum(p), JudulLagu(p));
             p = Next(p);
             if (p != Nil)
             {
@@ -268,7 +267,7 @@ void PrintInfo (List L)
         }
     }
 
-    printf("]");
+    printf("]\n");
 }
 
 int NbElmt (List L)
@@ -284,140 +283,4 @@ int NbElmt (List L)
     }
 
     return count;
-}
-
-/*** Prekondisi untuk Max/Min/rata-rata : List tidak kosong ***/
-infotype Max (List L)
-/* Mengirimkan nilai info(P) yang maksimum */
-{
-    address p = First(L);
-    infotype info_max = Info(p);
-
-    while (p != Nil)
-    {
-        if (Info(p) > info_max)
-        {
-            info_max = Info(p);
-        }
-
-        p = Next(p);
-    }
-
-    return info_max;
-}
-
-address AdrMax (List L)
-/* Mengirimkan address P, dengan info(P) yang bernilai maksimum */
-{
-    address p = First(L);
-    infotype max = Max(L);
-
-    while (Info(p) != Max(L))
-    {
-        p = Next(p);
-    }
-
-    return p;
-}
-
-infotype Min (List L)
-/* Mengirimkan nilai info(P) yang minimum */
-{
-    address p = First(L);
-    infotype info_min = Info(p);
-
-    while (p != Nil)
-    {
-        if (Info(p) < info_min)
-        {
-            info_min = Info(p);
-        }
-
-        p = Next(p);
-    }
-
-    return info_min;
-}
-
-address AdrMin (List L)
-/* Mengirimkan address P, dengan info(P) yang bernilai minimum */
-{
-    address p = First(L);
-    infotype min = Min(L);
-
-    while (Info(p) != Min(L))
-    {
-        p = Next(p);
-    }
-
-    return p;
-}
-float Average (List L)
-/* Mengirimkan nilai rata-rata info(P) */
-{
-    address p = First(L);
-    float sum = 0;
-    float count = 0;
-
-    while (p != Nil)
-    {
-        sum += Info(p);
-        count += 1;
-        p = Next(p);
-    }
-
-    float avg = sum/count;
-    return avg;
-}
-
-/****************** PROSES TERHADAP LIST ******************/
-
-void InversList (List *L)
-/* I.S. sembarang. */
-/* F.S. elemen list dibalik : */
-/* Elemen terakhir menjadi elemen pertama, dan seterusnya. */
-/* Membalik elemen list, tanpa melakukan alokasi/dealokasi. */
-{
-    List inverse;
-    CreateEmpty(&inverse);
-
-    address loc;
-
-    while (First(*L) != Nil)
-    {
-        DelLast(L, &loc);
-        InsertLast(&inverse, loc);
-    }
-
-    *L = inverse;
-}
-
-void Konkat1 (List *L1, List *L2, List *L3)
-/* I.S. L1 dan L2 sembarang */
-/* F.S. L1 dan L2 kosong, L3 adalah hasil konkatenasi L1 & L2 */
-/* Konkatenasi dua buah list : L1 dan L2    */
-/* menghasilkan L3 yang baru (dengan elemen list L1 dan L2) */
-/* dan L1 serta L2 menjadi list kosong.*/
-/* Tidak ada alokasi/dealokasi pada prosedur ini */
-{
-    First(*L3) = First(*L1);
-
-    if (!IsEmpty(*L1))
-    {
-        address p = First(*L1);
-
-        while (Next(p) != Nil)
-        {
-            p = Next(p);
-        }
-
-        // p = Nil, L1 sudah habis
-        Next(p) = First(*L2);
-    } else if (IsEmpty(*L1) && !IsEmpty(*L2))
-    {
-        First(*L3) = First(*L2);
-    }
-
-    First(*L1) = Nil;
-    First(*L2) = Nil;
 }

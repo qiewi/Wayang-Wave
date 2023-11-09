@@ -2,8 +2,9 @@
 #define __HELP_H__
 #include <stdio.h>
 #include "../../ADT/boolean.h"
+#include "../../ADT/pcolor/pcolor.h"
 
-void help(boolean isStart);
+void help(boolean sesi);
 /* Menampilkan menu help untuk membantu user
    I.S. -
    F.S. Help ditampilkan */

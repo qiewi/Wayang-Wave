@@ -7,12 +7,19 @@
 #define linkedlist_H
 
 #include "boolean.h"
+#include "../LineMachine/linemachine.h"
 
 #define Nil NULL
 
-typedef int infotype;
+typedef Kalimat infotype;
 typedef struct tElmtlist *address;
-typedef struct tElmtlist { 
+typedef struct {
+	Kalimat NamaPenyanyi;
+	Kalimat NamaAlbum;
+	Kalimat JudulLagu;
+} Song;
+typedef Song infotype;
+typedef struct tElmtlist {
 	infotype info;
 	address next;
 } ElmtList;
@@ -24,6 +31,9 @@ typedef struct {
 /* List kosong : First(L) = Nil */
 /* Setiap elemen dengan address P dapat diacu Info(P), Next(P) */
 /* Elemen terakhir list : jika addressnya Last, maka Next(Last)=Nil */
+#define NamaPenyanyi(P) (P)->info.NamaPenyanyi
+#define NamaAlbum(P) (P)->info.NamaAlbum
+#define JudulLagu(P) (P)->info.JudulLagu
 #define Info(P) (P)->info
 #define Next(P) (P)->next
 #define First(L) ((L).First)
