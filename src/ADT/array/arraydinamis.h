@@ -8,10 +8,12 @@
 
 #define InitialSize 10
 
+#include "../../ADT/LinkedList/linkedlist.h"
+
 typedef int IdxType;
-typedef int ElType;
+typedef List ElType;
 typedef struct {
-    ElType *A;
+    ElType *A;    
     int Capacity;
     int Neff;
 } ArrayDin;
@@ -33,7 +35,7 @@ void DeallocateArrayDin(ArrayDin *array);
  * Fungsi untuk mengetahui apakah suatu array kosong.
  * Prekondisi: array terdefinisi
  */
-boolean IsEmpty(ArrayDin array);
+boolean IsEmptyArray(ArrayDin array);
 
 /**
  * Fungsi untuk mendapatkan banyaknya elemen efektif array, 0 jika tabel kosong.

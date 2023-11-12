@@ -74,6 +74,8 @@ void AddPenyanyi(ListPenyanyi * LP, Kalimat NamaPenyanyi);
 // 	(*LP).NEff += 1; // Jumlah penyanyi nambah satu
 // }
 
+int indeksPenyanyi(ListPenyanyi * LP, Kalimat InputPenyanyi);
+
 Kalimat NamaPenyanyiNow(ListPenyanyi * LP);
 // {	
 // 	int indeksPenyanyi = LP.NEff - 1;
@@ -87,6 +89,8 @@ void AddAlbum(ListPenyanyi * LP, Kalimat NamaAlbum);
 // 	(*LP).PenyanyiAlbum[indeksPenyanyi-1].ListAlbum.AlbumLagu[indeksAlbum].NamaAlbum = NamaAlbum; // Nama Album di indeksAlbum
 // 	(*LP).PenyanyiAlbum[indeksPenyanyi-1].ListAlbum.Neff += 1; // Jumlah album milik penyanyi tersebut bertambah 1
 // }
+
+int indeksAlbum(ListPenyanyi * LP, int indeksPenyanyi, Kalimat InputAlbum);
 
 Kalimat NamaAlbumNow(ListPenyanyi * LP);
 
