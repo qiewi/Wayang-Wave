@@ -20,4 +20,12 @@ void PlaylistAdd();
 
 
 void PlaylistSwap();
+
+
+
+void PlaylistRemove();
+
+
+
+void PlaylistDelete();
 #endif
