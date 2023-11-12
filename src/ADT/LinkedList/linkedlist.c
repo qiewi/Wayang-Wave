@@ -3,7 +3,7 @@
 #include "linkedlist.h"
 
 /****************** TEST LIST KOSONG ******************/
-boolean IsEmpty (List L)
+boolean IsEmptyLinked (List L)
 /* Mengirim true jika list kosong */
 {
     return First(L) == Nil;
