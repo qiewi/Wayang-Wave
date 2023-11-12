@@ -8,4 +8,16 @@
 #include "../../ADT/LineMachine/linemachine.h"
 #include "../../ADT/pcolor/pcolor.h"
 
+void PlaylistCreate();
+
+
+
+
+
+void PlaylistAdd();
+
+
+
+
+void PlaylistSwap();
 #endif
