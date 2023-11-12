@@ -32,9 +32,12 @@ typedef struct {
 /* List kosong : First(L) = Nil */
 /* Setiap elemen dengan address P dapat diacu Info(P), Next(P) */
 /* Elemen terakhir list : jika addressnya Last, maka Next(Last)=Nil */
-#define InfoLagu(P) (P)->infoLagu
-#define NextLagu(P) (P)->next
+#define InfoLagu(P) (P)->Info
+#define NextLagu(P) (P)->Next
 #define FirstLagu(L) ((L).First)
+#define NamaPenyanyi(P) (P)->info.NamaPenyanyi
+#define NamaAlbum(P) (P)->info.NamaAlbum
+#define JudulLagu(P) (P)->info.JudulLagu
 
 /* PROTOTYPE */
 /****************** TEST LIST KOSONG ******************/
