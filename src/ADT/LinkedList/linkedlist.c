@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "linkedlist.h"
+#include "../pcolor/pcolor.h"
 
 /****************** TEST LIST KOSONG ******************/
 boolean IsEmptyLinked (List L)
@@ -18,7 +19,7 @@ void CreateEmpty (List *L)
 }
 
 /****************** Manajemen Memori ******************/
-address Alokasi (infotype X)
+address Alokasi (infoType X)
 /* Mengirimkan address hasil alokasi sebuah elemen */
 /* Jika alokasi berhasil, maka address tidak nil, dan misalnya */
 /* menghasilkan P, maka info(P)=X, Next(P)=Nil */
@@ -46,16 +47,16 @@ void Dealokasi (address *P)
 }
 
 /****************** PENCARIAN SEBUAH ELEMEN LIST ******************/
-address Search (List L, infotype X)
+boolean Search (List L, infoType X)
 /* Mencari apakah ada elemen list dengan info(P)= X */
 /* Jika ada, mengirimkan address elemen tersebut. */
 /* Jika tidak ada, mengirimkan Nil */
 {
     address p = First(L);
 
-    if (IsEmpty(L))
+    if (IsEmptyLinked(L))
     {
-        return Nil;
+        return false;
     } else
     {
         while (p != Nil)
@@ -76,7 +77,7 @@ address Search (List L, infotype X)
 /****************** PRIMITIF BERDASARKAN NILAI ******************/
 // Bedanya sama yang address : Elemennya harus dialokasi terlebih dahulu
 /*** PENAMBAHAN ELEMEN ***/
-void InsVFirst (List *L, infotype X)
+void InsVFirst (List *L, infoType X)
 /* I.S. L mungkin kosong */
 /* F.S. Melakukan alokasi sebuah elemen dan */
 /* menambahkan elemen pertama dengan nilai X jika alokasi berhasil */
@@ -89,7 +90,7 @@ void InsVFirst (List *L, infotype X)
     }
 }
 
-void InsVLast (List *L, infotype X)
+void InsVLast (List *L, infoType X)
 /* I.S. L mungkin kosong */
 /* F.S. Melakukan alokasi sebuah elemen dan */
 /* menambahkan elemen list di akhir: elemen terakhir yang baru */
@@ -104,7 +105,7 @@ void InsVLast (List *L, infotype X)
 }
 
 /*** PENGHAPUSAN ELEMEN ***/
-void DelVFirst (List *L, infotype *X)
+void DelVFirst (List *L, infoType *X)
 /* I.S. List L tidak kosong  */
 /* F.S. Elemen pertama list dihapus: nilai info disimpan pada X */
 /*      dan alamat elemen pertama di-dealokasi */
@@ -115,7 +116,7 @@ void DelVFirst (List *L, infotype *X)
     Dealokasi(&p);
 }
 
-void DelVLast (List *L, infotype *X)
+void DelVLast (List *L, infoType *X)
 /* I.S. list tidak kosong */
 /* F.S. Elemen terakhir list dihapus: nilai info disimpan pada X */
 /*      dan alamat elemen terakhir di-dealokasi */
@@ -151,7 +152,7 @@ void InsertLast (List *L, address P)
 {
     address p = First(*L);
 
-    if (IsEmpty(*L))
+    if (IsEmptyLinked(*L))
     {
         InsertFirst(L, P);
     } else
@@ -177,35 +178,66 @@ void DelFirst (List *L, address *P)
     First(*L) = Next(*P);
 }
 
-void DelP (List *L, infotype X)
+void DelP (Kalimat namaPlaylist, List *L, int idLagu) // ubah remove lagu dr playlist
 /* I.S. Sembarang */
 /* F.S. Jika ada elemen list beraddress P, dengan info(P)=X  */
 /* Maka P dihapus dari list dan di-dealokasi */
 /* Jika tidak ada elemen list dengan info(P)=X, maka list tetap */
 /* List mungkin menjadi kosong karena penghapusan */
 {
-    address p = First(*L);
-    address prev = Nil;
+    address prev = First(*L);
+    address p = Next(prev);
+    int counter = 1;
 
-    while (p != Nil && !isKalimatEqual(JudulLagu(p), X.JudulLagu) && !isKalimatEqual(NamaAlbum(p), X.NamaAlbum) && !isKalimatEqual(NamaPenyanyi(p), X.NamaPenyanyi))
+    while (p != Nil && counter < idLagu)
     {
         prev = p;
         p = Next(p);
+        counter += 1;
     }
 
     if (p != Nil)   // X ada
-    {
+    {   
+        printf("\n%sLagu %s\"%s\" %soleh %s\"%s\" %stelah dihapus dari playlist %s\"%s\"!\n", GREEN, WHITE, JudulLagu(p).TabLine, GREEN, WHITE, NamaPenyanyi(p).TabLine, GREEN, WHITE, namaPlaylist.TabLine);
         if (p == First(*L))
         {
             DelFirst(L, &p);
-        } else
+        } 
+        else
         {
             DelAfter(L, &p, prev);
         }
-    }
 
-    Dealokasi(&p);
+        Dealokasi(&p);
+    }
+    else
+    {
+        printf("\n%sERROR: %sTidak ada lagu dengan urutan %d di playlist \"%s\"!\n", RED, WHITE, idLagu, namaPlaylist.TabLine);
+    }
 }
+// {
+//     address p = First(*L);
+//     address prev = Nil;
+
+//     while (p != Nil && !isKalimatEqual(JudulLagu(p), X.JudulLagu) && !isKalimatEqual(NamaAlbum(p), X.NamaAlbum) && !isKalimatEqual(NamaPenyanyi(p), X.NamaPenyanyi))
+//     {
+//         prev = p;
+//         p = Next(p);
+//     }
+
+//     if (p != Nil)   // X ada
+//     {
+//         if (p == First(*L))
+//         {
+//             DelFirst(L, &p);
+//         } else
+//         {
+//             DelAfter(L, &p, prev);
+//         }
+//     }
+
+//     Dealokasi(&p);
+// }
 
 void DelLast (List *L, address *P)
 /* I.S. List tidak kosong */
@@ -252,13 +284,13 @@ void PrintInfo (List L)
 {
     printf("[");
 
-    if (!IsEmpty(L))
+    if (!IsEmptyLinked(L))
     {
         address p = First(L);
 
         while (p != Nil)
         {
-            printf("{%s, %s, %s}", NamaPenyanyi(p), NamaAlbum(p), JudulLagu(p));
+            printf("{%s, %s, %s}", NamaPenyanyi(p).TabLine, NamaAlbum(p).TabLine, JudulLagu(p).TabLine);
             p = Next(p);
             if (p != Nil)
             {
