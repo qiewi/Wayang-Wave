@@ -8,8 +8,10 @@
 
 #define InitialSize 10
 
+#include "../LinkedList/linkedlist.h"
+
 typedef int IdxType;
-typedef int ElType;
+typedef List ElType;
 typedef struct {
     ElType *A;
     int Capacity;
@@ -57,7 +59,7 @@ int GetCapacity(ArrayDin array);
  * Fungsi untuk menambahkan elemen baru di index ke-i
  * Prekondisi: array terdefinisi, i di antara 0..Length(array).
  */
-void InsertAt(ArrayDin *array, ElType el, IdxType i);
+void InsertAt(ArrayDin *array, List el, IdxType i);
 
 /**
  * Fungsi untuk menghapus elemen di index ke-i ArrayDin
