@@ -10,6 +10,7 @@
 void CreateCurrentSong(CurrentSong * CS)
 {
     (*CS).status = 0;
+    (*CS).statusPL = 0;
 }
 
 void AddSong(ListPenyanyi * LP, CurrentSong * CS, int idPenyanyi, int idAlbum, int idLagu)
@@ -71,6 +72,7 @@ void PlaySong(ListPenyanyi * LP, CurrentSong * CS, QueueLagu * QL, RiwayatLagu *
 
                 (*QL).idxHead = IDX_UNDEF; (*QL).idxTail = IDX_UNDEF;
                 (*RL).IDXTOP = IDX_UNDEF;
+                (*CS).statusPL = 0;
 
                 printf("%sMemutar lagu %s\"%s\" %soleh %s\"%s\".\n", GREEN, WHITE, (*CS).JudulLagu.TabLine, GREEN, WHITE, (*CS).NamaPenyanyi.TabLine);    
             }

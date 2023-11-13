@@ -12,7 +12,9 @@ typedef struct {
 	Kalimat JudulLagu; 
     Kalimat NamaAlbum;
     Kalimat NamaPenyanyi;
+    Kalimat NamaPlaylist;
     int status;
+    int statusPL;
 } CurrentSong;
 
 void CreateCurrentSong(CurrentSong * CS);

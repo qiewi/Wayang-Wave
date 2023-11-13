@@ -23,17 +23,8 @@ void PlaylistAddLagu(ArrayDin * AP, ListPenyanyi * LP);
 
 void PlaylistAddAlbum(ArrayDin * AP, ListPenyanyi * LP);
 
+void deletePlaylist(ArrayDin * AP);
 
+void playlistSwap(ArrayDin * AP, int idPlaylist, int idLagu1, int idLagu2);
 
-
-
-void PlaylistSwap();
-
-
-
-void PlaylistRemove();
-
-
-
-void PlaylistDelete();
 #endif

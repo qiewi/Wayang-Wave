@@ -10,13 +10,13 @@
 
 void PlaylistCreate(ArrayDin * AP) // to do list: cek panjang karakter
 {
-    printf("\nMasukkan nama playlist yang ingin dibuat : ");
+    printf("\nMasukkan nama playlist yang ingin dibuat : %s", GREEN);
     STARTKALIMATINPUT();
 
     InsertNama(AP, CInput);
 
-    printf("\n%sPlaylist %s%s %sberhasil dibuat!", GREEN, WHITE, CInput.TabLine, GREEN);
-    printf("\n%sSilahkan masukkan lagu-lagu artis terkini kesayangan Anda!\n", WHITE);
+    printf("\n%sOUTPUT: %sPlaylist %s%s %sberhasil dibuat!", GREEN, WHITE, YELLOW, CInput.TabLine, WHITE);
+    printf("\n%sSilahkan masukkan lagu-lagu artis terkini kesayangan Anda!\n", GREEN);
 }
 
 int checkLagu(ArrayDin * AP, int idPlaylist, Kalimat NamaLagu)
@@ -134,7 +134,7 @@ void PlaylistAddLagu(ArrayDin * AP, ListPenyanyi * LP)
                     printf("    %d. %s \n", p+1, (*AP).Nama[p].TabLine);
                 }
 
-                printf("\nMasukkan ID Playlist yang dipilih : ");
+                printf("\nMasukkan ID Playlist yang dipilih : %s", GREEN);
                 STARTKALIMATINPUT();
 
                 int idPlaylist = CInput.TabLine[0] - 49; // to do list: bikin verifikasi id
@@ -144,17 +144,25 @@ void PlaylistAddLagu(ArrayDin * AP, ListPenyanyi * LP)
                     printf("\n%sERROR: %sTidak ada playlist dengan ID %d.\n", RED, WHITE, idPlaylist);
                 }
                 else
-                {
-                    AddSongToPlaylist(LP, AP, idPenyanyi, idAlbum, idLagu, idPlaylist);
-
+                {   
                     Kalimat JudulLagu =  (*LP).PenyanyiAlbum[idPenyanyi].ListAlbum.AlbumLagu[idAlbum].IsiLagu.JudulLagu[idLagu];
-                    Kalimat NamaAlbum = (*LP).PenyanyiAlbum[idPenyanyi].ListAlbum.AlbumLagu[idAlbum].NamaAlbum;
-                    Kalimat NamaPenyanyi = (*LP).PenyanyiAlbum[idPenyanyi].NamaPenyanyi;
+                    int cek = checkLagu(AP, idPlaylist, JudulLagu);
 
-                    // address p = First((*AP).A[idPlaylist]);
-                    // p = Next(p);
-                    // printf("\nIsi Playlist: %s\n", JudulLagu(p).TabLine);
-                    printf("%sLagu dengan judul %s\"%s\" %spada album %s%s %soleh penyanyi %s%s %sberhasil ditambahkan ke dalam playlist %s%s.\n",GREEN, WHITE, JudulLagu.TabLine, GREEN, WHITE, NamaAlbum.TabLine, GREEN, WHITE, NamaPenyanyi.TabLine, GREEN, WHITE, (*AP).Nama[idPlaylist].TabLine);    
+                    if (cek != -1)
+                    {
+                        AddSongToPlaylist(LP, AP, idPenyanyi, idAlbum, idLagu, idPlaylist);
+                        Kalimat NamaAlbum = (*LP).PenyanyiAlbum[idPenyanyi].ListAlbum.AlbumLagu[idAlbum].NamaAlbum;
+                        Kalimat NamaPenyanyi = (*LP).PenyanyiAlbum[idPenyanyi].NamaPenyanyi;
+
+                        // address p = First((*AP).A[idPlaylist]);
+                        // p = Next(p);
+                        // printf("\nIsi Playlist: %s\n", JudulLagu(p).TabLine);
+                        printf("%sLagu dengan judul %s\"%s\" %spada album %s%s %soleh penyanyi %s%s %sberhasil ditambahkan ke dalam playlist %s%s.\n",GREEN, WHITE, JudulLagu.TabLine, GREEN, WHITE, NamaAlbum.TabLine, GREEN, WHITE, NamaPenyanyi.TabLine, GREEN, WHITE, (*AP).Nama[idPlaylist].TabLine);    
+                    }
+                    else
+                    {
+                        printf("%sERROR: %sLagu \"%s\" sudah ada di playlist \"%s\".\n", RED, WHITE, JudulLagu.TabLine, (*AP).Nama[idPlaylist].TabLine);
+                    }
                 }
             }
             else
@@ -213,7 +221,7 @@ void PlaylistAddAlbum(ArrayDin * AP, ListPenyanyi * LP)
                     printf("    %d. %s \n", p+1, (*AP).Nama[p].TabLine);
                 }
 
-                printf("\nMasukkan ID Playlist yang dipilih : ");
+                printf("\nMasukkan ID Playlist yang dipilih : %s", GREEN);
                 STARTKALIMATINPUT();
 
                 int idPlaylist = CInput.TabLine[0] - 49; 
@@ -232,12 +240,14 @@ void PlaylistAddAlbum(ArrayDin * AP, ListPenyanyi * LP)
                     // PrintInfo((*AP).A[idPlaylist]);
 
                     // address p = First((*AP).A[idPlaylist]);
+                    // p = Next(p);
+
                     // for(int tes = 0; tes < 3; tes++)
                     // {   
-                    //     p = Next(p);
                     //     printf("\n%d - %s\n", tes, JudulLagu(p).TabLine);
+                    //     p = Next(p);
                     // }
-                    printf("%sAlbum dengan judul %s\"%s\" %sberhasil ditambahkan ke dalam playlist %s\"%s\".\n",GREEN, WHITE, NamaAlbum.TabLine, GREEN, WHITE, (*AP).Nama[idPlaylist].TabLine);    
+                    printf("%sAlbum dengan judul %s\"%s\" %sberhasil ditambahkan ke dalam playlist %s\"%s\".\n",GREEN, YELLOW, NamaAlbum.TabLine, GREEN, YELLOW, (*AP).Nama[idPlaylist].TabLine);    
                 }
         }
         else
@@ -252,7 +262,150 @@ void PlaylistAddAlbum(ArrayDin * AP, ListPenyanyi * LP)
 
 }
 
+void playlistSwap(ArrayDin * AP, int idPlaylist, int idLagu1, int idLagu2) // id yg sesuai indeks
+{   
 
+    // validasi
+
+    if (idPlaylist+1 > (*AP).Neff || idPlaylist < 0)
+    {
+        printf("\n%sERROR: %sTidak ada playlist dengan ID %d\n", RED, WHITE, idPlaylist);
+    }
+    else
+    {
+        int total = 0;
+
+        address q = First((*AP).A[idPlaylist]);
+        q = Next(q);
+
+        while (q != Nil)
+        {
+            total++;
+            q = Next(q);
+        }
+
+        if (idLagu1 > total || idLagu1 < 0)
+        {
+            printf("\n%s ERROR: %sTidak ada lagu dengan urutan %d di playlist \"%s\".\n", RED, WHITE, idLagu1+1, (*AP).Nama[idPlaylist].TabLine);
+        }
+        else if (idLagu2 > total || idLagu2 < 0)
+        {
+            printf("\n%sERROR: %sTidak ada lagu dengan urutan %d di playlist \"%s\".\n", RED, WHITE, idLagu2+1, (*AP).Nama[idPlaylist].TabLine);
+        }
+        else
+        {
+
+        // mulai swap
+            address p = First((*AP).A[idPlaylist]);
+            address prev1, prev2, lagu1, lagu2, temp;
+            p = Next(p);
+
+            int maks; int i = 0;
+            if (idLagu1 > idLagu2)
+            {
+                maks = idLagu1;
+            }
+            else
+            {
+                maks = idLagu2;
+            }
+
+            while (p != Nil && i <= maks)
+            {
+                if (i == idLagu1 - 1)
+                {
+                    prev1 = p;
+                }
+                if (i == idLagu1)
+                {
+                    lagu1 = p;
+                }
+
+                if (i == idLagu2 - 1)
+                {
+                    prev2 = p;
+                }
+                if (i == idLagu2)
+                {
+                    lagu2 = p;
+                }
+
+                p = Next(p);
+                i++;
+            }
+
+            if (lagu1 != Nil && lagu2 != Nil)
+            {
+                if (prev1 != Nil)
+                {
+                    Next(prev1) = lagu2;
+                }
+
+                if (prev2 != Nil)
+                {
+                    Next(prev2) = lagu1;
+                }
+
+                temp = Next(lagu1);
+                Next(lagu1) = Next(lagu2);
+                Next(lagu2) = temp;
+
+                printf("\n%sBerhasil menukar lagu %s\"%s\" %sdengan %s\"%s\" %sdi playlist %s\"%s\". \n", GREEN, YELLOW, JudulLagu(lagu1).TabLine, GREEN, YELLOW, JudulLagu(lagu2).TabLine, GREEN, YELLOW, (*AP).Nama[idPlaylist].TabLine);
+            }
+            else
+            {
+                printf("\n%sERROR\n", RED);
+            }
+        }
+    }
+}
+
+void deletePlaylist(ArrayDin * AP) // tanya harus dealoc gak
+{   
+    printf("\n%sDaftar Playlist Pengguna: %s\n%s", GREEN, WHITE);
+
+    if ((*AP).Neff > 0)
+    {
+        for (int p = 0; p < (*AP).Neff; p++)
+        {
+            printf("    %d. %s \n", p+1, (*AP).Nama[p].TabLine);
+        }
+
+        printf("\nMasukkan ID Playlist yang dipilih : %s", GREEN);
+        STARTKALIMATINPUT();
+
+        int idPlaylist = CInput.TabLine[0] - 49; 
+
+        if (idPlaylist+1 > (*AP).Neff || idPlaylist+1 <= 0)
+        {
+            printf("\n%sERROR: %sTidak ada playlist dengan ID %d.\n", RED, WHITE, idPlaylist + 1);
+        }
+        else
+        {   
+            Kalimat NamaPlaylist = (*AP).Nama[idPlaylist];
+
+            if ((*AP).Neff == 1)
+            {
+                (*AP).Neff -= 1;
+            }
+            else
+            {
+                for (int i = idPlaylist; i < (*AP).Neff; i++)
+                {
+                    (*AP).Nama[i] = (*AP).Nama[i+1];
+                    (*AP).A[i] = (*AP).A[i+1];
+                }
+                (*AP).Neff -= 1;
+            }
+
+            printf("\n%sPlaylist ID %s%d %sdengan judul %s\"%s\" %sberhasil dihapus.\n", GREEN, YELLOW, idPlaylist+1, GREEN, YELLOW, NamaPlaylist.TabLine, GREEN);
+        }
+    }
+    else
+    {
+        printf("\n%sKamu tidak mempunyai playlist. Silahkan membuat playlist terlebih dahulu.\n", WHITE);
+    }
+}
 
 // int main()
 // {
