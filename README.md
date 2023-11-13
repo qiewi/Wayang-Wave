@@ -16,10 +16,10 @@ Contributors:
 
 alt 1. Compile Manually
 
-Make sure you're in the src directory.  
-Open the terminal.  
-Write and run this code:  
-| gcc Spesifikasi_Program/Start/start.c Spesifikasi_Program/Inisialisasi/inisialisasi.c Spesifikasi_Program/List/List.c Spesifikasi_Program/Queue/Queue.c Spesifikasi_Program/Play/Play.c Spesifikasi_Program/Load/Load.c Spesifikasi_Program/Song/Song.c Spesifikasi_Program/Help/help.c Spesifikasi_Program/Status/Status.c ADT/CharMachine/charmachine.c ADT/LineMachine/linemachine.c ADT/WordMachine/wordmachine.c ADT/Queue/queue.c ADT/Stack/RiwayatLagu.c ADT/MapSetList/mapsetlist.c main.c -o main
+1. Pastikan sedang berada di src directory.
+2. Buka terminal.  
+3. Tulis dan run code ini:  
+`gcc Spesifikasi_Program/Start/start.c Spesifikasi_Program/Inisialisasi/inisialisasi.c Spesifikasi_Program/List/List.c Spesifikasi_Program/Queue/Queue.c Spesifikasi_Program/Play/Play.c Spesifikasi_Program/Load/Load.c Spesifikasi_Program/Song/Song.c Spesifikasi_Program/Help/help.c Spesifikasi_Program/Status/Status.c ADT/CharMachine/charmachine.c ADT/LineMachine/linemachine.c ADT/WordMachine/wordmachine.c ADT/Queue/queue.c ADT/Stack/RiwayatLagu.c ADT/MapSetList/mapsetlist.c main.c -o main`
 
 
 
