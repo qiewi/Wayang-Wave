@@ -5,7 +5,7 @@
 
 void SongNext(QueueLagu * QL, RiwayatLagu * RL, CurrentSong * CS)
 {   
-    if ((*CS).status == 0)
+    if ((*CS).status == 0 && ((*QL).idxHead == IDX_UNDEF || (*QL).idxTail == IDX_UNDEF))
     {
         printf("\n%sERROR: %sQueue kosong, Current Song juga kosong\n", RED, WHITE);
         printf("%sTidak ada lagu yang dapat diputar.\n", WHITE);

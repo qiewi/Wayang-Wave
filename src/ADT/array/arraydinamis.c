@@ -7,6 +7,7 @@
 /* *** Definisi ABSTRACT DATA TYPE POINT *** */
 #include <stdio.h>
 #include "arraydinamis.h"
+#include "../LinkedList/linkedlist.h"
 #include <stdlib.h>
 
 /**
@@ -71,8 +72,10 @@ int GetCapacity(ArrayDin array){
  */
 void InsertNama(ArrayDin *array, NameType NamaPlaylist){
 
+  CreateEmpty(&(*array).A[(*array).Neff]);
   (*array).Nama[(*array).Neff] = NamaPlaylist;
   (*array).Neff += 1;
+
 }
 
 

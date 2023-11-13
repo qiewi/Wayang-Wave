@@ -187,7 +187,7 @@ void QueueAddLagu(ListPenyanyi * LP, QueueLagu * QL, CurrentSong * CS)
             printf("\nMasukkan ID Lagu yang dipilih : ");
             STARTKALIMATINPUT();
 
-            int idLagu = CInput.TabLine[0] - 49;
+            int idLagu = atoi(CInput.TabLine) - 1;
             if (idLagu < (*LP).PenyanyiAlbum[idPenyanyi].ListAlbum.AlbumLagu[idAlbum].IsiLagu.Count)
             {   
                 Kalimat NamaLagu = (*LP).PenyanyiAlbum[idPenyanyi].ListAlbum.AlbumLagu[idAlbum].IsiLagu.JudulLagu[idLagu];

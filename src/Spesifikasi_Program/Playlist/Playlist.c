@@ -15,7 +15,7 @@ void PlaylistCreate(ArrayDin * AP) // to do list: cek panjang karakter
 
     InsertNama(AP, CInput);
 
-    printf("\n%sOUTPUT: %sPlaylist %s%s %sberhasil dibuat!", GREEN, WHITE, YELLOW, CInput.TabLine, WHITE);
+    printf("\n%sOutput: %sPlaylist %s%s %sberhasil dibuat!", GREEN, WHITE, YELLOW, CInput.TabLine, WHITE);
     printf("\n%sSilahkan masukkan lagu-lagu artis terkini kesayangan Anda!\n", GREEN);
 }
 

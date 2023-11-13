@@ -34,6 +34,7 @@
 #include "Spesifikasi_Program/Song/Song.h"
 #include "Spesifikasi_Program/Status/Status.h"
 #include "Spesifikasi_Program/Playlist/Playlist.h"
+#include "Spesifikasi_Program/Save/save.h"
 
 /* *** ******** ******** ******** ******** ******** ****** *** PROGRAM UTAMA *** ****** ******** ******** ******** ******** ******** *** */
 int main()
@@ -120,7 +121,9 @@ int main()
             {
                 ADVCOMMAND();
 
-                LOADFILE(&LP, CCommand.TabLine);
+                LOADFILE(&LP, CCommand.TabLine, &QL, &RL, &AP);
+
+                sesi = true;
             }
             else
             {
@@ -439,6 +442,21 @@ int main()
                 Status(&CS, &QL);
             }
             
+        }
+
+/* *** ******** ******** ******** ******** ******** ****** ** COMMAND SAVE ** ****** ******** ******** ******** ******** ******** *** */
+
+        else if (isInputEqual(CCommand, "SAVE")){
+            ADVCOMMAND();
+
+            if (!sesi)
+            {
+                printf("%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
+            }
+            else
+            {
+                SaveFile(&LP,&AP, &QL, &RL, CCommand.TabLine);
+            }
         }
 
 

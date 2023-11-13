@@ -1,5 +1,6 @@
 #include "../../ADT/MapSetList/mapsetlist.h"
 #include <stdio.h>
+#include <stdlib.h>
 #include "../../ADT/pcolor/pcolor.h"
 #include "../../ADT/Stack/RiwayatLagu.h"
 #include "../../ADT/Queue/queue.h"
@@ -65,7 +66,7 @@ void PlaySong(ListPenyanyi * LP, CurrentSong * CS, QueueLagu * QL, RiwayatLagu *
             printf("\nMasukkan ID Lagu yang dipilih : ");
             STARTKALIMATINPUT();
 
-            int idLagu = CInput.TabLine[0] - 49;
+            int idLagu = atoi(CInput.TabLine) - 1;
             if (idLagu < (*LP).PenyanyiAlbum[idPenyanyi].ListAlbum.AlbumLagu[idAlbum].IsiLagu.Count)
             {
                 AddSong(LP, CS, idPenyanyi, idAlbum, idLagu);

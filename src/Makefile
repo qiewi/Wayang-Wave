@@ -1,0 +1,5 @@
+run:
+	gcc Spesifikasi_Program/Start/start.c Spesifikasi_Program/Inisialisasi/inisialisasi.c Spesifikasi_Program/List/List.c Spesifikasi_Program/Queue/Queue.c Spesifikasi_Program/Playlist/Playlist.c Spesifikasi_Program/Play/Play.c Spesifikasi_Program/Load/Load.c Spesifikasi_Program/Song/Song.c Spesifikasi_Program/Save/save.c Spesifikasi_Program/Help/help.c Spesifikasi_Program/Status/Status.c ADT/CharMachine/charmachine.c ADT/LineMachine/linemachine.c ADT/WordMachine/wordmachine.c ADT/Queue/queue.c ADT/Stack/RiwayatLagu.c ADT/LinkedList/linkedlist.c ADT/array/arraydinamis.c ADT/MapSetList/mapsetlist.c main.c -o main
+	./main
+tes:
+	echo "Testing"
