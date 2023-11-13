@@ -14,7 +14,14 @@ Contributors:
 
 **How to Compile:**
 
-alt 1. Compile Manually
+alt 1. Easy type
+
+1. Pastikan sedang berada di src directory.
+2. Buka terminal.  
+3. Tulis dan run code ini:
+`Make run`
+
+alt 2. Compile Manually
 
 1. Pastikan sedang berada di src directory.
 2. Buka terminal.  
