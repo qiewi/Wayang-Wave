@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "../boolean.h"
 #include "../LineMachine/linemachine.h"
+#include "../pcolor/pcolor.h"
 #include "mapsetlist.h"
 
 /* *** Konstruktor/Kreator *** */
@@ -77,14 +78,40 @@ int indeksAlbum(ListPenyanyi * LP, int indeksPenyanyi, Kalimat InputAlbum)
 	return -1;
 }
 
+int indeksLagu(ListPenyanyi * LP, int indeksPenyanyi, int indeksAlbum, Kalimat NamaLagu)
+{	
+	int i = 0;
+	while (i < (*LP).PenyanyiAlbum[indeksPenyanyi].ListAlbum.AlbumLagu[indeksAlbum].IsiLagu.Count)
+	{
+		if (isKalimatEqual((*LP).PenyanyiAlbum[indeksPenyanyi].ListAlbum.AlbumLagu[indeksAlbum].IsiLagu.JudulLagu[i], NamaLagu))
+		{
+			return -1;
+		}
+		else
+		{
+			i++;
+		}
+	}
+	return (*LP).PenyanyiAlbum[indeksPenyanyi].ListAlbum.AlbumLagu[indeksAlbum].IsiLagu.Count;
+}
+
 void AddLagu(ListPenyanyi * LP, Kalimat NamaLagu)
 {
 	int indeksPenyanyi = (*LP).NEff - 1;
 	int indeksAlbum = (*LP).PenyanyiAlbum[indeksPenyanyi].ListAlbum.NEff - 1;
-	int indekSLagu = (*LP).PenyanyiAlbum[indeksPenyanyi].ListAlbum.AlbumLagu[indeksAlbum].IsiLagu.Count;
-	(*LP).PenyanyiAlbum[indeksPenyanyi].ListAlbum.AlbumLagu[indeksAlbum].IsiLagu.JudulLagu[indekSLagu] = NamaLagu;
-	(*LP).PenyanyiAlbum[indeksPenyanyi].ListAlbum.AlbumLagu[indeksAlbum].IsiLagu.Count += 1;
+	int indekSLagu = indeksLagu(LP, indeksPenyanyi, indeksAlbum, NamaLagu);
+	
+	if (indekSLagu != -1)
+	{
+		(*LP).PenyanyiAlbum[indeksPenyanyi].ListAlbum.AlbumLagu[indeksAlbum].IsiLagu.JudulLagu[indekSLagu] = NamaLagu;
+		(*LP).PenyanyiAlbum[indeksPenyanyi].ListAlbum.AlbumLagu[indeksAlbum].IsiLagu.Count += 1;
+	}
+	else
+	{
+		printf("\n%sERROR: %sLagu %s sudah ada di dalam album %s.\n", RED, WHITE, NamaLagu.TabLine, (*LP).PenyanyiAlbum[indeksPenyanyi].ListAlbum.AlbumLagu[indeksAlbum].NamaAlbum.TabLine);
+	}
 }
+
 
 Kalimat NamaLaguNow(ListPenyanyi * LP)
 {

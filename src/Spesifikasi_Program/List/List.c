@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include "../../ADT/pcolor/pcolor.h"
 #include "../../ADT/LineMachine/linemachine.h"
+#include "../../ADT/LinkedList/linkedlist.h"
+#include "../../ADT/array/arraydinamis.h"
 
 void DisplayListDefault(ListPenyanyi * LP)
 {
@@ -66,6 +68,20 @@ void DisplayListDefault(ListPenyanyi * LP)
     }
   }
 
+}
 
-
+void displayPlaylist(ArrayDin * AP)
+{
+  printf("\n%sDaftar Playlist yang kamu miliki:\n", GREEN);
+  if ((*AP).Neff > 0)
+  {
+    for (int i = 0; i < (*AP).Neff; i++)
+    {
+      printf("  %s%d. %s \n", WHITE, i+1, (*AP).Nama[i].TabLine);
+    }
+  }
+  else
+  {
+    printf("%sKamu tidak memiliki playlist.\n", WHITE);
+  }
 }

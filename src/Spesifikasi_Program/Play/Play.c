@@ -1,5 +1,6 @@
 #include "../../ADT/MapSetList/mapsetlist.h"
 #include <stdio.h>
+#include <stdlib.h>
 #include "../../ADT/pcolor/pcolor.h"
 #include "../../ADT/Stack/RiwayatLagu.h"
 #include "../../ADT/Queue/queue.h"
@@ -10,6 +11,7 @@
 void CreateCurrentSong(CurrentSong * CS)
 {
     (*CS).status = 0;
+    (*CS).statusPL = 0;
 }
 
 void AddSong(ListPenyanyi * LP, CurrentSong * CS, int idPenyanyi, int idAlbum, int idLagu)
@@ -64,13 +66,14 @@ void PlaySong(ListPenyanyi * LP, CurrentSong * CS, QueueLagu * QL, RiwayatLagu *
             printf("\nMasukkan ID Lagu yang dipilih : ");
             STARTKALIMATINPUT();
 
-            int idLagu = CInput.TabLine[0] - 49;
+            int idLagu = atoi(CInput.TabLine) - 1;
             if (idLagu < (*LP).PenyanyiAlbum[idPenyanyi].ListAlbum.AlbumLagu[idAlbum].IsiLagu.Count)
             {
                 AddSong(LP, CS, idPenyanyi, idAlbum, idLagu);
 
                 (*QL).idxHead = IDX_UNDEF; (*QL).idxTail = IDX_UNDEF;
                 (*RL).IDXTOP = IDX_UNDEF;
+                (*CS).statusPL = 0;
 
                 printf("%sMemutar lagu %s\"%s\" %soleh %s\"%s\".\n", GREEN, WHITE, (*CS).JudulLagu.TabLine, GREEN, WHITE, (*CS).NamaPenyanyi.TabLine);    
             }

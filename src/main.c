@@ -18,6 +18,8 @@
 #include "ADT/Queue/queue.h"
 #include "ADT/MapSetList/mapsetlist.h"
 #include "ADT/Stack/RiwayatLagu.h"
+#include "ADT/LinkedList/linkedlist.h"
+#include "ADT/array/arraydinamis.h"
 #include "ADT/LineMachine/linemachine.h"
 
 /* *** ******** ******** ******** ******** ******** ****** *** FILE HEADER SPESIFIKASI *** ****** ******** ******** ******** ******** ******** *** */
@@ -31,6 +33,8 @@
 #include "Spesifikasi_Program/Help/help.h"
 #include "Spesifikasi_Program/Song/Song.h"
 #include "Spesifikasi_Program/Status/Status.h"
+#include "Spesifikasi_Program/Playlist/Playlist.h"
+#include "Spesifikasi_Program/Save/save.h"
 
 /* *** ******** ******** ******** ******** ******** ****** *** PROGRAM UTAMA *** ****** ******** ******** ******** ******** ******** *** */
 int main()
@@ -59,6 +63,7 @@ int main()
     RiwayatLagu RL;
     CreateRiwayatLagu(&RL);
 
+    ArrayDin AP = MakeArrayDin();
 
 /* *** ******** ******** ******** ******** ******** ****** ** MULAI COMMAND ** ****** ******** ******** ******** ******** ******** *** */
 
@@ -109,13 +114,16 @@ int main()
     
 /* *** ******** ******** ******** ******** ******** ****** ** COMMAND LOAD ** ****** ******** ******** ******** ******** ******** *** */
 
-        else if (isInputEqual(CCommand, "LOAD")){ // to do list: tambahin nama file di setelahnya
+        else if (isInputEqual(CCommand, "LOAD"))
+        { 
             
             if (!sesi)
             {
                 ADVCOMMAND();
 
-                LOADFILE(&LP, CCommand.TabLine);
+                LOADFILE(&LP, CCommand.TabLine, &QL, &RL, &AP);
+
+                sesi = true;
             }
             else
             {
@@ -142,6 +150,21 @@ int main()
                 }
 
             }
+
+            else if (isInputEqual(CCommand, "PLAYLIST"))
+            {
+
+                if (!sesi)
+                {
+                    printf("%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
+                }
+                else
+                {
+                    displayPlaylist(&AP);
+                }
+
+            }
+
             else
             {
                 printf("%sERROR: %sCommand tidak diketahui!\n", RED, WHITE);
@@ -167,6 +190,19 @@ int main()
                 }      
 
             }
+            if (isInputEqual(CCommand, "PLAYLIST"))
+            {
+
+                if (!sesi)
+                {
+                    printf("%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
+                }
+                else
+                {
+                    PlayPlaylist(&AP, &QL, &RL);
+                }      
+
+            }
             else
             {
                 printf("%sERROR: %sCommand tidak diketahui!\n", RED, WHITE);
@@ -187,7 +223,7 @@ int main()
                 }
                 else
                 {   
-                    QueueAddLagu(&LP, &QL);
+                    QueueAddLagu(&LP, &QL, &CS);
                 }      
 
             }
@@ -226,6 +262,18 @@ int main()
                 QueueSwap(&QL, id1, id2);
                 }
 
+            }
+
+            else if (isInputEqual(CCommand, "PLAYLIST"))
+            {   
+                if (!sesi)
+                {
+                    printf("%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
+                }
+                else
+                {   
+                    QueuePlaylist(&AP, &QL, &CS);
+                }
             }
 
             else if (isInputEqual(CCommand, "CLEAR"))
@@ -282,6 +330,105 @@ int main()
             }
         }
 
+/* *** ******** ******** ******** ******** ******** ****** ** COMMAND PLAYLIST ** ****** ******** ******** ******** ******** ******** *** */
+
+        else if (isInputEqual(CCommand, "PLAYLIST")){
+            ADVCOMMAND();
+
+            if (isInputEqual(CCommand, "CREATE"))
+            {   
+                if (!sesi)
+                {
+                    printf("%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
+                }
+                else
+                {
+                    PlaylistCreate(&AP);
+                }
+            }
+
+            else if (isInputEqual(CCommand, "ADD"))
+            {   
+                if (!sesi)
+                {
+                    printf("%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
+                }
+                else
+                {
+                    ADVCOMMAND();
+
+                    if (isInputEqual(CCommand, "SONG"))
+                    {   
+                        PlaylistAddLagu(&AP, &LP);
+                    }
+                    else if (isInputEqual(CCommand, "ALBUM"))
+                    {   
+                        PlaylistAddAlbum(&AP, &LP);
+                    }
+
+                }
+            }
+
+            else if (isInputEqual(CCommand, "REMOVE"))
+            {   
+                if (!sesi)
+                {
+                    printf("%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
+                }
+                else
+                {
+                    ADVCOMMAND();
+                    int idPlaylist = atoi(CCommand.TabLine);
+
+                    ADVCOMMAND();
+                    int idLagu = atoi(CCommand.TabLine);
+
+                    PlayListRemoveLagu(&AP, idPlaylist, idLagu);
+                }
+            }
+
+            else if (isInputEqual(CCommand, "SWAP"))
+            {   
+                if (!sesi)
+                {
+                    printf("%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
+                }
+                else
+                {
+                    ADVCOMMAND();
+                    int idPlaylist = atoi(CCommand.TabLine) - 1;
+
+                    ADVCOMMAND();
+                    int idLagu1 = atoi(CCommand.TabLine) - 1;
+
+                    ADVCOMMAND();
+                    int idLagu2 = atoi(CCommand.TabLine) - 1;
+
+                    // printf("%d\n", idLagu1);
+                    // printf("%d\n", idLagu2);
+
+                    playlistSwap(&AP, idPlaylist, idLagu1, idLagu2);
+                }
+            }
+
+            else if (isInputEqual(CCommand, "DELETE"))
+            {   
+                if (!sesi)
+                {
+                    printf("%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
+                }
+                else
+                {
+                    deletePlaylist(&AP);
+                }
+            }
+
+            else
+            {
+                printf("%sERROR: %sCommand tidak diketahui!\n", RED, WHITE);
+            }
+        }
+
 /* *** ******** ******** ******** ******** ******** ****** ** COMMAND STATUS ** ****** ******** ******** ******** ******** ******** *** */
 
         else if (isInputEqual(CCommand, "STATUS")){
@@ -295,6 +442,21 @@ int main()
                 Status(&CS, &QL);
             }
             
+        }
+
+/* *** ******** ******** ******** ******** ******** ****** ** COMMAND SAVE ** ****** ******** ******** ******** ******** ******** *** */
+
+        else if (isInputEqual(CCommand, "SAVE")){
+            ADVCOMMAND();
+
+            if (!sesi)
+            {
+                printf("%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
+            }
+            else
+            {
+                SaveFile(&LP,&AP, &QL, &RL, CCommand.TabLine);
+            }
         }
 
 
@@ -345,4 +507,3 @@ int main()
 
     return 0;
 }
-

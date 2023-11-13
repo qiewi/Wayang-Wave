@@ -1,11 +1,15 @@
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "../../ADT/MapSetList/mapsetlist.h"
 #include "../../ADT/pcolor/pcolor.h"
 #include "../../ADT/Queue/queue.h"
 #include "../../ADT/Stack/RiwayatLagu.h"
 #include "../../ADT/LineMachine/linemachine.h"
+#include "../../ADT/LinkedList/linkedlist.h"
+#include "../../ADT/array/arraydinamis.h"
 #include "../Play/Play.h"
+#include "../Playlist/Playlist.h"
 
 void enqueueLaguFirst(QueueLagu *q, Kalimat JudulLaguQueue, Kalimat NamaAlbumQueue, Kalimat NamaPenyanyiQueue)
 {
@@ -141,7 +145,7 @@ void QueueRemoveLagu(QueueLagu * QL, RiwayatLagu * RL, int idQueue)
     }
 }
 
-void QueueAddLagu(ListPenyanyi * LP, QueueLagu * QL)
+void QueueAddLagu(ListPenyanyi * LP, QueueLagu * QL, CurrentSong * CS)
 {
     int id = -1; // kalau -1 dia undefined (ga ada penyanyi / album)
 
@@ -183,13 +187,15 @@ void QueueAddLagu(ListPenyanyi * LP, QueueLagu * QL)
             printf("\nMasukkan ID Lagu yang dipilih : ");
             STARTKALIMATINPUT();
 
-            int idLagu = CInput.TabLine[0] - 49;
+            int idLagu = atoi(CInput.TabLine) - 1;
             if (idLagu < (*LP).PenyanyiAlbum[idPenyanyi].ListAlbum.AlbumLagu[idAlbum].IsiLagu.Count)
             {   
                 Kalimat NamaLagu = (*LP).PenyanyiAlbum[idPenyanyi].ListAlbum.AlbumLagu[idAlbum].IsiLagu.JudulLagu[idLagu];
                 Kalimat NamaAlbum = (*LP).PenyanyiAlbum[idPenyanyi].ListAlbum.AlbumLagu[idAlbum].NamaAlbum;
                 Kalimat NamaPenyanyi = (*LP).PenyanyiAlbum[idPenyanyi].NamaPenyanyi;
                 enqueueLagu(QL, NamaLagu, NamaAlbum, NamaPenyanyi);
+
+                (*CS).statusPL = 0;
                 printf("%sBerhasil menambahkan lagu %s\"%s\" %soleh %s\"%s\" %ske queue.\n", GREEN, WHITE, (*QL).JudulLagu[(*QL).idxTail].TabLine, GREEN, WHITE, (*QL).NamaPenyanyi[(*QL).idxTail].TabLine, GREEN);    
             }
             else
@@ -214,4 +220,96 @@ void QueueClear(QueueLagu * QL)
   (*QL).idxTail = IDX_UNDEF;
 
   printf("\n%sOutput: %sQueue berhasil dikosongkan.\n", GREEN, WHITE);
+}
+
+void PlayPlaylist(ArrayDin * AP, QueueLagu * QL, RiwayatLagu * RL)
+{
+  
+  printf("\nMasukkan ID Playlist: ");
+  STARTKALIMATINPUT();
+
+  int id = atoi(CInput.TabLine) - 1;
+
+  if (id+1 > (*AP).Neff || id+1 < 0)
+  {
+     printf("\n%sERROR: %sTidak ada playlist dengan ID %d.\n", RED, WHITE, id+1);
+  }
+  else
+  {
+    // PlaylistToQueue(QL, AP, id);
+
+    // address p = First((*AP).A[id]);
+    // p = Next(p);
+
+    // for(int tes = 0; tes < 3; tes++)
+    // {   
+    //     printf("\n%d - %s - %s - %s\n", tes, JudulLagu(p).TabLine, NamaAlbum(p).TabLine, NamaPenyanyi(p).TabLine);
+    //     p = Next(p);
+    // }
+
+    address p = First((*AP).A[id]);
+    p = Next(p);
+
+    while(p != Nil)
+    {
+      // printf("\n%s - %s - %s\n", JudulLagu(p).TabLine, NamaAlbum(p).TabLine, NamaPenyanyi(p).TabLine);
+      enqueueLagu(QL, JudulLagu(p), NamaAlbum(p), NamaPenyanyi(p));
+      PushRiwayatLagu(RL, JudulLagu(p), NamaAlbum(p), NamaPenyanyi(p));
+      p = Next(p);
+    }
+
+    printf("%sMemutar playlist %s\"%s\".\n", GREEN, WHITE, (*AP).Nama[id].TabLine);
+  }
+
+}
+
+void QueuePlaylist(ArrayDin * AP, QueueLagu * QL, CurrentSong * CS)
+{
+  
+  printf("\nMasukkan ID Playlist: ");
+  STARTKALIMATINPUT();
+
+  int id = atoi(CInput.TabLine) - 1;
+
+  if (id+1 > (*AP).Neff || id+1 < 0)
+  {
+     printf("\n%sERROR: %sTidak ada playlist dengan ID %d.\n", RED, WHITE, id+1);
+  }
+  else
+  {
+    // PlaylistToQueue(QL, AP, id);
+
+    // address p = First((*AP).A[id]);
+    // p = Next(p);
+
+    // for(int tes = 0; tes < 3; tes++)
+    // {   
+    //     printf("\n%d - %s - %s - %s\n", tes, JudulLagu(p).TabLine, NamaAlbum(p).TabLine, NamaPenyanyi(p).TabLine);
+    //     p = Next(p);
+    // }
+
+    if ((*QL).idxHead == IDX_UNDEF || (*QL).idxTail == IDX_UNDEF )
+    {
+        (*CS).statusPL = 1;
+        (*CS).NamaPlaylist = (*AP).Nama[id];
+    }
+    else
+    {
+        (*CS).statusPL = 0;
+    }
+    
+    address p = First((*AP).A[id]);
+    p = Next(p);
+
+    while(p != Nil)
+    {
+      // printf("\n%s - %s - %s\n", JudulLagu(p).TabLine, NamaAlbum(p).TabLine, NamaPenyanyi(p).TabLine);
+      enqueueLagu(QL, JudulLagu(p), NamaAlbum(p), NamaPenyanyi(p));
+      p = Next(p);
+    }
+
+    printf("%sBerhasil menambahkan playlist %s\"%s\" %ske queue.\n", GREEN, WHITE, (*AP).Nama[id].TabLine, GREEN);
+    
+  }
+
 }
