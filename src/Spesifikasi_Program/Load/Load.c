@@ -24,11 +24,7 @@ void LOADFILE(ListPenyanyi * LP, char filename[], QueueLagu * QL, RiwayatLagu * 
 
     int loop = atoi(CLine.TabLine);
 
-    if (loop < 0)
-    {
-        printf("\n%sERROR: %sSave file tidak ditemukan. %sWayangWave %sgagal dijalankan.\n", RED, WHITE, GREEN, WHITE);
-    }
-    else
+    if (loop > 0)
     {
         // printf("\n%sJumlah Penyanyi: %s%d\n", WHITE, MAGENTA, loop);
 
@@ -166,6 +162,10 @@ void LOADFILE(ListPenyanyi * LP, char filename[], QueueLagu * QL, RiwayatLagu * 
             }
 
         }
+    }
+    else
+    {
+        printf("\n%sERROR: %sSave file tidak ditemukan. %sWayangWave %sgagal dijalankan.\n", RED, WHITE, GREEN, WHITE);
     }
 }
 

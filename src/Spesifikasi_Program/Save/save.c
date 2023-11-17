@@ -130,14 +130,7 @@ void SaveFile(ListPenyanyi * LP, ArrayDin * AP, QueueLagu * QL, RiwayatLagu * RL
         for (int d = 0; d < count; d++)
         {
             
-            if (c == (*AP).Neff-1 && d == count-1)
-            {
-                fprintf(File, "%s;%s;%s", NamaPenyanyi(lagu).TabLine, NamaAlbum(lagu).TabLine, JudulLagu(lagu).TabLine);
-            }
-            else
-            {
-                fprintf(File, "%s;%s;%s\n", NamaPenyanyi(lagu).TabLine, NamaAlbum(lagu).TabLine, JudulLagu(lagu).TabLine);
-            }
+            fprintf(File, "%s;%s;%s\n", NamaPenyanyi(lagu).TabLine, NamaAlbum(lagu).TabLine, JudulLagu(lagu).TabLine);
 
             lagu = Next(lagu);
         }

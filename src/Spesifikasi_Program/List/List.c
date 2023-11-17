@@ -1,8 +1,10 @@
 #include "../../ADT/MapSetList/mapsetlist.h"
 #include <stdio.h>
+#include <stdlib.h>
 #include "../../ADT/pcolor/pcolor.h"
 #include "../../ADT/LineMachine/linemachine.h"
 #include "../../ADT/LinkedList/linkedlist.h"
+#include "../../ADT/LineMachine/linemachine.h"
 #include "../../ADT/array/arraydinamis.h"
 
 void DisplayListDefault(ListPenyanyi * LP)
@@ -79,6 +81,40 @@ void displayPlaylist(ArrayDin * AP)
     {
       printf("  %s%d. %s \n", WHITE, i+1, (*AP).Nama[i].TabLine);
     }
+
+    printf("\nIngin cek isi lagu dari sebuah playlist? (Y/N): %s", GREEN);
+    STARTKALIMATINPUT();
+
+    if (CInput.TabLine[0] == 'Y')
+    {
+
+        printf("%sInput ID playlist: %s", WHITE, GREEN);
+        STARTKALIMATINPUT();
+
+        int idPL = atoi(CInput.TabLine) - 1;
+
+        if (idPL+1 > (*AP).Neff || idPL+1 <= 0)
+        {
+            printf("\n%sERROR: %sTidak ada playlist dengan ID %d.\n", RED, WHITE, idPL+1);
+        }
+        else
+        {   
+            printf("\n%sDaftar lagu dalam playlist %s\"%s\":%s\n", GREEN, YELLOW, (*AP).Nama[idPL].TabLine, WHITE);
+            address p = First((*AP).A[idPL]);
+            int i = 0;
+
+            while (p != Nil)
+            {
+                printf("  %s%d. %s - %s \n", WHITE, i+1, NamaPenyanyi(p).TabLine, JudulLagu(p).TabLine);
+                p = Next(p);
+                i++;
+            }
+
+            printf("\n");
+        
+        }
+    }
+
   }
   else
   {

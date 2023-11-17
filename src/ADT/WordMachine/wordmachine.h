@@ -6,7 +6,7 @@
 
 #include "../CharMachine/charmachine.h"
 #include "../LineMachine/linemachine.h"
-#include "boolean.h"
+#include "../boolean.h"
 
 #define NMax 500
 #define BLANK ' '

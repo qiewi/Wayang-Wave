@@ -27,4 +27,8 @@ void deletePlaylist(ArrayDin * AP);
 
 void playlistSwap(ArrayDin * AP, int idPlaylist, int idLagu1, int idLagu2);
 
+int idPlaylist(ArrayDin * AP, Kalimat NamaPL);
+
+int cekLaguPL(ArrayDin * AP, Kalimat NamaPenyanyi, Kalimat NamaAlbum, Kalimat JudulLagu, int idPL);
+
 #endif

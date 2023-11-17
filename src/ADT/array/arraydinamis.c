@@ -9,6 +9,7 @@
 #include "arraydinamis.h"
 #include "../LinkedList/linkedlist.h"
 #include <stdlib.h>
+#include "../boolean.h"
 
 /**
  * Konstruktor
@@ -38,7 +39,7 @@ void DeallocateArrayDin(ArrayDin *array){
  * Fungsi untuk mengetahui apakah suatu array kosong.
  * Prekondisi: array terdefinisi
  */
-boolean IsEmpty(ArrayDin array){
+boolean IsEmptyArray(ArrayDin array){
   return (array.Neff == 0);
 }
 
@@ -59,14 +60,6 @@ List Get(ArrayDin array, IdxType i){
 }
 
 /**
- * Fungsi untuk mendapatkan kapasitas yang tersedia.
- * Prekondisi: array terdefinisi
- */
-int GetCapacity(ArrayDin array){
-  return array.Capacity;
-}
-
-/**
  * Fungsi untuk menambahkan elemen baru di index ke-i
  * Prekondisi: array terdefinisi, i di antara 0..Length(array).
  */
@@ -76,17 +69,4 @@ void InsertNama(ArrayDin *array, NameType NamaPlaylist){
   (*array).Nama[(*array).Neff] = NamaPlaylist;
   (*array).Neff += 1;
 
-}
-
-
-/**
- * Fungsi untuk menghapus elemen di index ke-i ArrayDin
- * Prekondisi: array terdefinisi, i di antara 0..Length(array).
- */
-void DeleteAt(ArrayDin *array, IdxType i){
-  // int j = Length(*array)-1;
-  // for (i; i < j; i++){
-  //   (*array).A[i] = (*array).A[i+1];
-  // }
-  // (*array).Neff -= 1;
 }

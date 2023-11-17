@@ -6,7 +6,7 @@
 #ifndef linkedlist_H
 #define linkedlist_H
 
-#include "boolean.h"
+#include "../boolean.h"
 #include "../LineMachine/linemachine.h"
 #include "../pcolor/pcolor.h"
 

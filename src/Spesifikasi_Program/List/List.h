@@ -5,7 +5,9 @@
 #include "../../ADT/WordMachine/wordmachine.h"
 #include "../../ADT/LinkedList/linkedlist.h"
 #include "../../ADT/array/arraydinamis.h"
+#include "../../ADT/LineMachine/linemachine.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 void DisplayListDefault(ListPenyanyi * LP);
 

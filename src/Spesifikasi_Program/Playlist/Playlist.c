@@ -137,7 +137,7 @@ void PlaylistAddLagu(ArrayDin * AP, ListPenyanyi * LP)
                 printf("\nMasukkan ID Playlist yang dipilih : %s", GREEN);
                 STARTKALIMATINPUT();
 
-                int idPlaylist = CInput.TabLine[0] - 49; // to do list: bikin verifikasi id
+                int idPlaylist = atoi(CInput.TabLine); // to do list: bikin verifikasi id
 
                 if (idPlaylist+1 > (*AP).Neff || idPlaylist+1 <= 0)
                 {
@@ -405,6 +405,38 @@ void deletePlaylist(ArrayDin * AP) // tanya harus dealoc gak
     {
         printf("\n%sKamu tidak mempunyai playlist. Silahkan membuat playlist terlebih dahulu.\n", WHITE);
     }
+}
+
+int idPlaylist(ArrayDin * AP, Kalimat NamaPL)
+{
+    for (int i = 0; i < (*AP).Neff; i++)
+    {
+        if (isKalimatEqual((*AP).Nama[i], NamaPL))
+        {
+            return i;
+        }
+    }
+
+    return -1;
+}
+
+int cekLaguPL(ArrayDin * AP, Kalimat NamaPenyanyi, Kalimat NamaAlbum, Kalimat JudulLagu, int idPL) // solve cek lagu
+{
+    address p = First((*AP).A[idPL]);
+
+    while (p != Nil)
+    {
+        if (isKalimatEqual(NamaPenyanyi(p), NamaPenyanyi) && (isKalimatEqual(NamaAlbum(p), NamaAlbum)) && (isKalimatEqual(JudulLagu(p), JudulLagu)))
+        {
+            return -1;
+        }
+        else
+        {
+            p = Next(p);
+        }
+    }
+
+    return 1;
 }
 
 // int main()

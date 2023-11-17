@@ -8,7 +8,8 @@
 
 #define InitialSize 10
 
-#include "../../ADT/LinkedList/linkedlist.h"
+#include "../LinkedList/linkedlist.h"
+#include "../boolean.h"
 
 typedef int IdxType;
 typedef Kalimat NameType;
@@ -46,28 +47,7 @@ boolean IsEmptyArray(ArrayDin array);
  */
 int LengthArray(ArrayDin array);
 
-/**
- * Mengembalikan elemen array L yang ke-I (indeks lojik).
- * Prekondisi: array tidak kosong, i di antara 0..Length(array).
- */
-List Get(ArrayDin array, IdxType i);
 
-/**
- * Fungsi untuk mendapatkan kapasitas yang tersedia.
- * Prekondisi: array terdefinisi
- */
-int GetCapacity(ArrayDin array);
-
-/**
- * Fungsi untuk menambahkan elemen baru di index ke-i
- * Prekondisi: array terdefinisi, i di antara 0..Length(array).
- */
 void InsertNama(ArrayDin *array, NameType NamaPlaylist);
-
-/**
- * Fungsi untuk menghapus elemen di index ke-i ArrayDin
- * Prekondisi: array terdefinisi, i di antara 0..Length(array).
- */
-void DeleteAt(ArrayDin *array, IdxType i);
 
 #endif

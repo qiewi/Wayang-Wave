@@ -35,6 +35,7 @@
 #include "Spesifikasi_Program/Status/Status.h"
 #include "Spesifikasi_Program/Playlist/Playlist.h"
 #include "Spesifikasi_Program/Save/save.h"
+#include "Spesifikasi_Program/Enhance/enhance.h"
 
 /* *** ******** ******** ******** ******** ******** ****** *** PROGRAM UTAMA *** ****** ******** ******** ******** ******** ******** *** */
 int main()
@@ -65,6 +66,8 @@ int main()
 
     ArrayDin AP = MakeArrayDin();
 
+    Kalimat NamaFile;
+
 /* *** ******** ******** ******** ******** ******** ****** ** MULAI COMMAND ** ****** ******** ******** ******** ******** ******** *** */
 
     // Meminta Command
@@ -94,7 +97,7 @@ int main()
                 delay(1);
                 printf("=========]\n");          
 
-                STARTREAD(&LP, "custom.txt"); // ganti ke config jangan lupa
+                STARTREAD(&LP, "Data/config.txt"); // ganti ke config jangan lupa
 
                 printf("\n%sOutput: %sFile konfigurasi aplikasi berhasil dibaca.\n", GREEN, WHITE);
 
@@ -121,7 +124,30 @@ int main()
             {
                 ADVCOMMAND();
 
-                LOADFILE(&LP, CCommand.TabLine, &QL, &RL, &AP);
+                delay(1);
+                printf("\n%s[=========", GREEN);
+                delay(1);
+                printf("==========");
+                delay(1);
+                printf("%s Loading %s.. ", CYAN, CCommand.TabLine);
+                delay(1);
+                printf("%s==========", GREEN);
+                delay(1);
+                printf("=========]\n");
+
+                NamaFile = DirectoryCommand(CCommand);
+
+                LOADFILE(&LP, NamaFile.TabLine, &QL, &RL, &AP); 
+
+                printf("\n%sOutput: %sFile save berhasil dibaca.\n", GREEN, WHITE);
+
+                printf("\n%s[=========", GREEN);
+                printf("==========");
+
+                printf("%s WayangWave Running.. ", CYAN);
+
+                printf("%s==========", GREEN);
+                printf("=========]\n\n");
 
                 sesi = true;
             }
@@ -429,6 +455,22 @@ int main()
             }
         }
 
+/* *** ******** ******** ******** ******** ******** ****** ** COMMAND ENHANCE ** ****** ******** ******** ******** ******** ******** *** */
+
+        else if (isInputEqual(CCommand, "ENHANCE"))
+        {
+
+            if (!sesi)
+            {
+                printf("%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
+            }
+            else
+            {
+                EnchancePL(&LP, &AP);
+            }
+
+        }
+
 /* *** ******** ******** ******** ******** ******** ****** ** COMMAND STATUS ** ****** ******** ******** ******** ******** ******** *** */
 
         else if (isInputEqual(CCommand, "STATUS")){
@@ -438,7 +480,8 @@ int main()
                 printf("%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
             }
             else
-            {
+            {   
+                // printf("%d\n", (CS).status);
                 Status(&CS, &QL);
             }
             
@@ -455,7 +498,32 @@ int main()
             }
             else
             {
+
+                delay(1);
+                printf("\n%s[=========", GREEN);
+                delay(1);
+                printf("==========");
+                delay(1);
+                printf("%s Saving to %s.. ", CYAN, CCommand.TabLine);
+                delay(1);
+                printf("%s==========", GREEN);
+                delay(1);
+                printf("=========]\n");     
+
+                CCommand = DirectoryCommand(CCommand);     
+
                 SaveFile(&LP,&AP, &QL, &RL, CCommand.TabLine);
+
+                printf("\n%sOutput: %sProgram berhasil disave!.\n", GREEN, WHITE);
+
+                printf("\n%s[=========", GREEN);
+                printf("==========");
+
+                printf("%s WayangWave Saved.. ", CYAN);
+
+                printf("%s==========", GREEN);
+                printf("=========]\n\n");
+
             }
         }
 
@@ -471,6 +539,14 @@ int main()
 
         else if (isInputEqual(CCommand, "QUIT")){
             
+            printf("\n%sApakah kamu ingin menyimpan data sesi sekarang? %s", GREEN, WHITE);
+            STARTCOMMAND();
+
+            if (CCommand.TabLine[0] == 'Y')
+            {
+                SaveFile(&LP, &AP, &QL, &RL, NamaFile.TabLine);
+            }
+
             delay(1);
             printf("\n%s[=========", GREEN);
             delay(1);
