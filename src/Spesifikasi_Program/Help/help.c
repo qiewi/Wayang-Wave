@@ -1,7 +1,11 @@
+/* *** ******** ******** ******** ******** ******** ****** ** INCLUDED ADT & SPEK ** ****** ******** ******** ******** ******** ******** *** */
+
 #include <stdio.h>
 #include "../../ADT/boolean.h"
 #include "../../ADT/pcolor/pcolor.h"
 #include "help.h"
+
+/* *** ******** ******** ******** ******** ******** ****** ** COMMAND SPEK ** ****** ******** ******** ******** ******** ******** *** */
 
 void help(boolean sesi,boolean data){                                                                                                     
     if (!data) {

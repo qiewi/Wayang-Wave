@@ -1,12 +1,17 @@
-#include "../../ADT/MapSetList/mapsetlist.h"
+/* *** ******** ******** ******** ******** ******** ****** ** INCLUDED ADT & SPEK ** ****** ******** ******** ******** ******** ******** *** */
+
 #include <stdio.h>
 #include <stdlib.h>
+
 #include "../../ADT/pcolor/pcolor.h"
 #include "../../ADT/Stack/RiwayatLagu.h"
 #include "../../ADT/Queue/queue.h"
 #include "../../ADT/LineMachine/linemachine.h"
+#include "../../ADT/MapSetList/mapsetlist.h"
+
 #include "Play.h"
 
+/* *** ******** ******** ******** ******** ******** ****** ** COMMAND SPEK ** ****** ******** ******** ******** ******** ******** *** */
 
 void CreateCurrentSong(CurrentSong * CS)
 {

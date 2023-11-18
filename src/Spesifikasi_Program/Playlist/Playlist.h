@@ -1,13 +1,18 @@
 #ifndef __PLAYLIST_H__
 #define __PLAYLIST_H__
 
+/* *** ******** ******** ******** ******** ******** ****** ** INCLUDED ADT & SPEK ** ****** ******** ******** ******** ******** ******** *** */
+
 #include <stdio.h>
 #include <stdlib.h>
+
 #include "../../ADT/LinkedList/LinkedList.h"
 #include "../../ADT/Stack/RiwayatLagu.h"
 #include "../../ADT/array/arraydinamis.h"
 #include "../../ADT/LineMachine/linemachine.h"
 #include "../../ADT/pcolor/pcolor.h"
+
+/* *** ******** ******** ******** ******** ******** ****** ** COMMAND SPEK ** ****** ******** ******** ******** ******** ******** *** */
 
 void PlaylistCreate(ArrayDin * AP);
 

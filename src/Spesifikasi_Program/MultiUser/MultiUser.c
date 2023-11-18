@@ -1,6 +1,8 @@
+/* *** ******** ******** ******** ******** ******** ****** ** INCLUDED ADT & SPEK ** ****** ******** ******** ******** ******** ******** *** */
 
 #include <stdio.h>
 #include <stdlib.h>
+
 #include "../../ADT/boolean.h"
 #include "../../ADT/Queue/queue.h"
 #include "../../ADT/MapSetList/mapsetlist.h"
@@ -9,9 +11,12 @@
 #include "../../ADT/array/arraydinamis.h"
 #include "../../ADT/LineMachine/linemachine.h"
 #include "../../ADT/pcolor/pcolor.h"
+
 #include "../Inisialisasi/inisialisasi.h"
 #include "../Play/Play.h"
 #include "MultiUser.h"
+
+/* *** ******** ******** ******** ******** ******** ****** ** COMMAND SPEK ** ****** ******** ******** ******** ******** ******** *** */
 
 void CreateDataUser(DataUser * DU)
 {

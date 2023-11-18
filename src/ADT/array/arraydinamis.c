@@ -1,14 +1,8 @@
-// Nama : Rizqi Andhika Pratama
-// NIM : 18222118
-// Tanggal : 20 September 2023
-// Topik praktikum  : Pra-Praktikum 3 - ADT, Pointer dan Array Dinamik
-// Deskripsi        : Program yang membuat implementasi dari panjangstring.h
-
 /* *** Definisi ABSTRACT DATA TYPE POINT *** */
 #include <stdio.h>
+#include <stdlib.h>
 #include "arraydinamis.h"
 #include "../LinkedList/linkedlist.h"
-#include <stdlib.h>
 #include "../boolean.h"
 
 /**

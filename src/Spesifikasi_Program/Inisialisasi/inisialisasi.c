@@ -1,17 +1,17 @@
+/* *** ******** ******** ******** ******** ******** ****** ** INCLUDED ADT & SPEK ** ****** ******** ******** ******** ******** ******** *** */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 #include "inisialisasi.h"
-// #include "../../ADT/WordMachine/wordmachine.h"
 #include "../../ADT/pcolor/pcolor.h"
 
-
-// extern Word currentWord;
+/* *** ******** ******** ******** ******** ******** ****** ** COMMAND SPEK ** ****** ******** ******** ******** ******** ******** *** */
 
 void delay(int number_of_seconds)
 {
     // Converting time into milli_seconds
-    int milli_seconds = 1000 * number_of_seconds;
+    int milli_seconds = 500 * number_of_seconds;
  
     // Storing start time
     clock_t start_time = clock();
@@ -30,25 +30,50 @@ void print_image(FILE *fascii)
 }
 
 
+// void inisialisasi(){
+//     char *filename;
+//     FILE *fascii;
+//     system("cls || clear");
+
+//     filename = "Spesifikasi_Program/Inisialisasi/wayang.txt";
+    
+//     fascii = NULL;
+//     fascii = fopen(filename,"r");
+
+//     if(fascii  == NULL){
+//         printf("error opening %s\n",filename);
+//     } else {
+//         system("cls || clear");
+//         print_image(fascii);
+//         fclose(fascii);
+//     }
+// }
+
 void inisialisasi(){
     char *filename;
     FILE *fascii;
     system("cls || clear");
-
-    filename = "Spesifikasi_Program/Inisialisasi/wayang.txt";
-    
-    fascii = NULL;
-    fascii = fopen(filename,"r");
-
-    if(fascii  == NULL){
-        printf("error opening %s\n",filename);
-    } else {
-        system("cls || clear");
-        print_image(fascii);
-        fclose(fascii);
+    for (int i = 0; i < 4; i++){
+        if (i == 0) {
+            filename = "Spesifikasi_Program/Inisialisasi/wayang3.txt";
+        } else if (i == 1){
+            filename = "Spesifikasi_Program/Inisialisasi/wayang2.txt";
+        } else if (i == 2){
+            filename = "Spesifikasi_Program/Inisialisasi/wayang1.txt";
+        } else if (i == 3){
+            filename = "Spesifikasi_Program/Inisialisasi/wayang.txt";
+        } 
+        fascii = NULL;
+        fascii = fopen(filename,"r");
+        if(fascii  == NULL){
+            printf("error opening %s\n",filename);
+        } else {
+            system("cls || clear");
+            print_image(fascii);
+            fclose(fascii);
+        }
+        delay(1);
     }
-    // InitialCommand();
-    // load(currentWord)
 }
 
 // int main(){

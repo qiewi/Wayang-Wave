@@ -1,6 +1,8 @@
+/* *** ******** ******** ******** ******** ******** ****** ** INCLUDED ADT & SPEK ** ****** ******** ******** ******** ******** ******** *** */
 
 #include <stdio.h>
 #include <stdlib.h>
+
 #include "../../ADT/MapSetList/mapsetlist.h"
 #include "../../ADT/pcolor/pcolor.h"
 #include "../../ADT/Queue/queue.h"
@@ -8,8 +10,11 @@
 #include "../../ADT/LineMachine/linemachine.h"
 #include "../../ADT/LinkedList/linkedlist.h"
 #include "../../ADT/array/arraydinamis.h"
+
 #include "../Play/Play.h"
 #include "../Playlist/Playlist.h"
+
+/* *** ******** ******** ******** ******** ******** ****** ** COMMAND SPEK ** ****** ******** ******** ******** ******** ******** *** */
 
 void enqueueLaguFirst(QueueLagu *q, Kalimat JudulLaguQueue, Kalimat NamaAlbumQueue, Kalimat NamaPenyanyiQueue)
 {

@@ -105,7 +105,7 @@ int main()
                 delay(1);
                 printf("=========]\n");          
 
-                STARTREAD(&LP, "Data/config.txt"); // ganti ke config jangan lupa
+                STARTREAD(&LP, "Data/config.txt", &DU); // ganti ke config jangan lupa
 
                 printf("\n%sOutput: %sFile konfigurasi aplikasi berhasil dibaca.\n", GREEN, WHITE);
 
@@ -557,7 +557,7 @@ int main()
             else
             {   
                 // printf("%d\n", (CS).status);
-                Status(&CS, &QL);
+                Status(&CS, &CU, &QL, &RL);
             }
             
         }

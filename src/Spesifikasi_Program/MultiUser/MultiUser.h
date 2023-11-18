@@ -1,6 +1,8 @@
 #ifndef __MULTIUSER_H__
 #define __MULTIUSER_H__
 
+/* *** ******** ******** ******** ******** ******** ****** ** INCLUDED ADT & SPEK ** ****** ******** ******** ******** ******** ******** *** */
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -16,13 +18,15 @@
 #define UserMaks 10
 
 typedef struct {
-	Kalimat NamaUser[5];
-	ArrayDin AP[5];
-    CurrentSong CS[5];
-    QueueLagu QL[5];
-    RiwayatLagu RL[5];
+	Kalimat NamaUser[UserMaks];
+	ArrayDin AP[UserMaks];
+    CurrentSong CS[UserMaks];
+    QueueLagu QL[UserMaks];
+    RiwayatLagu RL[UserMaks];
     int TotalUser;
 } DataUser;
+
+/* *** ******** ******** ******** ******** ******** ****** ** COMMAND SPEK ** ****** ******** ******** ******** ******** ******** *** */
 
 void CreateDataUser(DataUser * DU);
 

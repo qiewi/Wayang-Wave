@@ -1,8 +1,8 @@
 #include <stdio.h>
+#include "mapsetlist.h"
 #include "../boolean.h"
 #include "../LineMachine/linemachine.h"
 #include "../pcolor/pcolor.h"
-#include "mapsetlist.h"
 
 /* *** Konstruktor/Kreator *** */
 void CreateListPenyanyi(ListPenyanyi * LP)

@@ -1,12 +1,18 @@
+/* *** ******** ******** ******** ******** ******** ****** ** INCLUDED ADT & SPEK ** ****** ******** ******** ******** ******** ******** *** */
+
 #include <stdio.h>
 #include <stdlib.h>
+
 #include "../../ADT/boolean.h"
 #include "../../ADT/LineMachine/linemachine.h"
 #include "../../ADT/LinkedList/linkedlist.h"
 #include "../../ADT/MapSetList/mapsetlist.h"
 #include "../../ADT/array/arraydinamis.h"
 #include "../../ADT/pcolor/pcolor.h"
+
 #include "Playlist.h"
+
+/* *** ******** ******** ******** ******** ******** ****** ** COMMAND SPEK ** ****** ******** ******** ******** ******** ******** *** */
 
 void PlaylistCreate(ArrayDin * AP) // to do list: cek panjang karakter
 {

@@ -1,7 +1,11 @@
+/* *** ******** ******** ******** ******** ******** ****** ** INCLUDED ADT & SPEK ** ****** ******** ******** ******** ******** ******** *** */
+
 #include "../../ADT/pcolor/pcolor.h"
 #include "../../ADT/Queue/queue.h"
 #include "../Play/Play.h"
 #include "../Queue/Queue.h"
+
+/* *** ******** ******** ******** ******** ******** ****** ** COMMAND SPEK ** ****** ******** ******** ******** ******** ******** *** */
 
 void SongNext(QueueLagu * QL, RiwayatLagu * RL, CurrentSong * CS)
 {   
