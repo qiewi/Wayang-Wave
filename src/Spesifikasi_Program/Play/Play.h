@@ -17,7 +17,15 @@ typedef struct {
     int statusPL;
 } CurrentSong;
 
+typedef struct {
+	Kalimat NamaUser;
+    int idUser;
+    int status;
+} CurrentUser;
+
 void CreateCurrentSong(CurrentSong * CS);
+
+void CreateCurrentUser(CurrentUser * CU);
 
 void AddSong(ListPenyanyi * LP, CurrentSong * CS, int idPenyanyi, int idAlbum, int idLagu);
 

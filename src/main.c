@@ -43,6 +43,7 @@ int main()
 {   
     // Kondisi Program
     boolean mulai = true;
+    boolean data = false;
     boolean sesi = false;
 
 /* *** ******** ******** ******** ******** ******** ****** ** PRINT MAIN MENU ** ****** ******** ******** ******** ******** ******** *** */
@@ -63,6 +64,9 @@ int main()
     CurrentSong CS;
     CreateCurrentSong(&CS);
 
+    CurrentUser CU;
+    CreateCurrentUser(&CU);
+
     QueueLagu QL;
     CreateQueueLagu(&QL);
 
@@ -70,7 +74,6 @@ int main()
     CreateRiwayatLagu(&RL);
 
     ArrayDin AP = MakeArrayDin();
-
     Kalimat NamaFile;
 
 /* *** ******** ******** ******** ******** ******** ****** ** MULAI COMMAND ** ****** ******** ******** ******** ******** ******** *** */
@@ -85,9 +88,9 @@ int main()
 
         if (isInputEqual(CCommand, "START")){
 
-            if (sesi)
+            if (data)
             {
-                printf("%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
+                printf("\n%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
             }   
             else
             {
@@ -115,7 +118,7 @@ int main()
                 printf("=========]\n\n");
 
                 
-                sesi = true;
+                data = true;
             }
         }
         
@@ -125,7 +128,7 @@ int main()
         else if (isInputEqual(CCommand, "LOAD"))
         { 
             
-            if (!sesi)
+            if (!data)
             {
                 ADVCOMMAND();
 
@@ -142,7 +145,7 @@ int main()
 
                 NamaFile = DirectoryCommand(CCommand);
 
-                LOADFILE(&LP, NamaFile.TabLine, &QL, &RL, &AP, &CS); 
+                LOADFILE(&LP, NamaFile.TabLine, &DU); 
 
                 printf("\n%sOutput: %sFile save berhasil dibaca.\n", GREEN, WHITE);
 
@@ -154,13 +157,64 @@ int main()
                 printf("%s==========", GREEN);
                 printf("=========]\n\n");
 
-                sesi = true;
+                data = true;
             }
             else
             {
-                printf("%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
+                printf("\n%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
             }
 
+        }
+
+/* *** ******** ******** ******** ******** ******** ****** ** COMMAND REGISTER ** ****** ******** ******** ******** ******** ******** *** */
+
+        else if (isInputEqual(CCommand, "REGISTER")){
+
+            if (!data)
+            {
+                printf("\n%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
+            }
+            else if (sesi)
+            {
+                printf("\n%sERROR: %sKamu sudah login ke dalam akun %s. Silahkan logout terlebih dahulu\n", RED, WHITE, CU.NamaUser.TabLine);
+            }
+            else
+            {
+                RegisterUser(&DU);
+            }
+        }
+
+/* *** ******** ******** ******** ******** ******** ****** ** COMMAND LOGIN ** ****** ******** ******** ******** ******** ******** *** */
+
+        else if (isInputEqual(CCommand, "LOGIN")){
+
+            if (!data)
+            {
+                printf("\n%sERROR: %sCommand tidak dapat dieksekusi! Silahkan load file terlebih dahulu\n", RED, WHITE);
+            }
+            else if (sesi)
+            {
+                printf("\n%sERROR: %sKamu sudah login ke dalam akun %s. Silahkan logout terlebih dahulu\n", RED, WHITE, CU.NamaUser.TabLine);
+            }
+            else
+            {
+                Login(&DU, &AP, &CS, &CU, &QL, &RL, &sesi);
+            }
+        }
+
+/* *** ******** ******** ******** ******** ******** ****** ** COMMAND LOGOUT ** ****** ******** ******** ******** ******** ******** *** */
+
+        else if (isInputEqual(CCommand, "LOGOUT")){
+
+            if (!sesi)
+            {
+                printf("\n%sERROR: %sSilahkan login terlebih dahulu!\n", RED, WHITE);
+            }
+            else
+            {
+                Logout(&DU, &AP, &CS, &CU, &QL, &RL, CU.idUser);
+                sesi = false;
+            }
         }
 
 /* *** ******** ******** ******** ******** ******** ****** ** COMMAND LIST ** ****** ******** ******** ******** ******** ******** *** */
@@ -173,7 +227,7 @@ int main()
 
                 if (!sesi)
                 {
-                    printf("%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
+                    printf("\n%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
                 }
                 else
                 {
@@ -187,7 +241,7 @@ int main()
 
                 if (!sesi)
                 {
-                    printf("%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
+                    printf("\n%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
                 }
                 else
                 {
@@ -198,7 +252,7 @@ int main()
 
             else
             {
-                printf("%sERROR: %sCommand tidak diketahui!\n", RED, WHITE);
+                printf("\n%sERROR: %sCommand tidak diketahui!\n", RED, WHITE);
             }
     
         }
@@ -213,7 +267,7 @@ int main()
 
                 if (!sesi)
                 {
-                    printf("%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
+                    printf("\n%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
                 }
                 else
                 {
@@ -226,7 +280,7 @@ int main()
 
                 if (!sesi)
                 {
-                    printf("%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
+                    printf("\n%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
                 }
                 else
                 {
@@ -236,7 +290,7 @@ int main()
             }
             else
             {
-                printf("%sERROR: %sCommand tidak diketahui!\n", RED, WHITE);
+                printf("\n%sERROR: %sCommand tidak diketahui!\n", RED, WHITE);
             }
         }
 
@@ -250,7 +304,7 @@ int main()
 
                 if (!sesi)
                 {
-                    printf("%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
+                    printf("\n%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
                 }
                 else
                 {   
@@ -263,7 +317,7 @@ int main()
             {   
                 if (!sesi)
                 {
-                    printf("%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
+                    printf("\n%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
                 }
                 else
                 {   
@@ -278,7 +332,7 @@ int main()
             {   
                 if (!sesi)
                 {
-                    printf("%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
+                    printf("\n%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
                 }
                 else
                 {   
@@ -299,11 +353,11 @@ int main()
             {   
                 if (!sesi)
                 {
-                    printf("%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
+                    printf("\n%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
                 }
                 else
                 {   
-                    QueuePlaylist(&AP, &QL, &CS);
+                    QueuePlaylist(&AP, &QL, &CS, &RL);
                 }
             }
 
@@ -311,7 +365,7 @@ int main()
             {   
                 if (!sesi)
                 {
-                    printf("%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
+                    printf("\n%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
                 }
                 else
                 {   
@@ -321,7 +375,7 @@ int main()
 
             else
             {
-                printf("%sERROR: %sCommand tidak diketahui!\n", RED, WHITE);
+                printf("\n%sERROR: %sCommand tidak diketahui!\n", RED, WHITE);
             }
        
         }
@@ -335,7 +389,7 @@ int main()
             {   
                 if (!sesi)
                 {
-                    printf("%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
+                    printf("\n%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
                 }
                 else
                 {
@@ -347,7 +401,7 @@ int main()
             {   
                 if (!sesi)
                 {
-                    printf("%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
+                    printf("\n%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
                 }
                 else
                 {
@@ -357,7 +411,7 @@ int main()
 
             else
             {
-                printf("%sERROR: %sCommand tidak diketahui!\n", RED, WHITE);
+                printf("\n%sERROR: %sCommand tidak diketahui!\n", RED, WHITE);
             }
         }
 
@@ -370,7 +424,7 @@ int main()
             {   
                 if (!sesi)
                 {
-                    printf("%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
+                    printf("\n%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
                 }
                 else
                 {
@@ -382,7 +436,7 @@ int main()
             {   
                 if (!sesi)
                 {
-                    printf("%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
+                    printf("\n%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
                 }
                 else
                 {
@@ -404,7 +458,7 @@ int main()
             {   
                 if (!sesi)
                 {
-                    printf("%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
+                    printf("\n%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
                 }
                 else
                 {
@@ -422,7 +476,7 @@ int main()
             {   
                 if (!sesi)
                 {
-                    printf("%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
+                    printf("\n%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
                 }
                 else
                 {
@@ -446,7 +500,7 @@ int main()
             {   
                 if (!sesi)
                 {
-                    printf("%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
+                    printf("\n%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
                 }
                 else
                 {
@@ -456,7 +510,23 @@ int main()
 
             else
             {
-                printf("%sERROR: %sCommand tidak diketahui!\n", RED, WHITE);
+                printf("\n%sERROR: %sCommand tidak diketahui!\n", RED, WHITE);
+            }
+        }
+
+        else if (isInputEqual(CCommand, "CREATE")){
+            ADVCOMMAND();
+
+            if (isInputEqual(CCommand, "PLAYLIST"))
+            {   
+                if (!sesi)
+                {
+                    printf("\n%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
+                }
+                else
+                {
+                    PlaylistCreate(&AP);
+                }
             }
         }
 
@@ -467,7 +537,7 @@ int main()
 
             if (!sesi)
             {
-                printf("%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
+                printf("\n%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
             }
             else
             {
@@ -482,7 +552,7 @@ int main()
 
             if (!sesi)
             {
-                printf("%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
+                printf("\n%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
             }
             else
             {   
@@ -497,9 +567,9 @@ int main()
         else if (isInputEqual(CCommand, "SAVE")){
             ADVCOMMAND();
 
-            if (!sesi)
+            if (!data)
             {
-                printf("%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
+                printf("\n%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
             }
             else
             {
@@ -517,7 +587,7 @@ int main()
 
                 CCommand = DirectoryCommand(CCommand);     
 
-                SaveFile(&LP,&AP, &QL, &RL, &CS, CCommand.TabLine);
+                SaveFile(&LP, CCommand.TabLine, &DU);
 
                 printf("\n%sOutput: %sProgram berhasil disave!.\n", GREEN, WHITE);
 
@@ -537,7 +607,7 @@ int main()
 
         else if (isInputEqual(CCommand, "HELP")){
 
-            help(sesi);
+            help(sesi, data);
         }
 
 /* *** ******** ******** ******** ******** ******** ****** ** COMMAND QUIT ** ****** ******** ******** ******** ******** ******** *** */
@@ -549,7 +619,7 @@ int main()
 
             if (CCommand.TabLine[0] == 'Y')
             {
-                SaveFile(&LP, &AP, &QL, &RL, &CS, NamaFile.TabLine);
+                SaveFile(&LP, NamaFile.TabLine, &DU);
             }
 
             delay(1);
@@ -579,7 +649,7 @@ int main()
 
         else
         {
-            printf("%sERROR: %sCommand tidak diketahui!\n", RED, WHITE);
+            printf("\n%sERROR: %sCommand tidak diketahui!\n", RED, WHITE);
         }
 
         printf("%s--------------------------------------------------------------------------------------------------------------\n", GREEN);

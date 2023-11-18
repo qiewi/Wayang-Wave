@@ -10,10 +10,11 @@
 #include "../../ADT/LineMachine/linemachine.h"
 #include "../../ADT/LinkedList/linkedlist.h"
 #include "../../ADT/array/arraydinamis.h"
+#include "../MultiUser/MultiUser.h"
 #include "../Play/Play.h"
 
 static FILE * File;
 
-void SaveFile(ListPenyanyi * LP, ArrayDin * AP, QueueLagu * QL, RiwayatLagu * RL, CurrentSong * CS, char filename[]);
+void SaveFile(ListPenyanyi * LP, char filename[], DataUser * DU);
 
 #endif

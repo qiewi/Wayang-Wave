@@ -263,7 +263,7 @@ void PlayPlaylist(ArrayDin * AP, QueueLagu * QL, RiwayatLagu * RL)
 
 }
 
-void QueuePlaylist(ArrayDin * AP, QueueLagu * QL, CurrentSong * CS)
+void QueuePlaylist(ArrayDin * AP, QueueLagu * QL, CurrentSong * CS, RiwayatLagu * RL)
 {
   
   printf("\nMasukkan ID Playlist: ");
@@ -288,15 +288,10 @@ void QueuePlaylist(ArrayDin * AP, QueueLagu * QL, CurrentSong * CS)
     //     p = Next(p);
     // }
 
-    if ((*QL).idxHead == IDX_UNDEF || (*QL).idxTail == IDX_UNDEF )
-    {
-        (*CS).statusPL = 1;
-        (*CS).NamaPlaylist = (*AP).Nama[id];
-    }
-    else
-    {
-        (*CS).statusPL = 0;
-    }
+    (*QL).idxHead = IDX_UNDEF; (*QL).idxTail = IDX_UNDEF;
+    (*RL).IDXTOP = IDX_UNDEF;
+    (*CS).statusPL = 1;
+    (*CS).NamaPlaylist = (*AP).Nama[id];
     
     address p = First((*AP).A[id]);
     p = Next(p);
@@ -307,6 +302,8 @@ void QueuePlaylist(ArrayDin * AP, QueueLagu * QL, CurrentSong * CS)
       enqueueLagu(QL, JudulLagu(p), NamaAlbum(p), NamaPenyanyi(p));
       p = Next(p);
     }
+
+    dequeueLaguNext(QL, CS);
 
     printf("%sBerhasil menambahkan playlist %s\"%s\" %ske queue.\n", GREEN, WHITE, (*AP).Nama[id].TabLine, GREEN);
     

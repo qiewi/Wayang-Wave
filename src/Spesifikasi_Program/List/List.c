@@ -103,11 +103,18 @@ void displayPlaylist(ArrayDin * AP)
             address p = First((*AP).A[idPL]);
             int i = 0;
 
-            while (p != Nil)
+            if (p == Nil)
             {
-                printf("  %s%d. %s - %s \n", WHITE, i+1, NamaPenyanyi(p).TabLine, JudulLagu(p).TabLine);
-                p = Next(p);
-                i++;
+              printf("%sTidak ada lagu.\n", WHITE);
+            }
+            else
+            {
+              while (p != Nil)
+              {
+                  printf("  %s%d. %s - %s \n", WHITE, i+1, NamaPenyanyi(p).TabLine, JudulLagu(p).TabLine);
+                  p = Next(p);
+                  i++;
+              }
             }
 
             printf("\n");

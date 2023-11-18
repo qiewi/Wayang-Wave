@@ -31,6 +31,6 @@ void QueueClear(QueueLagu * QL);
 
 void PlayPlaylist(ArrayDin * AP, QueueLagu * QL, RiwayatLagu * RL);
 
-void QueuePlaylist(ArrayDin * AP, QueueLagu * QL, CurrentSong * CS);
+void QueuePlaylist(ArrayDin * AP, QueueLagu * QL, CurrentSong * CS, RiwayatLagu * RL);
 
 #endif

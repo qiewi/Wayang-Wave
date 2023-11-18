@@ -3,13 +3,22 @@
 #include "../../ADT/pcolor/pcolor.h"
 #include "help.h"
 
-void help(boolean sesi){                                                                                                     
-    if (!sesi) {
+void help(boolean sesi,boolean data){                                                                                                     
+    if (!data) {
         printf("%s-----------------------------------------[ Menu Help WayangWave ]---------------------------------------------\n\n", GREEN);
         printf("%s1.  %sSTART\t\t\t%s-> Untuk masuk sesi baru.\n", WHITE, GREEN, WHITE);
-        printf("%s2.  %sLOAD %s<filename>\t\t%s-> Untuk memulai sesi berdasarkan file konfigurasi.\n\n", WHITE, GREEN, YELLOW, WHITE);
+        printf("%s2.  %sLOAD %s<filename>\t\t%s-> Untuk memulai sesi berdasarkan file konfigurasi.\n", WHITE, GREEN, YELLOW, WHITE);
+        printf("%s3.  %sQUIT\t\t\t%s-> Untuk keluar dari sesi aplikasi WayangWave.\n\n", WHITE, GREEN, WHITE);
     }
-    else {
+    else if (!sesi) {
+        printf("%s-----------------------------------------[ Menu Help WayangWave ]---------------------------------------------\n\n", GREEN);
+        printf("%s1.  %sREGISTER\t\t\t%s-> Untuk membuat akun WayangWave.\n", WHITE, GREEN, WHITE);
+        printf("%s2.  %sLOGIN\t\t\t%s-> Untuk masuk ke dalam akun WayangWave.\n", WHITE, GREEN, WHITE);
+        printf("%s3.  %sLOGOUT\t\t\t%s-> Untuk keluar dari akun WayangWave.\n", WHITE, GREEN, WHITE);
+        printf("%s4.  %sQUIT\t\t\t%s-> Untuk keluar dari sesi aplikasi WayangWave.\n\n", WHITE, GREEN, WHITE);
+        
+    }
+    else if (sesi){
         printf("%s-----------------------------------------[ Menu Help WayangWave ]---------------------------------------------\n\n", GREEN);
         printf("%s1.  %sLIST DEFAULT\t\t%s-> Untuk melihat list penyanyi yang ada, album dari penyanyi yang dipilih dan lagu yang ada dari album yang dipilih.\n", WHITE, GREEN, WHITE);
         printf("2.  %sLIST PLAYLIST\t\t%s-> Untuk menampilkan playlist yang ada pada pengguna.\n", GREEN, WHITE);

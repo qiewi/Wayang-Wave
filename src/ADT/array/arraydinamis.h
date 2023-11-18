@@ -47,7 +47,6 @@ boolean IsEmptyArray(ArrayDin array);
  */
 int LengthArray(ArrayDin array);
 
-
-void InsertNama(ArrayDin *array, NameType NamaPlaylist);
+void InsertNama(ArrayDin * array, NameType NamaPlaylist);
 
 #endif

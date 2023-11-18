@@ -16,7 +16,8 @@
 #include "../Playlist/Playlist.h"
 #include "../Inisialisasi/inisialisasi.h"
 #include "../../ADT/MapSetList/mapsetlist.h"
+#include "../MultiUser/MultiUser.h"
 
-void LOADFILE(ListPenyanyi * LP, char filename[], QueueLagu * QL, RiwayatLagu * RL, ArrayDin * AP, CurrentSong * CS);
+void LOADFILE(ListPenyanyi * LP, char filename[], DataUser * DU);
 
 #endif

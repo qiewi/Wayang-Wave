@@ -8,11 +8,12 @@
 #include "../../ADT/LineMachine/linemachine.h"
 #include "../../ADT/LinkedList/linkedlist.h"
 #include "../../ADT/array/arraydinamis.h"
+#include "../MultiUser/MultiUser.h"
 #include "../Play/Play.h"
 
 static FILE * File;
 
-void SaveFile(ListPenyanyi * LP, ArrayDin * AP, QueueLagu * QL, RiwayatLagu * RL, CurrentSong * CS, char filename[])
+void SaveFile(ListPenyanyi * LP, char filename[], DataUser * DU)
 {
     File = fopen(filename, "w");
 
@@ -78,70 +79,76 @@ void SaveFile(ListPenyanyi * LP, ArrayDin * AP, QueueLagu * QL, RiwayatLagu * RL
 
     }
 
-    if ((*CS).status == 1)
-    {
-        fprintf(File, "%s;%s;%s\n", (*CS).NamaPenyanyi.TabLine, (*CS).NamaAlbum.TabLine, (*CS).JudulLagu.TabLine);
-    }
-    
-    if ((*QL).idxTail != IDX_UNDEF)
-    {
-        fprintf(File, "%d\n", (*QL).idxTail + 1);
-    }
+    int JumlahUser = (*DU).TotalUser;
 
-    for (int a = 0; a <= (*QL).idxTail; a++)
+    fprintf(File, "%d\n", JumlahUser);
+
+    for (int i = 0; i < JumlahUser; i++)
     {
-        fprintf(File, "%s;%s;%s\n", (*QL).NamaPenyanyi[a].TabLine, (*QL).NamaAlbum[a].TabLine, (*QL).JudulLagu[a].TabLine);
+        fprintf(File, "%s\n", (*DU).NamaUser[i].TabLine);
     }
 
-    if ((*RL).IDXTOP > 0)
-    {
-        fprintf(File, "%d\n", (*RL).IDXTOP + 1);
-    }
-
-    for (int b = (*RL).IDXTOP; b >= 0; b--)
-    {   
-        fprintf(File, "%s;%s;%s\n", (*RL).NamaPenyanyi[b].TabLine, (*RL).NamaAlbum[b].TabLine, (*RL).JudulLagu[b].TabLine);
-    }
-
-    if ((*AP).Neff > 0)
-    {
-        fprintf(File, "%d\n", (*AP).Neff);
-    }
-
-    for (int c = 0; c < (*AP).Neff; c++)
+    for (int idUser = 0; idUser < JumlahUser; idUser++)
     {
 
-        address add = First((*AP).A[c]);
-        int count = 0;
-
-        // add = Next(add);
-
-        while (add != Nil)
+        if ((*DU).CS[idUser].status == 1)
         {
-            count += 1;
-            add = Next(add);
+            fprintf(File, "%s;%s;%s\n", (*DU).CS[idUser].NamaPenyanyi.TabLine, (*DU).CS[idUser].NamaAlbum.TabLine, (*DU).CS[idUser].JudulLagu.TabLine);
+        }
+        
+        if ((*DU).QL[idUser].idxTail != IDX_UNDEF)
+        {
+            fprintf(File, "%d\n", (*DU).QL[idUser].idxTail + 1);
         }
 
-        if (count == 0)
+        for (int a = 0; a <= (*DU).QL[idUser].idxTail; a++)
         {
-            fprintf(File, "%d %s", count, (*AP).Nama[c].TabLine);
-        }
-        else
-        {
-            fprintf(File, "%d %s\n", count, (*AP).Nama[c].TabLine);
+            fprintf(File, "%s;%s;%s\n", (*DU).QL[idUser].NamaPenyanyi[a].TabLine, (*DU).QL[idUser].NamaAlbum[a].TabLine, (*DU).QL[idUser].JudulLagu[a].TabLine);
         }
 
-        address lagu = First((*AP).A[c]);
-
-        for (int d = 0; d < count; d++)
+        if ((*DU).RL[idUser].IDXTOP > 0)
         {
-            
-            fprintf(File, "%s;%s;%s\n", NamaPenyanyi(lagu).TabLine, NamaAlbum(lagu).TabLine, JudulLagu(lagu).TabLine);
-
-            lagu = Next(lagu);
+            fprintf(File, "%d\n", (*DU).RL[idUser].IDXTOP + 1);
         }
 
+        for (int b = (*DU).RL[idUser].IDXTOP; b >= 0; b--)
+        {   
+            fprintf(File, "%s;%s;%s\n", (*DU).RL[idUser].NamaPenyanyi[b].TabLine, (*DU).RL[idUser].NamaAlbum[b].TabLine, (*DU).RL[idUser].JudulLagu[b].TabLine);
+        }
 
+        if ((*DU).AP[idUser].Neff > 0)
+        {
+            fprintf(File, "%d\n", (*DU).AP[idUser].Neff);
+        }
+
+        for (int c = 0; c < (*DU).AP[idUser].Neff; c++)
+        {
+
+            address add = First((*DU).AP[idUser].A[c]);
+            int count = 0;
+
+            // add = Next(add);
+
+            while (add != Nil)
+            {
+                count += 1;
+                add = Next(add);
+            }
+
+            fprintf(File, "%d %s\n", count, (*DU).AP[idUser].Nama[c].TabLine);
+
+            address lagu = First((*DU).AP[idUser].A[c]);
+
+            for (int d = 0; d < count; d++)
+            {
+                
+                fprintf(File, "%s;%s;%s\n", NamaPenyanyi(lagu).TabLine, NamaAlbum(lagu).TabLine, JudulLagu(lagu).TabLine);
+
+                lagu = Next(lagu);
+            }
+
+
+        }
     }
 
     fclose(File);

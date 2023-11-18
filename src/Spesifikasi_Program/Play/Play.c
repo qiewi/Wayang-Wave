@@ -14,6 +14,11 @@ void CreateCurrentSong(CurrentSong * CS)
     (*CS).statusPL = 0;
 }
 
+void CreateCurrentUser(CurrentUser * CU)
+{
+    (*CU).status = 0;
+}
+
 void AddSong(ListPenyanyi * LP, CurrentSong * CS, int idPenyanyi, int idAlbum, int idLagu)
 {
     (*CS).status = 1;
