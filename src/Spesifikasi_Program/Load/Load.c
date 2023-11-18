@@ -11,9 +11,10 @@
 #include "../Playlist/Playlist.h"
 #include "../Inisialisasi/inisialisasi.h"
 #include "../../ADT/MapSetList/mapsetlist.h"
+#include "../Play/Play.h"
 #include "Load.h"
 
-void LOADFILE(ListPenyanyi * LP, char filename[], QueueLagu * QL, RiwayatLagu * RL, ArrayDin * AP)
+void LOADFILE(ListPenyanyi * LP, char filename[], QueueLagu * QL, RiwayatLagu * RL, ArrayDin * AP, CurrentSong * CS)
 {
 
     STARTKALIMATFILE(filename);
@@ -76,7 +77,22 @@ void LOADFILE(ListPenyanyi * LP, char filename[], QueueLagu * QL, RiwayatLagu * 
 
         }
 
-        ADVKALIMAT();
+        ADVRECORD();
+
+        // printf("%d\n", atoi(CLine.TabLine));
+
+        if (atoi(CLine.TabLine) == 0)
+        {
+            (*CS).status = 1;
+            
+            (*CS).NamaPenyanyi = CLine;
+            ADVRECORD();
+            (*CS).NamaAlbum = CLine;
+            ADVRECORD();
+            (*CS).JudulLagu = CLine;
+            ADVKALIMAT();
+        }
+        
         int loopRecordQ = atoi(CLine.TabLine);
 
         // printf("%sDaftar Record Lagu dalam Queue\n", GREEN);

@@ -36,6 +36,7 @@
 #include "Spesifikasi_Program/Playlist/Playlist.h"
 #include "Spesifikasi_Program/Save/save.h"
 #include "Spesifikasi_Program/Enhance/enhance.h"
+#include "Spesifikasi_Program/MultiUser/MultiUser.h"
 
 /* *** ******** ******** ******** ******** ******** ****** *** PROGRAM UTAMA *** ****** ******** ******** ******** ******** ******** *** */
 int main()
@@ -52,6 +53,10 @@ int main()
 /* *** ******** ******** ******** ******** ******** ****** ** STORAGE WAYANGWAVE ** ****** ******** ******** ******** ******** ******** *** */
 
     // Kamus
+
+    DataUser DU;
+    CreateDataUser(&DU);
+    
     ListPenyanyi LP;
     CreateListPenyanyi(&LP);
 
@@ -137,7 +142,7 @@ int main()
 
                 NamaFile = DirectoryCommand(CCommand);
 
-                LOADFILE(&LP, NamaFile.TabLine, &QL, &RL, &AP); 
+                LOADFILE(&LP, NamaFile.TabLine, &QL, &RL, &AP, &CS); 
 
                 printf("\n%sOutput: %sFile save berhasil dibaca.\n", GREEN, WHITE);
 
@@ -512,7 +517,7 @@ int main()
 
                 CCommand = DirectoryCommand(CCommand);     
 
-                SaveFile(&LP,&AP, &QL, &RL, CCommand.TabLine);
+                SaveFile(&LP,&AP, &QL, &RL, &CS, CCommand.TabLine);
 
                 printf("\n%sOutput: %sProgram berhasil disave!.\n", GREEN, WHITE);
 
@@ -544,7 +549,7 @@ int main()
 
             if (CCommand.TabLine[0] == 'Y')
             {
-                SaveFile(&LP, &AP, &QL, &RL, NamaFile.TabLine);
+                SaveFile(&LP, &AP, &QL, &RL, &CS, NamaFile.TabLine);
             }
 
             delay(1);

@@ -12,10 +12,11 @@
 #include "../../ADT/Queue/queue.h"
 #include "../Inisialisasi/inisialisasi.h"
 #include "../Queue/Queue.h"
+#include "../Play/Play.h"
 #include "../Playlist/Playlist.h"
 #include "../Inisialisasi/inisialisasi.h"
 #include "../../ADT/MapSetList/mapsetlist.h"
 
-void LOADFILE(ListPenyanyi * LP, char filename[], QueueLagu * QL, RiwayatLagu * RL, ArrayDin * AP);
+void LOADFILE(ListPenyanyi * LP, char filename[], QueueLagu * QL, RiwayatLagu * RL, ArrayDin * AP, CurrentSong * CS);
 
 #endif

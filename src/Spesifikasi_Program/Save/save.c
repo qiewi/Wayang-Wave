@@ -8,10 +8,11 @@
 #include "../../ADT/LineMachine/linemachine.h"
 #include "../../ADT/LinkedList/linkedlist.h"
 #include "../../ADT/array/arraydinamis.h"
+#include "../Play/Play.h"
 
 static FILE * File;
 
-void SaveFile(ListPenyanyi * LP, ArrayDin * AP, QueueLagu * QL, RiwayatLagu * RL, char filename[])
+void SaveFile(ListPenyanyi * LP, ArrayDin * AP, QueueLagu * QL, RiwayatLagu * RL, CurrentSong * CS, char filename[])
 {
     File = fopen(filename, "w");
 
@@ -75,6 +76,11 @@ void SaveFile(ListPenyanyi * LP, ArrayDin * AP, QueueLagu * QL, RiwayatLagu * RL
         // printf("\n");
         }
 
+    }
+
+    if ((*CS).status == 1)
+    {
+        fprintf(File, "%s;%s;%s\n", (*CS).NamaPenyanyi.TabLine, (*CS).NamaAlbum.TabLine, (*CS).JudulLagu.TabLine);
     }
     
     if ((*QL).idxTail != IDX_UNDEF)
