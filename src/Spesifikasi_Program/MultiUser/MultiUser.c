@@ -29,7 +29,9 @@ void RegisterUser(DataUser * DU)
     printf("\n%sMasukkan nama user: ", WHITE);
     STARTKALIMATINPUT();
 
-    if (CekUser(DU, CInput) != 1)
+    int idUser = CekUser(DU, CInput);
+
+    if (idUser == -1)
     {
         (*DU).NamaUser[(*DU).TotalUser] = CInput;
 
@@ -39,6 +41,8 @@ void RegisterUser(DataUser * DU)
         (*DU).AP[(*DU).TotalUser] = MakeArrayDin();
 
         (*DU).TotalUser += 1;
+
+        AnimasiRegister();
 
         printf("\n%s================= ", GREEN); delay(1);
         printf("%s[ %s CREATED! ]", YELLOW, CInput.TabLine);
@@ -90,8 +94,10 @@ void Login(DataUser * DU, ArrayDin * AP, CurrentSong * CS, CurrentUser * CU, Que
 
         (*sesi) = true;
 
-        printf("\n%s================= ", GREEN); delay(1);
-        printf("%s[ LOGGED IN ]", YELLOW);
+        AnimasiLogin();
+
+        printf("\n%s    ================= ", GREEN); delay(1);
+        printf("%s[ LOGGED IN TO %s ]", YELLOW, (*CU).NamaUser.TabLine);
         printf("%s =================\n\n", GREEN);
 
     }

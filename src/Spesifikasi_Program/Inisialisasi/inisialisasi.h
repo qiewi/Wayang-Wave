@@ -18,6 +18,14 @@ void print_image(FILE *fascii);
 
 void inisialisasi();
 
+void AnimasiLoad();
+
+void AnimasiSave();
+
+void AnimasiRegister();
+
+void AnimasiLogin();
+
 // int main(){
 //     inisialisasi();
 // }

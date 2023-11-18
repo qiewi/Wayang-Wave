@@ -94,22 +94,24 @@ int main()
             }   
             else
             {
-                delay(1);
-                printf("\n%s[=========", GREEN);
-                delay(1);
-                printf("==========");
-                delay(1);
-                printf("%s Loading WayangWave.. ", CYAN);
-                delay(1);
-                printf("%s==========", GREEN);
-                delay(1);
-                printf("=========]\n");          
+                // delay(1);
+                // printf("\n%s[=========", GREEN);
+                // delay(1);
+                // printf("==========");
+                // delay(1);
+                // printf("%s Loading WayangWave.. ", CYAN);
+                // delay(1);
+                // printf("%s==========", GREEN);
+                // delay(1);
+                // printf("=========]\n");          
 
                 STARTREAD(&LP, "Data/config.txt", &DU); // ganti ke config jangan lupa
 
-                printf("\n%sOutput: %sFile konfigurasi aplikasi berhasil dibaca.\n", GREEN, WHITE);
+                // printf("\n%sOutput: %sFile konfigurasi aplikasi berhasil dibaca.\n", GREEN, WHITE);
 
-                printf("\n%s[=========", GREEN);
+                AnimasiLoad();
+
+                printf("\n%s          [=========", GREEN);
                 printf("==========");
 
                 printf("%s WayangWave Running.. ", CYAN);
@@ -132,24 +134,26 @@ int main()
             {
                 ADVCOMMAND();
 
-                delay(1);
-                printf("\n%s[=========", GREEN);
-                delay(1);
-                printf("==========");
-                delay(1);
-                printf("%s Loading %s.. ", CYAN, CCommand.TabLine);
-                delay(1);
-                printf("%s==========", GREEN);
-                delay(1);
-                printf("=========]\n");
+                // delay(1);
+                // printf("\n%s[=========", GREEN);
+                // delay(1);
+                // printf("==========");
+                // delay(1);
+                // printf("%s Loading %s.. ", CYAN, CCommand.TabLine);
+                // delay(1);
+                // printf("%s==========", GREEN);
+                // delay(1);
+                // printf("=========]\n");
 
                 NamaFile = DirectoryCommand(CCommand);
 
                 LOADFILE(&LP, NamaFile.TabLine, &DU); 
 
-                printf("\n%sOutput: %sFile save berhasil dibaca.\n", GREEN, WHITE);
+                // printf("\n%sOutput: %sFile save berhasil dibaca.\n", GREEN, WHITE);
 
-                printf("\n%s[=========", GREEN);
+                AnimasiLoad();
+
+                printf("\n%s          [=========", GREEN);
                 printf("==========");
 
                 printf("%s WayangWave Running.. ", CYAN);
@@ -574,27 +578,28 @@ int main()
             else
             {
 
+                AnimasiSave();
                 delay(1);
-                printf("\n%s[=========", GREEN);
-                delay(1);
+                printf("\n%s        [=========", GREEN);
+                // delay(1);
                 printf("==========");
-                delay(1);
+                // delay(1);
                 printf("%s Saving to %s.. ", CYAN, CCommand.TabLine);
-                delay(1);
+                // delay(1);
                 printf("%s==========", GREEN);
-                delay(1);
+                // delay(1);
                 printf("=========]\n");     
 
                 CCommand = DirectoryCommand(CCommand);     
 
                 SaveFile(&LP, CCommand.TabLine, &DU);
 
-                printf("\n%sOutput: %sProgram berhasil disave!.\n", GREEN, WHITE);
+                printf("\n%s                        Output: %sProgram berhasil disave!\n", GREEN, WHITE);
 
-                printf("\n%s[=========", GREEN);
+                printf("\n%s        [=========", GREEN);
                 printf("==========");
 
-                printf("%s WayangWave Saved.. ", CYAN);
+                printf("%s   WayangWave Saved..  ", CYAN);
 
                 printf("%s==========", GREEN);
                 printf("=========]\n\n");

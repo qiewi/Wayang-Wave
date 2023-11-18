@@ -55,13 +55,13 @@ void inisialisasi(){
     system("cls || clear");
     for (int i = 0; i < 4; i++){
         if (i == 0) {
-            filename = "Spesifikasi_Program/Inisialisasi/wayang3.txt";
+            filename = "Spesifikasi_Program/Inisialisasi/wayang/wayang3.txt";
         } else if (i == 1){
-            filename = "Spesifikasi_Program/Inisialisasi/wayang2.txt";
+            filename = "Spesifikasi_Program/Inisialisasi/wayang/wayang2.txt";
         } else if (i == 2){
-            filename = "Spesifikasi_Program/Inisialisasi/wayang1.txt";
+            filename = "Spesifikasi_Program/Inisialisasi/wayang/wayang1.txt";
         } else if (i == 3){
-            filename = "Spesifikasi_Program/Inisialisasi/wayang.txt";
+            filename = "Spesifikasi_Program/Inisialisasi/wayang/wayang.txt";
         } 
         fascii = NULL;
         fascii = fopen(filename,"r");
@@ -75,6 +75,107 @@ void inisialisasi(){
         delay(1);
     }
 }
+
+void AnimasiLoad(){
+    char *filename;
+    FILE *fascii;
+    system("cls || clear");
+    for (int i = 0; i < 3; i++){
+        if (i == 0) {
+            filename = "Spesifikasi_Program/Inisialisasi/load/load3.txt";
+        } else if (i == 1){
+            filename = "Spesifikasi_Program/Inisialisasi/load/load2.txt";
+        } else if (i == 2){
+            filename = "Spesifikasi_Program/Inisialisasi/load/load1.txt";
+        } 
+        fascii = NULL;
+        fascii = fopen(filename,"r");
+        if(fascii  == NULL){
+            printf("error opening %s\n",filename);
+        } else {
+            system("cls || clear");
+            print_image(fascii);
+            fclose(fascii);
+        }
+        delay(2);
+    }
+}
+
+void AnimasiSave(){
+    char *filename;
+    FILE *fascii;
+    system("cls || clear");
+    for (int i = 0; i < 3; i++){
+        if (i == 0) {
+            filename = "Spesifikasi_Program/Inisialisasi/save/save3.txt";
+        } else if (i == 1){
+            filename = "Spesifikasi_Program/Inisialisasi/save/save2.txt";
+        } else if (i == 2){
+            filename = "Spesifikasi_Program/Inisialisasi/save/save1.txt";
+        } 
+        fascii = NULL;
+        fascii = fopen(filename,"r");
+        if(fascii  == NULL){
+            printf("error opening %s\n",filename);
+        } else {
+            system("cls || clear");
+            print_image(fascii);
+            fclose(fascii);
+        }
+        delay(2);
+    }
+}
+
+void AnimasiRegister(){
+    char *filename;
+    FILE *fascii;
+    system("cls || clear");
+    for (int i = 0; i < 3; i++){
+        if (i == 0) {
+            filename = "Spesifikasi_Program/Inisialisasi/register/register3.txt";
+        } else if (i == 1){
+            filename = "Spesifikasi_Program/Inisialisasi/register/register2.txt";
+        } else if (i == 2){
+            filename = "Spesifikasi_Program/Inisialisasi/register/register1.txt";
+        } 
+        fascii = NULL;
+        fascii = fopen(filename,"r");
+        if(fascii  == NULL){
+            printf("error opening %s\n",filename);
+        } else {
+            system("cls || clear");
+            print_image(fascii);
+            fclose(fascii);
+        }
+        delay(2);
+    }
+}
+
+void AnimasiLogin(){
+    char *filename;
+    FILE *fascii;
+    system("cls || clear");
+    for (int i = 0; i < 3; i++){
+        if (i == 0) {
+            filename = "Spesifikasi_Program/Inisialisasi/login/login3.txt";
+        } else if (i == 1){
+            filename = "Spesifikasi_Program/Inisialisasi/login/login2.txt";
+        } else if (i == 2){
+            filename = "Spesifikasi_Program/Inisialisasi/login/login1.txt";
+        } 
+        fascii = NULL;
+        fascii = fopen(filename,"r");
+        if(fascii  == NULL){
+            printf("error opening %s\n",filename);
+        } else {
+            system("cls || clear");
+            print_image(fascii);
+            fclose(fascii);
+        }
+        delay(1);
+    }
+}
+
 
 // int main(){
 //     inisialisasi();
