@@ -40,6 +40,7 @@ void RegisterUser(DataUser * DU)
         CreateCurrentSong(&(*DU).CS[(*DU).TotalUser]);
         CreateRiwayatLagu(&(*DU).RL[(*DU).TotalUser]);
         (*DU).AP[(*DU).TotalUser] = MakeArrayDin();
+        InsertNode(&(*DU).G, (*DU).TotalUser);
 
         (*DU).TotalUser += 1;
 
