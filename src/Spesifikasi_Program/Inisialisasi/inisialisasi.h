@@ -22,6 +22,12 @@ void AnimasiLoad();
 
 void AnimasiSave();
 
+void AnimasiQuit();
+
+void AnimasiPlaySong();
+
+void AnimasiPlayPlaylist();
+
 void AnimasiRegister();
 
 void AnimasiLogin();

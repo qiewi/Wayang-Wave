@@ -279,7 +279,7 @@ int main()
                 }      
 
             }
-            if (isInputEqual(CCommand, "PLAYLIST"))
+            else if (isInputEqual(CCommand, "PLAYLIST"))
             {
 
                 if (!sesi)
@@ -288,7 +288,7 @@ int main()
                 }
                 else
                 {
-                    PlayPlaylist(&AP, &QL, &RL);
+                    PlayPlaylist(&AP, &QL, &CS, &CU, &RL);
                 }      
 
             }
@@ -627,23 +627,25 @@ int main()
                 SaveFile(&LP, NamaFile.TabLine, &DU);
             }
 
-            delay(1);
-            printf("\n%s[=========", GREEN);
-            delay(1);
-            printf("==========");
-            printf("%s Logging Out.. ", CYAN);
-            printf("%s==========", GREEN);
-            delay(1);
-            printf("=========]\n");
-            delay(1);
+            // delay(1);
+            // printf("\n%s[=========", GREEN);
+            // delay(1);
+            // printf("==========");
+            // printf("%s Logging Out.. ", CYAN);
+            // printf("%s==========", GREEN);
+            // delay(1);
+            // printf("=========]\n");
+            // delay(1);
 
-            printf("\n%sOutput: %sKamu keluar dari %sWayangWave.\n", GREEN, WHITE, GREEN);
-            printf("%sDadah ^_^/\n", WHITE);
+            // printf("\n%sOutput: %sKamu keluar dari %sWayangWave.\n", GREEN, WHITE, GREEN);
+            // printf("%sDadah ^_^/\n", WHITE);
+
+            AnimasiQuit();
 
             printf("\n%s[=========", GREEN);
-            printf("==========");
-            printf("%s  Logged Out!  ", CYAN);
-            printf("%s==========", GREEN);
+            printf("=======");
+            printf("%s  WayangWave Stopped!  ", CYAN);
+            printf("%s=======", GREEN);
             printf("=========]\n\n");
 
             mulai = false;

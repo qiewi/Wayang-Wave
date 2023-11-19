@@ -126,6 +126,89 @@ void AnimasiSave(){
     }
 }
 
+void AnimasiQuit(){
+    char *filename;
+    FILE *fascii;
+    system("cls || clear");
+    for (int i = 0; i < 3; i++){
+        if (i == 0) {
+            filename = "Spesifikasi_Program/Inisialisasi/quit/quit1.txt";
+        } else if (i == 1){
+            filename = "Spesifikasi_Program/Inisialisasi/quit/quit2.txt";
+        } else if (i == 2){
+            filename = "Spesifikasi_Program/Inisialisasi/quit/quit3.txt";
+        } 
+        fascii = NULL;
+        fascii = fopen(filename,"r");
+        if(fascii  == NULL){
+            printf("error opening %s\n",filename);
+        } else {
+            system("cls || clear");
+            print_image(fascii);
+            fclose(fascii);
+        }
+        delay(2);
+    }
+}
+
+void AnimasiPlaySong(){
+    char *filename;
+    FILE *fascii;
+    system("cls || clear");
+    for (int i = 0; i < 5; i++){
+        if (i == 0) {
+            filename = "Spesifikasi_Program/Inisialisasi/play-song/playing 1.txt";
+        } else if (i == 1){
+            filename = "Spesifikasi_Program/Inisialisasi/play-song/playing 2.txt";
+        } else if (i == 2){
+            filename = "Spesifikasi_Program/Inisialisasi/play-song/playing 3.txt";
+        } else if (i == 3){
+            filename = "Spesifikasi_Program/Inisialisasi/play-song/playing 4.txt";
+        } else if (i == 4){
+            filename = "Spesifikasi_Program/Inisialisasi/play-song/playing 5.txt";
+        }
+        fascii = NULL;
+        fascii = fopen(filename,"r");
+        if(fascii  == NULL){
+            printf("error opening %s\n",filename);
+        } else {
+            system("cls || clear");
+            print_image(fascii);
+            fclose(fascii);
+        }
+        delay(1);
+    }
+}
+
+void AnimasiPlayPlaylist(){
+    char *filename;
+    FILE *fascii;
+    system("cls || clear");
+    for (int i = 0; i < 5; i++){
+        if (i == 0) {
+            filename = "Spesifikasi_Program/Inisialisasi/play-playlist/playing 1.txt";
+        } else if (i == 1){
+            filename = "Spesifikasi_Program/Inisialisasi/play-playlist/playing 2.txt";
+        } else if (i == 2){
+            filename = "Spesifikasi_Program/Inisialisasi/play-playlist/playing 3.txt";
+        } else if (i == 3){
+            filename = "Spesifikasi_Program/Inisialisasi/play-playlist/playing 4.txt";
+        } else if (i == 4){
+            filename = "Spesifikasi_Program/Inisialisasi/play-playlist/playing 5.txt";
+        }
+        fascii = NULL;
+        fascii = fopen(filename,"r");
+        if(fascii  == NULL){
+            printf("error opening %s\n",filename);
+        } else {
+            system("cls || clear");
+            print_image(fascii);
+            fclose(fascii);
+        }
+        delay(1);
+    }
+}
+
 void AnimasiRegister(){
     char *filename;
     FILE *fascii;

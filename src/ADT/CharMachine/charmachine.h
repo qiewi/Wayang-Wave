@@ -5,6 +5,7 @@
 #define __CHAR_MACHINE_H_
 
 #include "../boolean.h"
+#include "../pcolor/pcolor.h"
 
 #define MARK ';'
 

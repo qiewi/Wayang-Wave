@@ -16,6 +16,7 @@
 
 #include "../Play/Play.h"
 #include "../Playlist/Playlist.h"
+#include "../Inisialisasi/inisialisasi.h"
 
 /* *** ******** ******** ******** ******** ******** ****** ** COMMAND SPEK ** ****** ******** ******** ******** ******** ******** *** */
 
@@ -35,7 +36,7 @@ void QueueAddLagu(ListPenyanyi * LP, QueueLagu * QL, CurrentSong * CS);
 
 void QueueClear(QueueLagu * QL);
 
-void PlayPlaylist(ArrayDin * AP, QueueLagu * QL, RiwayatLagu * RL);
+void PlayPlaylist(ArrayDin * AP, QueueLagu * QL, CurrentSong * CS, CurrentUser * CU, RiwayatLagu * RL);
 
 void QueuePlaylist(ArrayDin * AP, QueueLagu * QL, CurrentSong * CS, RiwayatLagu * RL);
 
