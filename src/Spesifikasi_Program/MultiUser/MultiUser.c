@@ -20,6 +20,7 @@
 
 void CreateDataUser(DataUser * DU)
 {
+    CreateGraph(&(*DU).G, -99);
     (*DU).TotalUser = 0;
 }
 

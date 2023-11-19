@@ -20,6 +20,7 @@
 #include "ADT/Stack/RiwayatLagu.h"
 #include "ADT/LinkedList/linkedlist.h"
 #include "ADT/array/arraydinamis.h"
+#include "ADT/graph/graph.h"
 #include "ADT/LineMachine/linemachine.h"
 
 /* *** ******** ******** ******** ******** ******** ****** *** FILE HEADER SPESIFIKASI *** ****** ******** ******** ******** ******** ******** *** */
@@ -37,6 +38,7 @@
 #include "Spesifikasi_Program/Save/save.h"
 #include "Spesifikasi_Program/Enhance/enhance.h"
 #include "Spesifikasi_Program/MultiUser/MultiUser.h"
+#include "Spesifikasi_Program/Following/follow.h"
 
 /* *** ******** ******** ******** ******** ******** ****** *** PROGRAM UTAMA *** ****** ******** ******** ******** ******** ******** *** */
 int main()
@@ -72,6 +74,8 @@ int main()
 
     RiwayatLagu RL;
     CreateRiwayatLagu(&RL);
+
+    CreateGraph(&(DU.G), -99);
 
     ArrayDin AP = MakeArrayDin();
     Kalimat NamaFile;
@@ -219,6 +223,50 @@ int main()
                 Logout(&DU, &AP, &CS, &CU, &QL, &RL, CU.idUser);
                 sesi = false;
             }
+        }
+
+/* *** ******** ******** ******** ******** ******** ****** ** COMMAND FRIEND ** ****** ******** ******** ******** ******** ******** *** */
+
+        else if (isInputEqual(CCommand, "FOLLOW")){
+            ADVCOMMAND();
+
+            if (isInputEqual(CCommand, "USER"))
+            {
+                if (!data)
+                {
+                    printf("\n%sERROR: %sCommand tidak dapat dieksekusi! Silahkan load file terlebih dahulu\n", RED, WHITE);
+                }
+                else if (!sesi)
+                {
+                    printf("\n%sERROR: %sKamu belum login ke dalam akun %s.\n", RED, WHITE, CU.NamaUser.TabLine);
+                }
+                else
+                {
+                    FollowFriend(&DU, &CU);
+                }
+            }
+            
+            else if (isInputEqual(CCommand, "LIST"))
+            {
+                if (!data)
+                {
+                    printf("\n%sERROR: %sCommand tidak dapat dieksekusi! Silahkan load file terlebih dahulu\n", RED, WHITE);
+                }
+                else if (!sesi)
+                {
+                    printf("\n%sERROR: %sKamu belum login ke dalam akun %s.\n", RED, WHITE, CU.NamaUser.TabLine);
+                }
+                else
+                {
+                    ListFollowing(&DU, &CU);
+                }
+            }
+
+            else
+            {
+                printf("\n%sERROR: %sCommand tidak diketahui!\n", RED, WHITE);
+            }
+              
         }
 
 /* *** ******** ******** ******** ******** ******** ****** ** COMMAND LIST ** ****** ******** ******** ******** ******** ******** *** */

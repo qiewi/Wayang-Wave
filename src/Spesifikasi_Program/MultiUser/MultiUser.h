@@ -13,6 +13,7 @@
 #include "../../ADT/LinkedList/linkedlist.h"
 #include "../../ADT/array/arraydinamis.h"
 #include "../../ADT/LineMachine/linemachine.h"
+#include "../../ADT/graph/graph.h"
 #include "../Play/Play.h"
 
 #define UserMaks 10
@@ -23,6 +24,7 @@ typedef struct {
     CurrentSong CS[UserMaks];
     QueueLagu QL[UserMaks];
     RiwayatLagu RL[UserMaks];
+    Graph G;
     int TotalUser;
 } DataUser;
 

@@ -103,6 +103,8 @@ void LOADFILE(ListPenyanyi * LP, char filename[], DataUser * DU)
             CreateRiwayatLagu(&(*DU).RL[idUser]);
             (*DU).AP[idUser] = MakeArrayDin();
 
+            InsertNode(&(*DU).G, idUser);
+
             ADVRECORD();
 
             // printf("%d\n", atoi(CLine.TabLine));
@@ -156,7 +158,6 @@ void LOADFILE(ListPenyanyi * LP, char filename[], DataUser * DU)
                 PushRiwayatLagu(&(*DU).RL[idUser], NamaLagu, NamaAlbum, NamaPenyanyi);
             }
 
-            // di sini yg salah
 
             ADVKALIMAT();
             int loopRecordP = atoi(CLine.TabLine); // Jumlah Playlist
