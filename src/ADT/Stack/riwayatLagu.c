@@ -1,20 +1,37 @@
 #include <stdio.h>
-#include "riwayatLagu.h"
+#include "RiwayatLagu.h"
 
-void PushRiwayatLagu (RiwayatLagu *S, infotypeRiwayat NamaLagu){
-    if (IsEmpty(*S)) {
-        Top(*S) = 0;
-        CopyWord(&InfoTop(*S), NamaLagu);
+void CreateRiwayatLagu(RiwayatLagu * RL)
+{
+    (*RL).IDXTOP = -1;
+}
+
+void PushRiwayatLagu(RiwayatLagu *RL, Kalimat JudulLagu, Kalimat NamaAlbum, Kalimat NamaPenyanyi)
+{
+    if ((*RL).IDXTOP == -1)
+    {
+        Top(*RL) = 0;
+        InfoLagu(*RL) = JudulLagu;
+        InfoAlbum(*RL) = NamaAlbum;
+        InfoPenyanyi(*RL) = NamaPenyanyi;
+        
     }
-    else{
-        if (!IsFull(*S)) {
-            S.Top++;
-            CopyWord(&InfoTop(*S), NamaLagu);
+    else
+    {
+        if ((*RL).IDXTOP < 50-1) {
+            Top(*RL)++;
+            InfoLagu(*RL) = JudulLagu;
+            InfoAlbum(*RL) = NamaAlbum;
+            InfoPenyanyi(*RL) = NamaPenyanyi;
         }
     }
 }
 
-void PopRiwayatLagu (RiwayatLagu *S, infotypeRiwayat NamaLagu){
-    CopyWord(NamaLagu, InfoTop(*S));
-	Top(*S)--;
-}
+// void PopRiwayatLagu(RiwayatLagu *RL, CurrentSong * CS) // untuk song prev
+// { 
+//     (*CS).JudulLagu = InfoLagu(*RL);
+//     (*CS).NamaAlbum = InfoAlbum(*RL);
+//     (*CS).NamaPenyanyi = InfoPenyanyi(*RL);
+    
+// 	Top(*RL)--;
+// }
