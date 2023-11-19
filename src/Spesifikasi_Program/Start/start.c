@@ -1,13 +1,20 @@
+/* *** ******** ******** ******** ******** ******** ****** ** INCLUDED ADT & SPEK ** ****** ******** ******** ******** ******** ******** *** */
+
 #include <stdio.h>
 #include <stdlib.h>
+
 #include "../../ADT/WordMachine/wordmachine.h"
 #include "../../ADT/CharMachine/charmachine.h"
 #include "../../ADT/LineMachine/linemachine.h"
-#include "../Inisialisasi/inisialisasi.h"
 #include "../../ADT/MapSetList/mapsetlist.h"
+
+#include "../Inisialisasi/inisialisasi.h"
+#include "../MultiUser/MultiUser.h"
 #include "start.h"
 
-void STARTREAD(ListPenyanyi * LP, char filename[]){
+/* *** ******** ******** ******** ******** ******** ****** ** COMMAND SPEK ** ****** ******** ******** ******** ******** ******** *** */
+
+void STARTREAD(ListPenyanyi * LP, char filename[], DataUser * DU){
   STARTKALIMATFILE(filename);
 
   Kalimat NamaPenyanyi;
@@ -61,6 +68,23 @@ void STARTREAD(ListPenyanyi * LP, char filename[]){
       // printf("\n");
     }
 
+  }
+
+  ADVKALIMAT();
+
+  int jumlahUser = atoi(CLine.TabLine);
+
+  for (int u = 0; u < jumlahUser; u++)
+  {
+      ADVKALIMAT();
+      (*DU).NamaUser[(*DU).TotalUser] = CLine;
+
+      CreateQueueLagu(&(*DU).QL[(*DU).TotalUser]);
+      CreateCurrentSong(&(*DU).CS[(*DU).TotalUser]);
+      CreateRiwayatLagu(&(*DU).RL[(*DU).TotalUser]);
+      (*DU).AP[(*DU).TotalUser] = MakeArrayDin();
+
+      (*DU).TotalUser += 1;
   }
 
 }

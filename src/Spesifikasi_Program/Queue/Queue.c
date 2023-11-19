@@ -1,6 +1,8 @@
+/* *** ******** ******** ******** ******** ******** ****** ** INCLUDED ADT & SPEK ** ****** ******** ******** ******** ******** ******** *** */
 
 #include <stdio.h>
 #include <stdlib.h>
+
 #include "../../ADT/MapSetList/mapsetlist.h"
 #include "../../ADT/pcolor/pcolor.h"
 #include "../../ADT/Queue/queue.h"
@@ -8,8 +10,12 @@
 #include "../../ADT/LineMachine/linemachine.h"
 #include "../../ADT/LinkedList/linkedlist.h"
 #include "../../ADT/array/arraydinamis.h"
+
 #include "../Play/Play.h"
 #include "../Playlist/Playlist.h"
+#include "../Inisialisasi/inisialisasi.h"
+
+/* *** ******** ******** ******** ******** ******** ****** ** COMMAND SPEK ** ****** ******** ******** ******** ******** ******** *** */
 
 void enqueueLaguFirst(QueueLagu *q, Kalimat JudulLaguQueue, Kalimat NamaAlbumQueue, Kalimat NamaPenyanyiQueue)
 {
@@ -222,9 +228,15 @@ void QueueClear(QueueLagu * QL)
   printf("\n%sOutput: %sQueue berhasil dikosongkan.\n", GREEN, WHITE);
 }
 
-void PlayPlaylist(ArrayDin * AP, QueueLagu * QL, RiwayatLagu * RL)
+void PlayPlaylist(ArrayDin * AP, QueueLagu * QL, CurrentSong * CS, CurrentUser * CU, RiwayatLagu * RL)
 {
-  
+  printf("\n%sDaftar Playlist yang kamu miliki:\n", GREEN);
+
+  for (int i = 0; i < (*AP).Neff; i++)
+  {
+      printf("  %s%d. %s \n", WHITE, i+1, (*AP).Nama[i].TabLine);
+  }
+
   printf("\nMasukkan ID Playlist: ");
   STARTKALIMATINPUT();
 
@@ -236,34 +248,42 @@ void PlayPlaylist(ArrayDin * AP, QueueLagu * QL, RiwayatLagu * RL)
   }
   else
   {
-    // PlaylistToQueue(QL, AP, id);
 
-    // address p = First((*AP).A[id]);
-    // p = Next(p);
-
-    // for(int tes = 0; tes < 3; tes++)
-    // {   
-    //     printf("\n%d - %s - %s - %s\n", tes, JudulLagu(p).TabLine, NamaAlbum(p).TabLine, NamaPenyanyi(p).TabLine);
-    //     p = Next(p);
-    // }
+    (*QL).idxHead = IDX_UNDEF; (*QL).idxTail = IDX_UNDEF;
+    (*RL).IDXTOP = IDX_UNDEF;
+    (*CS).statusPL = 1;
+    (*CS).NamaPlaylist = (*AP).Nama[id];
 
     address p = First((*AP).A[id]);
     p = Next(p);
 
-    while(p != Nil)
+    if (p != Nil)
     {
-      // printf("\n%s - %s - %s\n", JudulLagu(p).TabLine, NamaAlbum(p).TabLine, NamaPenyanyi(p).TabLine);
-      enqueueLagu(QL, JudulLagu(p), NamaAlbum(p), NamaPenyanyi(p));
-      PushRiwayatLagu(RL, JudulLagu(p), NamaAlbum(p), NamaPenyanyi(p));
-      p = Next(p);
-    }
+      while(p != Nil)
+      {
+        // printf("\n%s - %s - %s\n", JudulLagu(p).TabLine, NamaAlbum(p).TabLine, NamaPenyanyi(p).TabLine);
+        enqueueLagu(QL, JudulLagu(p), NamaAlbum(p), NamaPenyanyi(p));
+        PushRiwayatLagu(RL, JudulLagu(p), NamaAlbum(p), NamaPenyanyi(p));
+        p = Next(p);
+      }
 
-    printf("%sMemutar playlist %s\"%s\".\n", GREEN, WHITE, (*AP).Nama[id].TabLine);
+      dequeueLaguNext(QL, CS);
+
+      AnimasiPlayPlaylist();
+
+      printf("%s      \t\t\t\t\t\t\t[ %s\"%s\" %sfrom %s%s's Library %s]\n", GREEN, WHITE, (*AP).Nama[id].TabLine, GREEN, WHITE, (*CU).NamaUser.TabLine, GREEN);
+      printf("\n%s_______________________________________________________________________________________________________________________\n\n", GREEN);
+    }
+    else
+    {
+      printf("\n%sERROR: %sTidak ada lagu di dalam playlist kamu!\n", RED, WHITE);
+    }
+  
   }
 
 }
 
-void QueuePlaylist(ArrayDin * AP, QueueLagu * QL, CurrentSong * CS)
+void QueuePlaylist(ArrayDin * AP, QueueLagu * QL, CurrentSong * CS, RiwayatLagu * RL)
 {
   
   printf("\nMasukkan ID Playlist: ");
@@ -287,16 +307,6 @@ void QueuePlaylist(ArrayDin * AP, QueueLagu * QL, CurrentSong * CS)
     //     printf("\n%d - %s - %s - %s\n", tes, JudulLagu(p).TabLine, NamaAlbum(p).TabLine, NamaPenyanyi(p).TabLine);
     //     p = Next(p);
     // }
-
-    if ((*QL).idxHead == IDX_UNDEF || (*QL).idxTail == IDX_UNDEF )
-    {
-        (*CS).statusPL = 1;
-        (*CS).NamaPlaylist = (*AP).Nama[id];
-    }
-    else
-    {
-        (*CS).statusPL = 0;
-    }
     
     address p = First((*AP).A[id]);
     p = Next(p);

@@ -8,7 +8,7 @@
 #include "../boolean.h"
 #include "../CharMachine/charmachine.h"
 
-#define NMaks 450
+#define NMaks 100
 #define NEWLINE '\n'
 #define MARK2 '\0'
 
@@ -37,6 +37,7 @@ void STARTKALIMATINPUT();
 void SalinInput();
 void ResetInput();
 void ResetCommand();
+Kalimat DirectoryCommand(Kalimat file);
 
 void STARTKALIMATFILE(char filename[]);
 void STARTCOMMAND();

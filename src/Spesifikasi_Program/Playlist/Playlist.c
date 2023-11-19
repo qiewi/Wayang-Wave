@@ -1,12 +1,18 @@
+/* *** ******** ******** ******** ******** ******** ****** ** INCLUDED ADT & SPEK ** ****** ******** ******** ******** ******** ******** *** */
+
 #include <stdio.h>
 #include <stdlib.h>
+
 #include "../../ADT/boolean.h"
 #include "../../ADT/LineMachine/linemachine.h"
 #include "../../ADT/LinkedList/linkedlist.h"
 #include "../../ADT/MapSetList/mapsetlist.h"
 #include "../../ADT/array/arraydinamis.h"
 #include "../../ADT/pcolor/pcolor.h"
+
 #include "Playlist.h"
+
+/* *** ******** ******** ******** ******** ******** ****** ** COMMAND SPEK ** ****** ******** ******** ******** ******** ******** *** */
 
 void PlaylistCreate(ArrayDin * AP) // to do list: cek panjang karakter
 {
@@ -137,7 +143,7 @@ void PlaylistAddLagu(ArrayDin * AP, ListPenyanyi * LP)
                 printf("\nMasukkan ID Playlist yang dipilih : %s", GREEN);
                 STARTKALIMATINPUT();
 
-                int idPlaylist = CInput.TabLine[0] - 49; // to do list: bikin verifikasi id
+                int idPlaylist = atoi(CInput.TabLine); // to do list: bikin verifikasi id
 
                 if (idPlaylist+1 > (*AP).Neff || idPlaylist+1 <= 0)
                 {
@@ -405,6 +411,38 @@ void deletePlaylist(ArrayDin * AP) // tanya harus dealoc gak
     {
         printf("\n%sKamu tidak mempunyai playlist. Silahkan membuat playlist terlebih dahulu.\n", WHITE);
     }
+}
+
+int idPlaylist(ArrayDin * AP, Kalimat NamaPL)
+{
+    for (int i = 0; i < (*AP).Neff; i++)
+    {
+        if (isKalimatEqual((*AP).Nama[i], NamaPL))
+        {
+            return i;
+        }
+    }
+
+    return -1;
+}
+
+int cekLaguPL(ArrayDin * AP, Kalimat NamaPenyanyi, Kalimat NamaAlbum, Kalimat JudulLagu, int idPL) // solve cek lagu
+{
+    address p = First((*AP).A[idPL]);
+
+    while (p != Nil)
+    {
+        if (isKalimatEqual(NamaPenyanyi(p), NamaPenyanyi) && (isKalimatEqual(NamaAlbum(p), NamaAlbum)) && (isKalimatEqual(JudulLagu(p), JudulLagu)))
+        {
+            return -1;
+        }
+        else
+        {
+            p = Next(p);
+        }
+    }
+
+    return 1;
 }
 
 // int main()

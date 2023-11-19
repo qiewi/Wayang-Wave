@@ -1,7 +1,7 @@
 #ifndef RIWAYAT_LAGU_H
 #define RIWAYAT_LAGU_H
 
-#include "../LineMachine/boolean.h"
+#include "../boolean.h"
 #include "../LineMachine/linemachine.h"
 
 typedef struct {

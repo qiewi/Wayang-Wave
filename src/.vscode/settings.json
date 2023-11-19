@@ -14,6 +14,9 @@
     "status.h": "c",
     "pcolor.h": "c",
     "arraydinamis.h": "c",
-    "playlist.h": "c"
+    "playlist.h": "c",
+    "enhance.h": "c",
+    "graph.h": "c",
+    "follow.h": "c"
   }
 }

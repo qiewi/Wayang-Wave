@@ -1,10 +1,15 @@
 #ifndef __STATUS_H__
 #define __STATUS_H__
 
-#include "../Play/Play.h"
+/* *** ******** ******** ******** ******** ******** ****** ** INCLUDED ADT & SPEK ** ****** ******** ******** ******** ******** ******** *** */
+
 #include "../../ADT/pcolor/pcolor.h"
+#include "../../ADT/Stack/RiwayatLagu.h"
+#include "../Play/Play.h"
 #include "../Queue/Queue.h"
 
-void Status(CurrentSong * CS, QueueLagu  * QL);
+/* *** ******** ******** ******** ******** ******** ****** ** COMMAND SPEK ** ****** ******** ******** ******** ******** ******** *** */
+
+void Status(CurrentSong * CS, CurrentUser *CU, QueueLagu * QL, RiwayatLagu * RL);
 
 #endif

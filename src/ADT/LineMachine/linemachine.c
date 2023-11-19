@@ -124,6 +124,33 @@ void SalinCommand() {
     CCommand.Length = i;
 }
 
+Kalimat DirectoryCommand(Kalimat file)
+{
+    Kalimat Direct;
+    Direct.TabLine[0] = 'D';
+    Direct.TabLine[1] = 'a';
+    Direct.TabLine[2] = 't';
+    Direct.TabLine[3] = 'a';
+    Direct.TabLine[4] = '/';
+    Direct.Length = 5;
+
+    int i = Direct.Length;
+    int j = 0;
+
+    while (file.TabLine[j] != '\0')
+    {
+        Direct.TabLine[i] = file.TabLine[j];
+        // printf("%c", CC);
+        Direct.Length += 1;
+        i++;
+        j++;
+    }
+
+    Direct.TabLine[Direct.Length] = '\0';
+    
+    return Direct;
+}
+
 void ADVCOMMAND(){
     Ignoreblanks();
     if (CC == ';'){
