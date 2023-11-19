@@ -4,7 +4,7 @@
 #ifndef QueueLagu_H
 #define QueueLagu_H
 
-#include "boolean.h"
+#include "../boolean.h"
 #include "../LineMachine/linemachine.h"
 
 #define IDX_UNDEF -1

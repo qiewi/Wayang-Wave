@@ -1,8 +1,11 @@
 #ifndef __PLAY_H__
 #define __PLAY_H__
 
-#include "../../ADT/MapSetList/mapsetlist.h"
+/* *** ******** ******** ******** ******** ******** ****** ** INCLUDED ADT & SPEK ** ****** ******** ******** ******** ******** ******** *** */
+
 #include <stdio.h>
+
+#include "../../ADT/MapSetList/mapsetlist.h"
 #include "../../ADT/Stack/RiwayatLagu.h"
 #include "../../ADT/Queue/queue.h"
 #include "../../ADT/LineMachine/linemachine.h"
@@ -12,10 +15,22 @@ typedef struct {
 	Kalimat JudulLagu; 
     Kalimat NamaAlbum;
     Kalimat NamaPenyanyi;
+    Kalimat NamaPlaylist;
     int status;
+    int statusPL;
 } CurrentSong;
 
+typedef struct {
+	Kalimat NamaUser;
+    int idUser;
+    int status;
+} CurrentUser;
+
+/* *** ******** ******** ******** ******** ******** ****** ** COMMAND SPEK ** ****** ******** ******** ******** ******** ******** *** */
+
 void CreateCurrentSong(CurrentSong * CS);
+
+void CreateCurrentUser(CurrentUser * CU);
 
 void AddSong(ListPenyanyi * LP, CurrentSong * CS, int idPenyanyi, int idAlbum, int idLagu);
 

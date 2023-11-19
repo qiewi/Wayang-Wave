@@ -4,7 +4,8 @@
 #ifndef __CHAR_MACHINE_H_
 #define __CHAR_MACHINE_H_
 
-#include "boolean.h"
+#include "../boolean.h"
+#include "../pcolor/pcolor.h"
 
 #define MARK ';'
 

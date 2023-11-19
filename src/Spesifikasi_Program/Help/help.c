@@ -1,15 +1,28 @@
+/* *** ******** ******** ******** ******** ******** ****** ** INCLUDED ADT & SPEK ** ****** ******** ******** ******** ******** ******** *** */
+
 #include <stdio.h>
 #include "../../ADT/boolean.h"
 #include "../../ADT/pcolor/pcolor.h"
 #include "help.h"
 
-void help(boolean sesi){                                                                                                     
-    if (!sesi) {
+/* *** ******** ******** ******** ******** ******** ****** ** COMMAND SPEK ** ****** ******** ******** ******** ******** ******** *** */
+
+void help(boolean sesi,boolean data){                                                                                                     
+    if (!data) {
         printf("%s-----------------------------------------[ Menu Help WayangWave ]---------------------------------------------\n\n", GREEN);
         printf("%s1.  %sSTART\t\t\t%s-> Untuk masuk sesi baru.\n", WHITE, GREEN, WHITE);
-        printf("%s2.  %sLOAD %s<filename>\t\t%s-> Untuk memulai sesi berdasarkan file konfigurasi.\n\n", WHITE, GREEN, YELLOW, WHITE);
+        printf("%s2.  %sLOAD %s<filename>\t\t%s-> Untuk memulai sesi berdasarkan file konfigurasi.\n", WHITE, GREEN, YELLOW, WHITE);
+        printf("%s3.  %sQUIT\t\t\t%s-> Untuk keluar dari sesi aplikasi WayangWave.\n\n", WHITE, GREEN, WHITE);
     }
-    else {
+    else if (!sesi) {
+        printf("%s-----------------------------------------[ Menu Help WayangWave ]---------------------------------------------\n\n", GREEN);
+        printf("%s1.  %sREGISTER\t\t\t%s-> Untuk membuat akun WayangWave.\n", WHITE, GREEN, WHITE);
+        printf("%s2.  %sLOGIN\t\t\t%s-> Untuk masuk ke dalam akun WayangWave.\n", WHITE, GREEN, WHITE);
+        printf("%s3.  %sLOGOUT\t\t\t%s-> Untuk keluar dari akun WayangWave.\n", WHITE, GREEN, WHITE);
+        printf("%s4.  %sQUIT\t\t\t%s-> Untuk keluar dari sesi aplikasi WayangWave.\n\n", WHITE, GREEN, WHITE);
+        
+    }
+    else if (sesi){
         printf("%s-----------------------------------------[ Menu Help WayangWave ]---------------------------------------------\n\n", GREEN);
         printf("%s1.  %sLIST DEFAULT\t\t%s-> Untuk melihat list penyanyi yang ada, album dari penyanyi yang dipilih dan lagu yang ada dari album yang dipilih.\n", WHITE, GREEN, WHITE);
         printf("2.  %sLIST PLAYLIST\t\t%s-> Untuk menampilkan playlist yang ada pada pengguna.\n", GREEN, WHITE);
@@ -29,7 +42,9 @@ void help(boolean sesi){
         printf("16. %sPLAYLIST REMOVE %s<id> <n>\t%s-> Untuk menghapus lagu dengan urutan n pada playlist dengan index id.\n", GREEN, YELLOW, WHITE);
         printf("17. %sPLAYLIST DELETE\t\t%s-> Untuk melakukan penghapusan suatu existing playlist dalam daftar playlist pengguna.\n", GREEN, WHITE);
         printf("18. %sSTATUS\t\t\t%s-> Untuk menampilkan lagu yang sedang dimainkan beserta queue song yang ada dan dari playlist mana lagu itu diputar.\n", GREEN, WHITE);
-        printf("19. %sSAVE %s<filename>\t\t%s-> Untuk menyimpan state aplikasi terbaru ke dalam suatu file.\n", GREEN, YELLOW, WHITE);
-        printf("20. %sQUIT\t\t\t%s-> Untuk keluar dari sesi aplikasi WayangWave.\n\n", GREEN, WHITE);
+        printf("19. %sFOLLOW USER\t\t%s-> Untuk mem-follow user lain di dalam WayangWave.\n", GREEN, WHITE);
+        printf("20. %sFOLLOW LIST\t\t%s-> Untuk menampilkan user yang sudah difollow beserta playlist yang mereka miliki.\n", GREEN, WHITE);
+        printf("21. %sSAVE %s<filename>\t\t%s-> Untuk menyimpan state aplikasi terbaru ke dalam suatu file.\n", GREEN, YELLOW, WHITE);
+        printf("22. %sQUIT\t\t\t%s-> Untuk keluar dari sesi aplikasi WayangWave.\n\n", GREEN, WHITE);
     }
 }

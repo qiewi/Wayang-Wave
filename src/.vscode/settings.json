@@ -12,6 +12,11 @@
     "help.h": "c",
     "song.h": "c",
     "status.h": "c",
-    "pcolor.h": "c"
+    "pcolor.h": "c",
+    "arraydinamis.h": "c",
+    "playlist.h": "c",
+    "enhance.h": "c",
+    "graph.h": "c",
+    "follow.h": "c"
   }
 }
