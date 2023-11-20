@@ -14,18 +14,18 @@
 
 /* *** ******** ******** ******** ******** ******** ****** ** COMMAND SPEK ** ****** ******** ******** ******** ******** ******** *** */
 
-void CreateCurrentSong(CurrentSong * CS)
+void CreateCurrentSong(CurrentSong * CS) // Membuat Current Song
 {
     (*CS).status = 0;
     (*CS).statusPL = 0;
 }
 
-void CreateCurrentUser(CurrentUser * CU)
+void CreateCurrentUser(CurrentUser * CU)// Membuat Current User
 {
     (*CU).status = 0;
 }
 
-void AddSong(ListPenyanyi * LP, CurrentSong * CS, int idPenyanyi, int idAlbum, int idLagu)
+void AddSong(ListPenyanyi * LP, CurrentSong * CS, int idPenyanyi, int idAlbum, int idLagu) // Menambahkan lagu
 {
     (*CS).status = 1;
 
@@ -109,7 +109,7 @@ void PlaySong(ListPenyanyi * LP, CurrentSong * CS, QueueLagu * QL, RiwayatLagu *
 
 }
 
-void PopRiwayatLagu(RiwayatLagu *RL, CurrentSong * CS) // untuk song prev
+void PopRiwayatLagu(RiwayatLagu *RL, CurrentSong * CS) // Menampilkan song prev
 { 
     (*CS).JudulLagu = InfoLagu(*RL);
     (*CS).NamaAlbum = InfoAlbum(*RL);
