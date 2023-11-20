@@ -1,4 +1,4 @@
-## **Tugas Besar Alstrukdat IF2111 K3 Kelompok 5**  
+#### **Tugas Besar Alstrukdat IF2111 K3 Kelompok 5**  
 _______
 
 # Deskripsi
@@ -30,7 +30,7 @@ _______
 
 **Asisten:** Kristo Abdi Nugraha
 
-## **How to Compile:**
+# **How to Compile:**
 _______
 
 # alt 1. Easy type
