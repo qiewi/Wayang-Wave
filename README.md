@@ -7,9 +7,13 @@ Buatlah sebuah aplikasi simulasi berbasis CLI (command-line interface). Sistem i
 
 *WayangWave* merupakan sebuah aplikasi yang bisa mensimulasikan service pemutaran musik. WayangWave ini memiliki memiliki beberapa fitur utama, yaitu:
 > Memutar lagu
+
 > Menampilkan daftar lagu
+
 > Membuat dan menghapus playlist
+
 > Mengatur urutan dimainkannya lagu
+
 > Menampilkan status dari aplikasi
 
 # Contributors:
