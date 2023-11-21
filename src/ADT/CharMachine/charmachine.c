@@ -4,6 +4,7 @@
 #include "charmachine.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include "../pcolor/pcolor.h"
 
 char CC;
 boolean EOP;
@@ -21,7 +22,7 @@ void STARTFILE(char filename[]) {
     if (pita != NULL) {
         ADVFILE();
     } else {
-        printf("\nFile tidak ditemukan!\n");
+        printf("\n%SERROR: %sFile tidak ditemukan!\n\n", RED, WHITE);
         exit(0);
     }
 }

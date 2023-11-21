@@ -6,6 +6,17 @@
     "map.h": "c",
     "start.h": "c",
     "wordmachine.h": "c",
-    "boolean.h": "c"
+    "boolean.h": "c",
+    "play.h": "c",
+    "riwayatlagu.h": "c",
+    "help.h": "c",
+    "song.h": "c",
+    "status.h": "c",
+    "pcolor.h": "c",
+    "arraydinamis.h": "c",
+    "playlist.h": "c",
+    "enhance.h": "c",
+    "graph.h": "c",
+    "follow.h": "c"
   }
 }

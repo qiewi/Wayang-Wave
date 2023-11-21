@@ -8,12 +8,11 @@
 
 #define InitialSize 10
 
-#include "../LinkedList/linkedlist.h"
-
 typedef int IdxType;
-typedef List ElType;
+typedef int ElType;
 typedef struct {
-    ElType *A;
+    NameType *Nama;
+    List *A;    
     int Capacity;
     int Neff;
 } ArrayDin;
@@ -24,6 +23,7 @@ typedef struct {
  * F.S. Terbentuk ArrayDin kosong dengan ukuran InitialSize
  */
 
+ArrayDin MakeArrayDin();
 /**
  * Destruktor
  * I.S. ArrayDin terdefinisi
@@ -35,7 +35,7 @@ void DeallocateArrayDin(ArrayDin *array);
  * Fungsi untuk mengetahui apakah suatu array kosong.
  * Prekondisi: array terdefinisi
  */
-boolean IsEmpty(ArrayDin array);
+boolean IsEmptyArray(ArrayDin array);
 
 /**
  * Fungsi untuk mendapatkan banyaknya elemen efektif array, 0 jika tabel kosong.
@@ -59,7 +59,7 @@ int GetCapacity(ArrayDin array);
  * Fungsi untuk menambahkan elemen baru di index ke-i
  * Prekondisi: array terdefinisi, i di antara 0..Length(array).
  */
-void InsertAt(ArrayDin *array, List el, IdxType i);
+void InsertAt(ArrayDin *array, ElType el, IdxType i);
 
 /**
  * Fungsi untuk menghapus elemen di index ke-i ArrayDin

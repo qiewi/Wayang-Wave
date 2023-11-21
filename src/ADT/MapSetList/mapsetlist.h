@@ -10,19 +10,18 @@ Deklarasi stack yang dengan implementasi array eksplisit-statik rata kiri
 
 // #define false 0
 // #define true 1
-#define Nil 0
+
 #define AlbumMax 100
 #define Undefined -999
 
 // typedef int bool;
 typedef int idAlbum;
-typedef int address;
 
 // 5
 typedef struct
 {   
   Kalimat JudulLagu[20];
-  address Count;
+  int Count;
 } SetLagu;
 
 // 4
@@ -74,6 +73,8 @@ void AddPenyanyi(ListPenyanyi * LP, Kalimat NamaPenyanyi);
 // 	(*LP).NEff += 1; // Jumlah penyanyi nambah satu
 // }
 
+int indeksPenyanyi(ListPenyanyi * LP, Kalimat InputPenyanyi);
+
 Kalimat NamaPenyanyiNow(ListPenyanyi * LP);
 // {	
 // 	int indeksPenyanyi = LP.NEff - 1;
@@ -87,6 +88,8 @@ void AddAlbum(ListPenyanyi * LP, Kalimat NamaAlbum);
 // 	(*LP).PenyanyiAlbum[indeksPenyanyi-1].ListAlbum.AlbumLagu[indeksAlbum].NamaAlbum = NamaAlbum; // Nama Album di indeksAlbum
 // 	(*LP).PenyanyiAlbum[indeksPenyanyi-1].ListAlbum.Neff += 1; // Jumlah album milik penyanyi tersebut bertambah 1
 // }
+
+int indeksAlbum(ListPenyanyi * LP, int indeksPenyanyi, Kalimat InputAlbum);
 
 Kalimat NamaAlbumNow(ListPenyanyi * LP);
 

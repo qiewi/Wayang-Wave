@@ -1,3 +1,0 @@
-RUN CODE di main.c:
-
-gcc Spesifikasi_Program/Start/start.c Spesifikasi_Program/Inisialisasi/inisialisasi.c ADT/CharMachine/charmachine.c ADT/LineMachine/linemachine.c ADT/WordMachine/wordmachine.c ADT/Map/map.c main.c -o main
