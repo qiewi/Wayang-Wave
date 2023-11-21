@@ -132,11 +132,10 @@ int main()
 /* *** ******** ******** ******** ******** ******** ****** ** COMMAND LOAD ** ****** ******** ******** ******** ******** ******** *** */
 
         else if (isInputEqual(CCommand, "LOAD"))
-        { 
+        {   ADVCOMMAND();
             
             if (!data)
             {
-                ADVCOMMAND();
 
                 // delay(1);
                 // printf("\n%s[=========", GREEN);
@@ -168,7 +167,7 @@ int main()
                 data = true;
             }
             else
-            {
+            {   
                 printf("\n%sERROR: %sCommand tidak dapat dieksekusi!\n", RED, WHITE);
             }
 
@@ -350,6 +349,7 @@ int main()
 
         else if (isInputEqual(CCommand, "QUEUE")){
             ADVCOMMAND();
+            // printf("%d\n", QL.idxTail);
 
             if (isInputEqual(CCommand, "SONG"))
             {
@@ -374,7 +374,7 @@ int main()
                 else
                 {   
                 ADVCOMMAND();
-                int idQueue = CCommand.TabLine[0] - 48;
+                int idQueue = atoi(CCommand.TabLine);
 
                 QueueRemoveLagu(&QL, &RL, idQueue);
                 }
@@ -390,11 +390,11 @@ int main()
                 {   
                 ADVCOMMAND();
 
-                int id1 = atoi(CCommand.TabLine);
+                int id1 = atoi(CCommand.TabLine) - 1;
 
                 ADVCOMMAND();
 
-                int id2 = atoi(CCommand.TabLine);
+                int id2 = atoi(CCommand.TabLine) - 1;
 
                 QueueSwap(&QL, id1, id2);
                 }
@@ -493,7 +493,7 @@ int main()
                 else
                 {
                     ADVCOMMAND();
-
+                    printf("%d\n", AP.Neff);
                     if (isInputEqual(CCommand, "SONG"))
                     {   
                         PlaylistAddLagu(&AP, &LP);
@@ -667,7 +667,7 @@ int main()
 
         else if (isInputEqual(CCommand, "QUIT")){
             
-            printf("\n%sApakah kamu ingin menyimpan data sesi sekarang? %s", GREEN, WHITE);
+            printf("\n%sApakah kamu ingin menyimpan data sesi sekarang? (Y/N): %s", GREEN, WHITE);
             STARTCOMMAND();
 
             if (CCommand.TabLine[0] == 'Y')

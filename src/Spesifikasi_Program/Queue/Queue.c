@@ -69,7 +69,6 @@ void enqueueLagu(QueueLagu *q, Kalimat JudulLaguQueue, Kalimat NamaAlbumQueue, K
 
 void dequeueLagu(QueueLagu * QL, RiwayatLagu * RL, IdQueue id) // to do: tambah stack riwayat
 {
-    PushRiwayatLagu(RL, (*QL).JudulLagu[id-1], (*QL).NamaAlbum[id-1], (*QL).NamaPenyanyi[id-1]);
 
     for (int i = id - 1; i < (IDX_TAIL(*QL)); i++)
     {
@@ -81,7 +80,7 @@ void dequeueLagu(QueueLagu * QL, RiwayatLagu * RL, IdQueue id) // to do: tambah 
 
 }
 
-void dequeueLaguNext(QueueLagu * QL, CurrentSong * CS) // to do: tambah stack riwayat
+void dequeueLaguNext(QueueLagu * QL, CurrentSong * CS)
 { 
 
     (*CS).JudulLagu = (*QL).JudulLagu[0];
@@ -103,33 +102,33 @@ void QueueSwap(QueueLagu * QL, IdQueue id1, IdQueue id2)
 {   
     if ((id1 > (*QL).idxTail || id1 < 0) && (id2 > (*QL).idxTail || id2 < 0))
     {
-      printf("\n%sERROR: %sLagu dengan urutan ke %d dan %d tidak ada.\n", RED, WHITE, id1, id2);
+      printf("\n%sERROR: %sLagu dengan urutan ke %d dan %d tidak ada.\n", RED, WHITE, id1+1, id2+1);
     }
     else if (id1 > (*QL).idxTail || id1 < 0)
     {
-      printf("\n%sERROR: %sLagu dengan urutan ke %d tidak ada.\n", RED, WHITE, id1);
+      printf("\n%sERROR: %sLagu dengan urutan ke %d tidak ada.\n", RED, WHITE, id1+1);
     }
     else if (id2 > (*QL).idxTail || id2 < 0)
     {
-      printf("\n%sERROR: %sLagu dengan urutan ke %d tidak ada.\n", RED, WHITE, id2);
+      printf("\n%sERROR: %sLagu dengan urutan ke %d tidak ada.\n", RED, WHITE, id2+1);
     }
     else
     {
       CurrentSong temp;
 
-      temp.JudulLagu = (*QL).JudulLagu[id2-1];
-      temp.NamaAlbum = (*QL).NamaAlbum[id2-1];
-      temp.NamaPenyanyi = (*QL).NamaPenyanyi[id2-1];
+      temp.JudulLagu = (*QL).JudulLagu[id2];
+      temp.NamaAlbum = (*QL).NamaAlbum[id2];
+      temp.NamaPenyanyi = (*QL).NamaPenyanyi[id2];
 
-      (*QL).JudulLagu[id2-1] = (*QL).JudulLagu[id1-1];
-      (*QL).NamaAlbum[id2-1] = (*QL).NamaAlbum[id1-1];
-      (*QL).NamaPenyanyi[id2-1] = (*QL).NamaPenyanyi[id1-1];
+      (*QL).JudulLagu[id2] = (*QL).JudulLagu[id1];
+      (*QL).NamaAlbum[id2] = (*QL).NamaAlbum[id1];
+      (*QL).NamaPenyanyi[id2] = (*QL).NamaPenyanyi[id1];
 
-      (*QL).JudulLagu[id1-1] = temp.JudulLagu;
-      (*QL).NamaAlbum[id1-1] = temp.NamaAlbum;
-      (*QL).NamaPenyanyi[id1-1] = temp.NamaPenyanyi;
+      (*QL).JudulLagu[id1] = temp.JudulLagu;
+      (*QL).NamaAlbum[id1] = temp.NamaAlbum;
+      (*QL).NamaPenyanyi[id1] = temp.NamaPenyanyi;
 
-      printf("\n%sLagu %s\"%s\" %sberhasil ditukar dengan %s\"%s\"\n", GREEN, WHITE, (*QL).JudulLagu[id1-1], GREEN, WHITE, (*QL).JudulLagu[id2-1]);
+      printf("\n%sLagu %s\"%s\" %sberhasil ditukar dengan %s\"%s\"\n", GREEN, WHITE, (*QL).JudulLagu[id1].TabLine, GREEN, WHITE, (*QL).JudulLagu[id2].TabLine);
     }
 }
 
@@ -242,7 +241,7 @@ void PlayPlaylist(ArrayDin * AP, QueueLagu * QL, CurrentSong * CS, CurrentUser *
 
   int id = atoi(CInput.TabLine) - 1;
 
-  if (id+1 > (*AP).Neff || id+1 < 0)
+  if (id+1 > (*AP).Neff || id+1 <= 0)
   {
      printf("\n%sERROR: %sTidak ada playlist dengan ID %d.\n", RED, WHITE, id+1);
   }
@@ -255,7 +254,6 @@ void PlayPlaylist(ArrayDin * AP, QueueLagu * QL, CurrentSong * CS, CurrentUser *
     (*CS).NamaPlaylist = (*AP).Nama[id];
 
     address p = First((*AP).A[id]);
-    p = Next(p);
 
     if (p != Nil)
     {
@@ -285,41 +283,53 @@ void PlayPlaylist(ArrayDin * AP, QueueLagu * QL, CurrentSong * CS, CurrentUser *
 
 void QueuePlaylist(ArrayDin * AP, QueueLagu * QL, CurrentSong * CS, RiwayatLagu * RL)
 {
-  
-  printf("\nMasukkan ID Playlist: ");
-  STARTKALIMATINPUT();
 
-  int id = atoi(CInput.TabLine) - 1;
-
-  if (id+1 > (*AP).Neff || id+1 < 0)
+  printf("\n%sDaftar Playlist yang kamu miliki:\n", GREEN);
+  if ((*AP).Neff > 0)
   {
-     printf("\n%sERROR: %sTidak ada playlist dengan ID %d.\n", RED, WHITE, id+1);
+    for (int i = 0; i < (*AP).Neff; i++)
+    {
+      printf("  %s%d. %s \n", WHITE, i+1, (*AP).Nama[i].TabLine);
+    }
+
+    printf("\nMasukkan ID Playlist: ");
+    STARTKALIMATINPUT();
+
+    int id = atoi(CInput.TabLine) - 1;
+
+    if (id+1 > (*AP).Neff || id+1 <= 0)
+    {
+      printf("\n%sERROR: %sTidak ada playlist dengan ID %d.\n", RED, WHITE, id+1);
+    }
+    else
+    {
+      // PlaylistToQueue(QL, AP, id);
+
+      // address p = First((*AP).A[id]);
+      // p = Next(p);
+
+      // for(int tes = 0; tes < 3; tes++)
+      // {   
+      //     printf("\n%d - %s - %s - %s\n", tes, JudulLagu(p).TabLine, NamaAlbum(p).TabLine, NamaPenyanyi(p).TabLine);
+      //     p = Next(p);
+      // }
+      
+      address p = First((*AP).A[id]);
+
+      while(p != Nil)
+      {
+        // printf("\n%s - %s - %s\n", JudulLagu(p).TabLine, NamaAlbum(p).TabLine, NamaPenyanyi(p).TabLine);
+        enqueueLagu(QL, JudulLagu(p), NamaAlbum(p), NamaPenyanyi(p));
+        p = Next(p);
+      }
+
+      printf("%sBerhasil menambahkan playlist %s\"%s\" %ske queue.\n", GREEN, WHITE, (*AP).Nama[id].TabLine, GREEN);
+      
+    }
   }
   else
   {
-    // PlaylistToQueue(QL, AP, id);
-
-    // address p = First((*AP).A[id]);
-    // p = Next(p);
-
-    // for(int tes = 0; tes < 3; tes++)
-    // {   
-    //     printf("\n%d - %s - %s - %s\n", tes, JudulLagu(p).TabLine, NamaAlbum(p).TabLine, NamaPenyanyi(p).TabLine);
-    //     p = Next(p);
-    // }
-    
-    address p = First((*AP).A[id]);
-    p = Next(p);
-
-    while(p != Nil)
-    {
-      // printf("\n%s - %s - %s\n", JudulLagu(p).TabLine, NamaAlbum(p).TabLine, NamaPenyanyi(p).TabLine);
-      enqueueLagu(QL, JudulLagu(p), NamaAlbum(p), NamaPenyanyi(p));
-      p = Next(p);
-    }
-
-    printf("%sBerhasil menambahkan playlist %s\"%s\" %ske queue.\n", GREEN, WHITE, (*AP).Nama[id].TabLine, GREEN);
-    
+    printf("%sKamu tidak memiliki playlist.\n", WHITE);
   }
 
 }

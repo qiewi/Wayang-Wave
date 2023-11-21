@@ -25,9 +25,10 @@ void CreateDataUser(DataUser * DU)
 }
 
 void RegisterUser(DataUser * DU)
+
 {
     printf("\n%s=================== %s[ REGISTER ] %s===================\n", GREEN, YELLOW, GREEN);
-    printf("\n%sMasukkan nama user: ", WHITE);
+    printf("\n%sMasukkan nama user: %s", WHITE, GREEN);
     STARTKALIMATINPUT();
 
     int idUser = CekUser(DU, CInput);
@@ -77,7 +78,7 @@ int CekUser(DataUser * DU, Kalimat NamaUser)
 void Login(DataUser * DU, ArrayDin * AP, CurrentSong * CS, CurrentUser * CU, QueueLagu * QL, RiwayatLagu * RL, boolean * sesi)
 {
     printf("\n%s=================== %s[ LOGIN ] %s===================\n",GREEN, YELLOW, GREEN);
-    printf("\n%sUsername: ", WHITE);
+    printf("\n%sUsername: %s", WHITE, GREEN);
 
     STARTKALIMATINPUT();
 

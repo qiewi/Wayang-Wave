@@ -88,7 +88,7 @@ void PlaySong(ListPenyanyi * LP, CurrentSong * CS, QueueLagu * QL, RiwayatLagu *
 
                 AnimasiPlaySong();
                 
-                printf("%s      \t\t\t\t\t\t\t\t\t[ %s\"%s\" %sby %s\"%s\" %s]\n", GREEN, WHITE, (*CS).JudulLagu.TabLine, GREEN, WHITE, (*CS).NamaPenyanyi.TabLine, GREEN);  
+                printf("%s      \t\t\t\t\t\t\t\t  [ %s\"%s\" %sby %s\"%s\" %s]\n", GREEN, WHITE, (*CS).JudulLagu.TabLine, GREEN, WHITE, (*CS).NamaPenyanyi.TabLine, GREEN);  
                 printf("\n%s_______________________________________________________________________________________________________________________\n\n", GREEN);
             }
             else
