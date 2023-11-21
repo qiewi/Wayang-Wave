@@ -121,8 +121,6 @@ void displayPlaylist(ArrayDin * AP)
                   i++;
               }
             }
-
-            printf("\n");
         
         }
     }

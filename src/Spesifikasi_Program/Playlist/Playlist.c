@@ -21,7 +21,7 @@ void PlaylistCreate(ArrayDin * AP) // to do list: cek panjang karakter
 
     InsertNama(AP, CInput);
 
-    printf("\n%sOutput: %sPlaylist %s%s %sberhasil dibuat!", GREEN, WHITE, YELLOW, CInput.TabLine, WHITE);
+    printf("\n%sPlaylist %s%s %sberhasil dibuat!", WHITE, YELLOW, CInput.TabLine, WHITE);
     printf("\n%sSilahkan masukkan lagu-lagu artis terkini kesayangan Anda!\n", GREEN);
 }
 
@@ -127,23 +127,23 @@ void PlaylistAddLagu(ArrayDin * AP, ListPenyanyi * LP)
             printf("  %s%d. %s \n",WHITE, i+1, (*LP).PenyanyiAlbum[idPenyanyi].ListAlbum.AlbumLagu[idAlbum].IsiLagu.JudulLagu[i].TabLine);
             }
 
-            printf("\nMasukkan ID Lagu yang dipilih : ");
+            printf("\nMasukkan ID Lagu yang dipilih : %s", GREEN);
             STARTKALIMATINPUT();
 
             int idLagu = CInput.TabLine[0] - 49;
             if (idLagu < (*LP).PenyanyiAlbum[idPenyanyi].ListAlbum.AlbumLagu[idAlbum].IsiLagu.Count)
             {
-                printf("Daftar Playlist Pengguna: \n");
+                printf("\n%sDaftar Playlist Pengguna: \n", GREEN);
 
                 for (int p = 0; p < (*AP).Neff; p++)
                 {
-                    printf("    %d. %s \n", p+1, (*AP).Nama[p].TabLine);
+                    printf("    %s%d. %s \n", WHITE, p+1, (*AP).Nama[p].TabLine);
                 }
 
-                printf("\nMasukkan ID Playlist yang dipilih : %s", GREEN);
+                printf("\n%sMasukkan ID Playlist yang dipilih : %s",WHITE, GREEN);
                 STARTKALIMATINPUT();
 
-                int idPlaylist = atoi(CInput.TabLine); // to do list: bikin verifikasi id
+                int idPlaylist = atoi(CInput.TabLine) - 1; // to do list: bikin verifikasi id
 
                 if (idPlaylist+1 > (*AP).Neff || idPlaylist+1 <= 0)
                 {
@@ -220,11 +220,11 @@ void PlaylistAddAlbum(ArrayDin * AP, ListPenyanyi * LP)
 
         if (idAlbum != -1)
         {
-                printf("\nDaftar Playlist Pengguna: %s\n", WHITE);
+                printf("\nDaftar Playlist Pengguna: %s\n", GREEN);
 
                 for (int p = 0; p < (*AP).Neff; p++)
                 {
-                    printf("    %d. %s \n", p+1, (*AP).Nama[p].TabLine);
+                    printf("    %s%d. %s \n", WHITE, p+1, (*AP).Nama[p].TabLine);
                 }
 
                 printf("\nMasukkan ID Playlist yang dipilih : %s", GREEN);

@@ -48,7 +48,7 @@ void FollowFriend(DataUser * DU, CurrentUser * CU) // to do list: bikin verif an
         printf("  %s%d. %s \n", WHITE, i+1, (*DU).NamaUser[i].TabLine);
     }
 
-    printf("\nInput nama user yang ingin di-follow: %s", YELLOW);
+    printf("\nInput nama user yang ingin di-follow: %s", GREEN);
     STARTKALIMATINPUT();
 
     int idUser = CekUser(DU, CInput);
@@ -67,7 +67,7 @@ void FollowFriend(DataUser * DU, CurrentUser * CU) // to do list: bikin verif an
             if (cek == -1)
             {
                 InsertSuccNode(&(*DU).G, (*CU).idUser, idUser);
-                printf("\n%sOutput: %sKamu berhasil memfollow %s.\n", GREEN, WHITE, CInput.TabLine);
+                printf("\n%sOutput: %sKamu berhasil memfollow %s%s.\n", GREEN, WHITE, YELLOW, CInput.TabLine);
             }
             else
             {
@@ -103,7 +103,7 @@ void ListFollowing(DataUser * DU, CurrentUser * CU)
             temp = temp->Next;
         }
 
-        printf("\nIngin melihat playlist mereka? %s", GREEN);
+        printf("\nIngin melihat playlist mereka? (Y/N): %s", GREEN);
         STARTKALIMATINPUT();
 
         if (CInput.TabLine[0] == 'Y')
