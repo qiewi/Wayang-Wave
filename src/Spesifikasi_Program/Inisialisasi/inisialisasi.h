@@ -28,6 +28,8 @@ void AnimasiPlaySong();
 
 void AnimasiPlayPlaylist();
 
+void AnimasiCreatePlaylist();
+
 void AnimasiRegister();
 
 void AnimasiLogin();

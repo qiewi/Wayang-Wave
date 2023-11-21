@@ -9,6 +9,7 @@
 #include "../../ADT/MapSetList/mapsetlist.h"
 #include "../../ADT/array/arraydinamis.h"
 #include "../../ADT/pcolor/pcolor.h"
+#include "../Inisialisasi/inisialisasi.h"
 
 #include "Playlist.h"
 
@@ -21,6 +22,7 @@ void PlaylistCreate(ArrayDin * AP) // to do list: cek panjang karakter
 
     InsertNama(AP, CInput);
 
+    AnimasiCreatePlaylist();
     printf("\n%sPlaylist %s%s %sberhasil dibuat!", WHITE, YELLOW, CInput.TabLine, WHITE);
     printf("\n%sSilahkan masukkan lagu-lagu artis terkini kesayangan Anda!\n", GREEN);
 }
