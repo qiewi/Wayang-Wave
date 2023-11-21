@@ -209,6 +209,60 @@ void AnimasiPlayPlaylist(){
     }
 }
 
+void AnimasiQueueSong(){
+    char *filename;
+    FILE *fascii;
+    system("cls || clear");
+    for (int i = 0; i < 4; i++){
+        if (i == 0) {
+            filename = "Spesifikasi_Program/Inisialisasi/queue/queue1.txt";
+        } else if (i == 1){
+            filename = "Spesifikasi_Program/Inisialisasi/queue/queue2.txt";
+        } else if (i == 2){
+            filename = "Spesifikasi_Program/Inisialisasi/queue/queue3.txt";
+        } else if (i == 3){
+            filename = "Spesifikasi_Program/Inisialisasi/queue/queue4.txt";
+        } 
+        fascii = NULL;
+        fascii = fopen(filename,"r");
+        if(fascii  == NULL){
+            printf("error opening %s\n",filename);
+        } else {
+            system("cls || clear");
+            print_image(fascii);
+            fclose(fascii);
+        }
+        delay(1);
+    }
+}
+
+void AnimasiQueuePlaylist(){
+    char *filename;
+    FILE *fascii;
+    system("cls || clear");
+    for (int i = 0; i < 4; i++){
+        if (i == 0) {
+            filename = "Spesifikasi_Program/Inisialisasi/queue/queue1.txt";
+        } else if (i == 1){
+            filename = "Spesifikasi_Program/Inisialisasi/queue/queue2.txt";
+        } else if (i == 2){
+            filename = "Spesifikasi_Program/Inisialisasi/queue/queue3.txt";
+        } else if (i == 3){
+            filename = "Spesifikasi_Program/Inisialisasi/queue/queue5.txt";
+        } 
+        fascii = NULL;
+        fascii = fopen(filename,"r");
+        if(fascii  == NULL){
+            printf("error opening %s\n",filename);
+        } else {
+            system("cls || clear");
+            print_image(fascii);
+            fclose(fascii);
+        }
+        delay(1);
+    }
+}
+
 void AnimasiCreatePlaylist(){
     char *filename;
     FILE *fascii;
@@ -270,6 +324,33 @@ void AnimasiLogin(){
             filename = "Spesifikasi_Program/Inisialisasi/login/login2.txt";
         } else if (i == 2){
             filename = "Spesifikasi_Program/Inisialisasi/login/login1.txt";
+        } 
+        fascii = NULL;
+        fascii = fopen(filename,"r");
+        if(fascii  == NULL){
+            printf("error opening %s\n",filename);
+        } else {
+            system("cls || clear");
+            print_image(fascii);
+            fclose(fascii);
+        }
+        delay(1);
+    }
+}
+
+void AnimasiLogout(){
+    char *filename;
+    FILE *fascii;
+    system("cls || clear");
+    for (int i = 0; i < 4; i++){
+        if (i == 0) {
+            filename = "Spesifikasi_Program/Inisialisasi/logout/logout.txt";
+        } else if (i == 1){
+            filename = "Spesifikasi_Program/Inisialisasi/logout/logout1.txt";
+        } else if (i == 2){
+            filename = "Spesifikasi_Program/Inisialisasi/logout/logout2.txt";
+        } else if (i == 3){
+            filename = "Spesifikasi_Program/Inisialisasi/logout/logout3.txt";
         } 
         fascii = NULL;
         fascii = fopen(filename,"r");

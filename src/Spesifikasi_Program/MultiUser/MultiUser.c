@@ -120,6 +120,8 @@ void Logout(DataUser * DU, ArrayDin * AP, CurrentSong * CS, CurrentUser * CU, Qu
     (*DU).QL[idUser] = (*QL);
     (*DU).RL[idUser] = (*RL);
 
+    AnimasiLogout();
+    
     printf("\n%s================= ", GREEN); delay(1);
     printf("%s[ LOGGED OUT ]", YELLOW);
     printf("%s =================\n\n", GREEN);
