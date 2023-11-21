@@ -493,7 +493,7 @@ int main()
                 else
                 {
                     ADVCOMMAND();
-                    printf("%d\n", AP.Neff);
+                    // printf("%d\n", AP.Neff);
                     if (isInputEqual(CCommand, "SONG"))
                     {   
                         PlaylistAddLagu(&AP, &LP);

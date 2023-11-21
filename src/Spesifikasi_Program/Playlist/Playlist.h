@@ -12,6 +12,8 @@
 #include "../../ADT/LineMachine/linemachine.h"
 #include "../../ADT/pcolor/pcolor.h"
 
+#include "../Inisialisasi/inisialisasi.h"
+
 /* *** ******** ******** ******** ******** ******** ****** ** COMMAND SPEK ** ****** ******** ******** ******** ******** ******** *** */
 
 void PlaylistCreate(ArrayDin * AP);

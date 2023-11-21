@@ -209,6 +209,31 @@ void AnimasiPlayPlaylist(){
     }
 }
 
+void AnimasiCreatePlaylist(){
+    char *filename;
+    FILE *fascii;
+    system("cls || clear");
+    for (int i = 0; i < 3; i++){
+        if (i == 0) {
+            filename = "Spesifikasi_Program/Inisialisasi/playlist/playlist1.txt";
+        } else if (i == 1){
+            filename = "Spesifikasi_Program/Inisialisasi/playlist/playlist2.txt";
+        } else if (i == 2){
+            filename = "Spesifikasi_Program/Inisialisasi/playlist/playlist3.txt";
+        } 
+        fascii = NULL;
+        fascii = fopen(filename,"r");
+        if(fascii  == NULL){
+            printf("error opening %s\n",filename);
+        } else {
+            system("cls || clear");
+            print_image(fascii);
+            fclose(fascii);
+        }
+        delay(1);
+    }
+}
+
 void AnimasiRegister(){
     char *filename;
     FILE *fascii;
