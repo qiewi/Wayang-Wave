@@ -11,12 +11,15 @@
 void Status(CurrentSong * CS, CurrentUser * CU, QueueLagu * QL, RiwayatLagu * RL)
 {
     if ((*CS).status == 0 )
+    // Jika tidak ada lagu yang diputar
     {   
         if (((*QL).idxHead != IDX_UNDEF || (*QL).idxTail != IDX_UNDEF))
+        // Jika terdapat queue lagu
         {   
             printf("\n%sCurrent User: %s%s\n", GREEN, WHITE, (*CU).NamaUser.TabLine);
 
             if ((*CS).statusPL == 1)
+            // Jika terdapat playlist yang diputar
             {
                 printf("\n%sCurrent Playlist: %s%s\n", GREEN, WHITE, (*CS).NamaPlaylist.TabLine);
             }
@@ -32,6 +35,7 @@ void Status(CurrentSong * CS, CurrentUser * CU, QueueLagu * QL, RiwayatLagu * RL
         }
 
         else if (((*QL).idxHead == IDX_UNDEF || (*QL).idxTail == IDX_UNDEF))
+        // Jika tidak terdapat queue lagu
         {
             printf("\n%sCurrent User: %s%s\n", GREEN, WHITE, (*CU).NamaUser.TabLine);
 
@@ -45,8 +49,10 @@ void Status(CurrentSong * CS, CurrentUser * CU, QueueLagu * QL, RiwayatLagu * RL
     }
     
     else if ((*CS).status == 1)
+    // Jika terdapat lagu yang sedang diputar
     {   
         if ((*QL).idxHead == IDX_UNDEF || (*QL).idxTail == IDX_UNDEF)
+        // Jika tidak ada queue lagu
         {
             printf("\n%sCurrent User: %s%s\n", GREEN, WHITE, (*CU).NamaUser.TabLine);
 
@@ -58,10 +64,12 @@ void Status(CurrentSong * CS, CurrentUser * CU, QueueLagu * QL, RiwayatLagu * RL
         }
 
         else if ((*QL).idxHead != IDX_UNDEF || (*QL).idxTail != IDX_UNDEF)
+        // Jika terdapat queue lagu
         {   
             printf("\n%sCurrent User: %s%s\n", GREEN, WHITE, (*CU).NamaUser.TabLine);
 
             if ((*CS).statusPL == 1)
+            // Jika terdapat playlist yang diputar
             {
                 printf("\n%sCurrent Playlist: %s%s\n", GREEN, WHITE, (*CS).NamaPlaylist.TabLine);
             }
@@ -78,6 +86,7 @@ void Status(CurrentSong * CS, CurrentUser * CU, QueueLagu * QL, RiwayatLagu * RL
     }
 
     if ((*RL).IDXTOP != IDX_UNDEF)
+    // Jika terdapat riwayat lagu
     {
         printf("\n%sHistory:\n", GREEN);
         for (int i = 0; i <= (*RL).IDXTOP; i++)
