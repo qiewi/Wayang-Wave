@@ -284,7 +284,6 @@ void playlistSwap(ArrayDin * AP, int idPlaylist, int idLagu1, int idLagu2) // id
         int total = 0;
 
         address q = First((*AP).A[idPlaylist]);
-        q = Next(q);
 
         while (q != Nil)
         {
@@ -292,11 +291,11 @@ void playlistSwap(ArrayDin * AP, int idPlaylist, int idLagu1, int idLagu2) // id
             q = Next(q);
         }
 
-        if (idLagu1 > total || idLagu1 < 0)
+        if (idLagu1+1 > total || idLagu1 < 0)
         {
             printf("\n%s ERROR: %sTidak ada lagu dengan urutan %d di playlist \"%s\".\n", RED, WHITE, idLagu1+1, (*AP).Nama[idPlaylist].TabLine);
         }
-        else if (idLagu2 > total || idLagu2 < 0)
+        else if (idLagu2+1 > total || idLagu2 < 0)
         {
             printf("\n%sERROR: %sTidak ada lagu dengan urutan %d di playlist \"%s\".\n", RED, WHITE, idLagu2+1, (*AP).Nama[idPlaylist].TabLine);
         }
@@ -306,7 +305,7 @@ void playlistSwap(ArrayDin * AP, int idPlaylist, int idLagu1, int idLagu2) // id
         // mulai swap
             address p = First((*AP).A[idPlaylist]);
             address prev1, prev2, lagu1, lagu2, temp;
-            p = Next(p);
+            // p = Next(p);
 
             int maks; int i = 0;
             if (idLagu1 > idLagu2)

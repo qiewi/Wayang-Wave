@@ -201,7 +201,9 @@ void QueueAddLagu(ListPenyanyi * LP, QueueLagu * QL, CurrentSong * CS)
                 enqueueLagu(QL, NamaLagu, NamaAlbum, NamaPenyanyi);
 
                 (*CS).statusPL = 0;
-                printf("%sBerhasil menambahkan lagu %s\"%s\" %soleh %s\"%s\" %ske queue.\n", GREEN, WHITE, (*QL).JudulLagu[(*QL).idxTail].TabLine, GREEN, WHITE, (*QL).NamaPenyanyi[(*QL).idxTail].TabLine, GREEN);    
+
+                AnimasiQueueSong();
+                printf("%s\nBerhasil menambahkan lagu %s\"%s\" %soleh %s\"%s\" %ske queue.\n", GREEN, WHITE, (*QL).JudulLagu[(*QL).idxTail].TabLine, GREEN, WHITE, (*QL).NamaPenyanyi[(*QL).idxTail].TabLine, GREEN);    
             }
             else
             {
@@ -323,7 +325,8 @@ void QueuePlaylist(ArrayDin * AP, QueueLagu * QL, CurrentSong * CS, RiwayatLagu 
         p = Next(p);
       }
 
-      printf("%sBerhasil menambahkan playlist %s\"%s\" %ske queue.\n", GREEN, WHITE, (*AP).Nama[id].TabLine, GREEN);
+      AnimasiQueuePlaylist();
+      printf("%s\nBerhasil menambahkan playlist %s\"%s\" %ske queue.\n", GREEN, WHITE, (*AP).Nama[id].TabLine, GREEN);
       
     }
   }

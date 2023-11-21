@@ -28,11 +28,17 @@ void AnimasiPlaySong();
 
 void AnimasiPlayPlaylist();
 
+void AnimasiQueueSong();
+
+void AnimasiQueuePlaylist();
+
 void AnimasiCreatePlaylist();
 
 void AnimasiRegister();
 
 void AnimasiLogin();
+
+void AnimasiLogout();
 
 // int main(){
 //     inisialisasi();
