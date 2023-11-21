@@ -56,7 +56,7 @@ void PlayListRemoveLagu(ArrayDin * AP, int idPlaylist, int idLagu)
     {
         Kalimat namaPlaylist = (*AP).Nama[idPlaylist-1];
 
-        DelP(namaPlaylist, &(*AP).A[idPlaylist-1], idLagu);
+        DelP(namaPlaylist, &(*AP).A[idPlaylist-1], idLagu-1);
     }
 }
 
@@ -165,7 +165,9 @@ void PlaylistAddLagu(ArrayDin * AP, ListPenyanyi * LP)
                         // address p = First((*AP).A[idPlaylist]);
                         // p = Next(p);
                         // printf("\nIsi Playlist: %s\n", JudulLagu(p).TabLine);
-                        printf("%sLagu dengan judul %s\"%s\" %spada album %s%s %soleh penyanyi %s%s %sberhasil ditambahkan ke dalam playlist %s%s.\n",GREEN, WHITE, JudulLagu.TabLine, GREEN, WHITE, NamaAlbum.TabLine, GREEN, WHITE, NamaPenyanyi.TabLine, GREEN, WHITE, (*AP).Nama[idPlaylist].TabLine);    
+                        AnimasiPlaylistAdd();
+                        printf("%sOutput: ", GREEN);
+                        printf("\n%sLagu dengan judul %s\"%s\" %spada album %s%s %soleh penyanyi %s%s %sberhasil ditambahkan ke dalam playlist %s%s.\n",WHITE, YELLOW, JudulLagu.TabLine, WHITE, YELLOW, NamaAlbum.TabLine, WHITE, YELLOW, NamaPenyanyi.TabLine, WHITE, YELLOW, (*AP).Nama[idPlaylist].TabLine);    
                     }
                     else
                     {
@@ -255,7 +257,9 @@ void PlaylistAddAlbum(ArrayDin * AP, ListPenyanyi * LP)
                     //     printf("\n%d - %s\n", tes, JudulLagu(p).TabLine);
                     //     p = Next(p);
                     // }
-                    printf("%sAlbum dengan judul %s\"%s\" %sberhasil ditambahkan ke dalam playlist %s\"%s\".\n",GREEN, YELLOW, NamaAlbum.TabLine, GREEN, YELLOW, (*AP).Nama[idPlaylist].TabLine);    
+                    AnimasiPlaylistAdd();
+                    printf("%sOutput: ", GREEN);
+                    printf("\n%sAlbum dengan judul %s\"%s\" %sberhasil ditambahkan ke dalam playlist %s\"%s\".\n",WHITE, YELLOW, NamaAlbum.TabLine, WHITE, YELLOW, (*AP).Nama[idPlaylist].TabLine);    
                 }
         }
         else
@@ -353,9 +357,41 @@ void playlistSwap(ArrayDin * AP, int idPlaylist, int idLagu1, int idLagu2) // id
                     Next(prev2) = lagu1;
                 }
 
-                temp = Next(lagu1);
-                Next(lagu1) = Next(lagu2);
-                Next(lagu2) = temp;
+                if (Next(lagu1) == Nil)
+                {
+                    if (lagu2 == First((*AP).A[idPlaylist]))
+                    {
+                        Next(lagu1) = Next(lagu2);
+                        Next(lagu2) = Nil;
+                        First((*AP).A[idPlaylist]) = lagu1;
+                    }
+                    else
+                    {
+                        Next(lagu1) = Next(lagu2);
+                        Next(lagu2) = Nil;
+                    }
+                }
+                else if (Next(lagu2) == Nil)
+                {
+                    if (lagu1 == First((*AP).A[idPlaylist]))
+                    {
+                        Next(lagu2) = Next(lagu1);
+                        Next(lagu1) = Nil;
+                        First((*AP).A[idPlaylist]) = lagu2;
+                    }
+                    else
+                    {
+                        Next(lagu2) = Next(lagu1);
+                        Next(lagu1) = Nil;
+                    }  
+                }
+                else
+                {
+                    temp = Next(lagu1);
+                    Next(lagu1) = Next(lagu2);
+                    Next(lagu2) = temp;
+                }
+        
 
                 printf("\n%sBerhasil menukar lagu %s\"%s\" %sdengan %s\"%s\" %sdi playlist %s\"%s\". \n", GREEN, YELLOW, JudulLagu(lagu1).TabLine, GREEN, YELLOW, JudulLagu(lagu2).TabLine, GREEN, YELLOW, (*AP).Nama[idPlaylist].TabLine);
             }

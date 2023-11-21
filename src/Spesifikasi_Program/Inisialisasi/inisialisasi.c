@@ -288,6 +288,68 @@ void AnimasiCreatePlaylist(){
     }
 }
 
+void AnimasiPlaylistAdd(){
+    char *filename;
+    FILE *fascii;
+    system("cls || clear");
+    for (int i = 0; i < 6; i++){
+        if (i == 0) {
+            filename = "Spesifikasi_Program/Inisialisasi/playlist-add/playlist-add1.txt";
+        } else if (i == 1){
+            filename = "Spesifikasi_Program/Inisialisasi/playlist-add/playlist-add2.txt";
+        } else if (i == 2){
+            filename = "Spesifikasi_Program/Inisialisasi/playlist-add/playlist-add3.txt";
+        } else if (i == 3){
+            filename = "Spesifikasi_Program/Inisialisasi/playlist-add/playlist-add4.txt";
+        } else if (i == 4){
+            filename = "Spesifikasi_Program/Inisialisasi/playlist-add/playlist-add5.txt";
+        } else if (i == 5){
+            filename = "Spesifikasi_Program/Inisialisasi/playlist-add/playlist-add6.txt";
+        } 
+        fascii = NULL;
+        fascii = fopen(filename,"r");
+        if(fascii  == NULL){
+            printf("error opening %s\n",filename);
+        } else {
+            system("cls || clear");
+            print_image(fascii);
+            fclose(fascii);
+        }
+        delay(1);
+    }
+}
+
+void AnimasiPlaylistEnhance(){
+    char *filename;
+    FILE *fascii;
+    system("cls || clear");
+    for (int i = 0; i < 6; i++){
+        if (i == 0) {
+            filename = "Spesifikasi_Program/Inisialisasi/playlist-add/playlist-add1.txt";
+        } else if (i == 1){
+            filename = "Spesifikasi_Program/Inisialisasi/playlist-add/playlist-add2.txt";
+        } else if (i == 2){
+            filename = "Spesifikasi_Program/Inisialisasi/playlist-add/playlist-add3.txt";
+        } else if (i == 3){
+            filename = "Spesifikasi_Program/Inisialisasi/playlist-add/playlist-add4.txt";
+        } else if (i == 4){
+            filename = "Spesifikasi_Program/Inisialisasi/playlist-add/playlist-add5.txt";
+        } else if (i == 5){
+            filename = "Spesifikasi_Program/Inisialisasi/playlist-add/playlist-add6.txt";
+        } 
+        fascii = NULL;
+        fascii = fopen(filename,"r");
+        if(fascii  == NULL){
+            printf("error opening %s\n",filename);
+        } else {
+            system("cls || clear");
+            print_image(fascii);
+            fclose(fascii);
+        }
+        delay(0.2);
+    }
+}
+
 void AnimasiRegister(){
     char *filename;
     FILE *fascii;

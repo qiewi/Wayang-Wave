@@ -51,7 +51,8 @@ void EnchancePL(ListPenyanyi * LP, ArrayDin * AP)
             // printf("%d", Ada);
             if (Ada != -1)
             {
-                printf("%sMenambahkan lagu rekomendasi: %s%s ke dalam playlist.\n", GREEN, WHITE, (*LP).PenyanyiAlbum[idPenyanyi].ListAlbum.AlbumLagu[idAlbum].IsiLagu.JudulLagu[idLagu].TabLine);
+                AnimasiPlaylistEnhance();
+                printf("\n%sMenambahkan lagu rekomendasi: %s%s ke dalam playlist.\n", GREEN, WHITE, (*LP).PenyanyiAlbum[idPenyanyi].ListAlbum.AlbumLagu[idAlbum].IsiLagu.JudulLagu[idLagu].TabLine);
                 delay(1);
                 AddSongToPlaylist(LP, AP, idPenyanyi, idAlbum, idLagu, idPL);
                 count++;

@@ -34,6 +34,10 @@ void AnimasiQueuePlaylist();
 
 void AnimasiCreatePlaylist();
 
+void AnimasiPlaylistAdd();
+
+void AnimasiPlaylistEnhance();
+
 void AnimasiRegister();
 
 void AnimasiLogin();
