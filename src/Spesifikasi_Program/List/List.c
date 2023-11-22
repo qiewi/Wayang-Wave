@@ -10,6 +10,8 @@
 #include "../../ADT/array/arraydinamis.h"
 #include "../../ADT/MapSetList/mapsetlist.h"
 
+#include "../Inisialisasi/inisialisasi.h"
+
 /* *** ******** ******** ******** ******** ******** ****** ** COMMAND SPEK ** ****** ******** ******** ******** ******** ******** *** */
 
 void DisplayListDefault(ListPenyanyi * LP)
@@ -17,7 +19,8 @@ void DisplayListDefault(ListPenyanyi * LP)
   char ViewLagu;
   int id = -1; // kalau -1 dia undefined (ga ada penyanyi / album)
 
-  printf("\n%sDaftar Penyanyi :\n", GREEN);
+  AnimasiList();
+  printf("%sDaftar Penyanyi :\n", GREEN);
   for (int i = 0; i < (*LP).NEff; i++)
   {
     printf("  %s%d. %s \n", WHITE, i+1, (*LP).PenyanyiAlbum[i].NamaPenyanyi.TabLine);
@@ -78,8 +81,9 @@ void DisplayListDefault(ListPenyanyi * LP)
 }
 
 void displayPlaylist(ArrayDin * AP)
-{
-  printf("\n%sDaftar Playlist yang kamu miliki:\n", GREEN);
+{ 
+  AnimasiList();
+  printf("%sDaftar Playlist yang kamu miliki:\n", GREEN);
   if ((*AP).Neff > 0)
   {
     for (int i = 0; i < (*AP).Neff; i++)

@@ -3,11 +3,13 @@
 #include <stdio.h>
 #include "../../ADT/boolean.h"
 #include "../../ADT/pcolor/pcolor.h"
+#include "../Inisialisasi/inisialisasi.h"
 #include "help.h"
 
 /* *** ******** ******** ******** ******** ******** ****** ** COMMAND SPEK ** ****** ******** ******** ******** ******** ******** *** */
 
-void help(boolean sesi,boolean data){                                                                                                     
+void help(boolean sesi,boolean data){    
+    AnimasiHelp();                                                                                                 
     if (!data) {
         printf("%s-----------------------------------------[ Menu Help WayangWave ]---------------------------------------------\n\n", GREEN);
         printf("%s1.  %sSTART\t\t\t%s-> Untuk masuk sesi baru.\n", WHITE, GREEN, WHITE);

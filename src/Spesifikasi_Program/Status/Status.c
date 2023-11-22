@@ -4,17 +4,19 @@
 #include "../../ADT/Stack/RiwayatLagu.h"
 #include "../Queue/Queue.h"
 #include "../Play/Play.h"
+#include "../Inisialisasi/inisialisasi.h"
 #include "Status.h"
 
 /* *** ******** ******** ******** ******** ******** ****** ** COMMAND SPEK ** ****** ******** ******** ******** ******** ******** *** */
 
 void Status(CurrentSong * CS, CurrentUser * CU, QueueLagu * QL, RiwayatLagu * RL)
-{
+{   
+    AnimasiStatus();
     if ((*CS).status == 0 )
     {   
         if (((*QL).idxHead != IDX_UNDEF || (*QL).idxTail != IDX_UNDEF))
         {   
-            printf("\n%sCurrent User: %s%s\n", GREEN, WHITE, (*CU).NamaUser.TabLine);
+            printf("%sCurrent User: %s%s\n", GREEN, WHITE, (*CU).NamaUser.TabLine);
 
             if ((*CS).statusPL == 1)
             {
@@ -33,7 +35,7 @@ void Status(CurrentSong * CS, CurrentUser * CU, QueueLagu * QL, RiwayatLagu * RL
 
         else if (((*QL).idxHead == IDX_UNDEF || (*QL).idxTail == IDX_UNDEF))
         {
-            printf("\n%sCurrent User: %s%s\n", GREEN, WHITE, (*CU).NamaUser.TabLine);
+            printf("%sCurrent User: %s%s\n", GREEN, WHITE, (*CU).NamaUser.TabLine);
 
             printf("\n%sNow Playing:\n", GREEN);
             printf("%sNo songs have been played yet. Please search for a song to begin playback.\n", WHITE);
@@ -48,7 +50,7 @@ void Status(CurrentSong * CS, CurrentUser * CU, QueueLagu * QL, RiwayatLagu * RL
     {   
         if ((*QL).idxHead == IDX_UNDEF || (*QL).idxTail == IDX_UNDEF)
         {
-            printf("\n%sCurrent User: %s%s\n", GREEN, WHITE, (*CU).NamaUser.TabLine);
+            printf("%sCurrent User: %s%s\n", GREEN, WHITE, (*CU).NamaUser.TabLine);
 
             printf("\n%sNow Playing:\n", GREEN);
             printf("%s%s - %s - %s\n", WHITE, (*CS).NamaPenyanyi.TabLine, (*CS).JudulLagu.TabLine, (*CS).NamaAlbum.TabLine);
@@ -59,7 +61,7 @@ void Status(CurrentSong * CS, CurrentUser * CU, QueueLagu * QL, RiwayatLagu * RL
 
         else if ((*QL).idxHead != IDX_UNDEF || (*QL).idxTail != IDX_UNDEF)
         {   
-            printf("\n%sCurrent User: %s%s\n", GREEN, WHITE, (*CU).NamaUser.TabLine);
+            printf("%sCurrent User: %s%s\n", GREEN, WHITE, (*CU).NamaUser.TabLine);
 
             if ((*CS).statusPL == 1)
             {

@@ -55,7 +55,7 @@ void PlayListRemoveLagu(ArrayDin * AP, int idPlaylist, int idLagu)
     else
     {
         Kalimat namaPlaylist = (*AP).Nama[idPlaylist-1];
-
+        AnimasiPlaylistRemove();
         DelP(namaPlaylist, &(*AP).A[idPlaylist-1], idLagu-1);
     }
 }
@@ -392,8 +392,9 @@ void playlistSwap(ArrayDin * AP, int idPlaylist, int idLagu1, int idLagu2) // id
                     Next(lagu2) = temp;
                 }
         
-
-                printf("\n%sBerhasil menukar lagu %s\"%s\" %sdengan %s\"%s\" %sdi playlist %s\"%s\". \n", GREEN, YELLOW, JudulLagu(lagu1).TabLine, GREEN, YELLOW, JudulLagu(lagu2).TabLine, GREEN, YELLOW, (*AP).Nama[idPlaylist].TabLine);
+                AnimasiSwap();
+                printf("%sOutput: ", GREEN);
+                printf("\n%sBerhasil menukar lagu %s\"%s\" %sdengan %s\"%s\" %sdi playlist %s\"%s\". \n", WHITE, YELLOW, JudulLagu(lagu1).TabLine, WHITE, YELLOW, JudulLagu(lagu2).TabLine, WHITE, YELLOW, (*AP).Nama[idPlaylist].TabLine);
             }
             else
             {
@@ -405,7 +406,7 @@ void playlistSwap(ArrayDin * AP, int idPlaylist, int idLagu1, int idLagu2) // id
 
 void deletePlaylist(ArrayDin * AP) // tanya harus dealoc gak
 {   
-    printf("\n%sDaftar Playlist Pengguna: %s\n%s", GREEN, WHITE);
+    printf("\n%sDaftar Playlist Pengguna: %s\n", GREEN, WHITE);
 
     if ((*AP).Neff > 0)
     {
@@ -441,7 +442,9 @@ void deletePlaylist(ArrayDin * AP) // tanya harus dealoc gak
                 (*AP).Neff -= 1;
             }
 
-            printf("\n%sPlaylist ID %s%d %sdengan judul %s\"%s\" %sberhasil dihapus.\n", GREEN, YELLOW, idPlaylist+1, GREEN, YELLOW, NamaPlaylist.TabLine, GREEN);
+            AnimasiDeletePlaylist();
+            printf("%sOutput: ", GREEN);
+            printf("\n%sPlaylist ID %s%d %sdengan judul %s\"%s\" %sberhasil dihapus.\n", WHITE, YELLOW, idPlaylist+1, WHITE, YELLOW, NamaPlaylist.TabLine, WHITE);
         }
     }
     else
