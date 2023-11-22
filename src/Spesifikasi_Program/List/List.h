@@ -12,6 +12,8 @@
 #include "../../ADT/array/arraydinamis.h"
 #include "../../ADT/LineMachine/linemachine.h"
 
+#include "../Inisialisasi/inisialisasi.h"
+
 /* *** ******** ******** ******** ******** ******** ****** ** COMMAND SPEK ** ****** ******** ******** ******** ******** ******** *** */
 
 void DisplayListDefault(ListPenyanyi * LP);

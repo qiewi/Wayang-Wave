@@ -128,7 +128,9 @@ void QueueSwap(QueueLagu * QL, IdQueue id1, IdQueue id2)
       (*QL).NamaAlbum[id1] = temp.NamaAlbum;
       (*QL).NamaPenyanyi[id1] = temp.NamaPenyanyi;
 
-      printf("\n%sLagu %s\"%s\" %sberhasil ditukar dengan %s\"%s\"\n", GREEN, WHITE, (*QL).JudulLagu[id1].TabLine, GREEN, WHITE, (*QL).JudulLagu[id2].TabLine);
+      AnimasiSwap();
+      printf("%sOutput: ", GREEN);
+      printf("\n%sLagu %s\"%s\" %sberhasil ditukar dengan %s\"%s\" %spada queue\n", WHITE, YELLOW, (*QL).JudulLagu[id1].TabLine, WHITE, YELLOW, (*QL).JudulLagu[id2].TabLine, WHITE);
     }
 }
 
@@ -145,7 +147,9 @@ void QueueRemoveLagu(QueueLagu * QL, RiwayatLagu * RL, int idQueue)
       Kalimat NamaLagu = (*QL).JudulLagu[id];
       Kalimat NamaPenyanyi = (*QL).NamaPenyanyi[id];
 
-      printf("\n%sLagu %s\"%s\" %soleh %s\"%s\" %stelah dihapus dari queue!\n", GREEN, WHITE, NamaLagu.TabLine, GREEN, WHITE, NamaPenyanyi.TabLine, GREEN);
+      AnimasiPlaylistRemove();
+      printf("%sOutput:", GREEN);
+      printf("\n%sLagu %s\"%s\" %soleh %s\"%s\" %stelah dihapus dari queue!\n", WHITE, YELLOW, NamaLagu.TabLine, WHITE, YELLOW, NamaPenyanyi.TabLine, WHITE);
       dequeueLagu(QL, RL, idQueue);
     }
 }

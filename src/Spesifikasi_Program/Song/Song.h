@@ -5,6 +5,7 @@
 
 #include "../../ADT/pcolor/pcolor.h"
 #include "../../ADT/Queue/queue.h"
+#include "../Inisialisasi/inisialisasi.h"
 #include "../Play/Play.h"
 #include "../Queue/Queue.h"
 

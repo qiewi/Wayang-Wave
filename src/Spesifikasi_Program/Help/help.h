@@ -5,6 +5,7 @@
 
 #include <stdio.h>
 #include "../../ADT/boolean.h"
+#include "../Inisialisasi/inisialisasi.h"
 #include "../../ADT/pcolor/pcolor.h"
 
 /* *** ******** ******** ******** ******** ******** ****** ** COMMAND SPEK ** ****** ******** ******** ******** ******** ******** *** */

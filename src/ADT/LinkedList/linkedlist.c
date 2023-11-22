@@ -198,7 +198,8 @@ void DelP (Kalimat namaPlaylist, List *L, int idLagu) // ubah remove lagu dr pla
 
     if (p != Nil)   // X ada
     {   
-        printf("\n%sLagu %s\"%s\" %soleh %s\"%s\" %stelah dihapus dari playlist %s\"%s\"!\n", GREEN, WHITE, JudulLagu(p).TabLine, GREEN, WHITE, NamaPenyanyi(p).TabLine, GREEN, WHITE, namaPlaylist.TabLine);
+        printf("%sOutput: ", GREEN);
+        printf("\n%sLagu %s\"%s\" %soleh %s\"%s\" %stelah dihapus dari playlist %s\"%s\"!\n", WHITE, YELLOW, JudulLagu(p).TabLine, WHITE, YELLOW, NamaPenyanyi(p).TabLine, WHITE, YELLOW, namaPlaylist.TabLine);
         if (p == First(*L))
         {
             DelFirst(L, &p);
