@@ -44,8 +44,8 @@ void help(boolean sesi,boolean data){
         printf("16. %sPLAYLIST REMOVE %s<id> <n>\t%s-> Untuk menghapus lagu dengan urutan n pada playlist dengan index id.\n", GREEN, YELLOW, WHITE);
         printf("17. %sPLAYLIST DELETE\t\t%s-> Untuk melakukan penghapusan suatu existing playlist dalam daftar playlist pengguna.\n", GREEN, WHITE);
         printf("18. %sSTATUS\t\t\t%s-> Untuk menampilkan lagu yang sedang dimainkan beserta queue song yang ada dan dari playlist mana lagu itu diputar.\n", GREEN, WHITE);
-        printf("19. %sFOLLOW USER\t\t%s-> Untuk mem-follow user lain di dalam WayangWave.\n", GREEN, WHITE);
-        printf("20. %sFOLLOW LIST\t\t%s-> Untuk menampilkan user yang sudah difollow beserta playlist yang mereka miliki.\n", GREEN, WHITE);
+        printf("19. %sFOLLOW USER\t\t\t%s-> Untuk mem-follow user lain di dalam WayangWave.\n", GREEN, WHITE);
+        printf("20. %sFOLLOW LIST\t\t\t%s-> Untuk menampilkan user yang sudah difollow beserta playlist yang mereka miliki.\n", GREEN, WHITE);
         printf("21. %sSAVE %s<filename>\t\t%s-> Untuk menyimpan state aplikasi terbaru ke dalam suatu file.\n", GREEN, YELLOW, WHITE);
         printf("22. %sQUIT\t\t\t%s-> Untuk keluar dari sesi aplikasi WayangWave.\n\n", GREEN, WHITE);
     }

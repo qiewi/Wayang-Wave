@@ -15,10 +15,39 @@
 
 /* *** ******** ******** ******** ******** ******** ****** ** COMMAND SPEK ** ****** ******** ******** ******** ******** ******** *** */
 
+boolean isNamaValid(Kalimat NamaPlaylist)
+{
+    int count = 0;
+
+    for (int i = 0; i < NamaPlaylist.Length; i++)
+    {
+        if (NamaPlaylist.TabLine[i] != ' ')
+        {
+            count++;
+        }
+    }
+
+    if (count >= 3)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+
+}
 void PlaylistCreate(ArrayDin * AP) // to do list: cek panjang karakter
 {
     printf("\nMasukkan nama playlist yang ingin dibuat : %s", GREEN);
     STARTKALIMATINPUT();
+
+    while (!isNamaValid(CInput))
+    {   
+        printf("%sERROR: %sMinimal terdapat 3 karakter selain whitespace dalam nama playlist.\n", RED, WHITE);
+        printf("\nMasukkan nama playlist yang ingin dibuat : %s", GREEN);
+        STARTKALIMATINPUT();
+    }
 
     InsertNama(AP, CInput);
 

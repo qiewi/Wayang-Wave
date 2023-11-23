@@ -1,5 +1,7 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "linemachine.h"
+#include "../boolean.h"
 
 boolean EndKalimat;
 Kalimat CLine;
