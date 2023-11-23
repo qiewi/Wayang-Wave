@@ -69,9 +69,10 @@ Question...?
 Bejeweled
 You're On Your Own, Kid
 Maroon
-2
+3
 Qie
 Amog
+Sus
 Arctic Monkeys;AM;R U Mine?
 7
 BLACKPINK;BORN PINK;Typa Girl
@@ -82,10 +83,39 @@ Arctic Monkeys;AM;Arabella
 Arctic Monkeys;AM;R U Mine?
 Arctic Monkeys;AM;Arabella
 4
+Arctic Monkeys;Favourite Worst Nightmare;505
+BLACKPINK;BORN PINK;Pink Venom
+Arctic Monkeys;AM;R U Mine?
+Arctic Monkeys;AM;Arabella
+4
+3 BLACKPINK My Top Three
+BLACKPINK;THE ALBUM;How You Like That
+BLACKPINK;BORN PINK;Typa Girl
+BLACKPINK;BORN PINK;Pink Venom
+5 Arctic Monkeys My Top 5
+Arctic Monkeys;AM;R U Mine?
+Arctic Monkeys;AM;Do I Wanna Know?
+Arctic Monkeys;AM;Arabella
+Arctic Monkeys;Favourite Worst Nightmare;505
+Arctic Monkeys;Humbug;Pretty Visitors
+0 Mixed Playlist
+2 QIE
+Arctic Monkeys;AM;Do I Wanna Know?
 Arctic Monkeys;AM;Arabella
 Arctic Monkeys;AM;R U Mine?
-BLACKPINK;BORN PINK;Pink Venom
+7
+BLACKPINK;BORN PINK;Typa Girl
+BLACKPINK;THE ALBUM;How You Like That
+Arctic Monkeys;AM;Do I Wanna Know?
+BLACKPINK;BORN PINK;Shut Down
+Arctic Monkeys;AM;Arabella
+Arctic Monkeys;AM;R U Mine?
+Arctic Monkeys;AM;Arabella
+4
 Arctic Monkeys;Favourite Worst Nightmare;505
+BLACKPINK;BORN PINK;Pink Venom
+Arctic Monkeys;AM;R U Mine?
+Arctic Monkeys;AM;Arabella
 4
 3 BLACKPINK My Top Three
 BLACKPINK;THE ALBUM;How You Like That
@@ -103,19 +133,17 @@ Arctic Monkeys;AM;Do I Wanna Know?
 Arctic Monkeys;AM;R U Mine?
 Arctic Monkeys;AM;Arabella
 Arctic Monkeys;AM;R U Mine?
-7
+6
 BLACKPINK;BORN PINK;Typa Girl
 BLACKPINK;THE ALBUM;How You Like That
 Arctic Monkeys;AM;Do I Wanna Know?
 BLACKPINK;BORN PINK;Shut Down
-Arctic Monkeys;AM;Arabella
 Arctic Monkeys;AM;R U Mine?
 Arctic Monkeys;AM;Arabella
-4
-Arctic Monkeys;AM;Arabella
-Arctic Monkeys;AM;R U Mine?
-BLACKPINK;BORN PINK;Pink Venom
+3
 Arctic Monkeys;Favourite Worst Nightmare;505
+BLACKPINK;BORN PINK;Pink Venom
+Arctic Monkeys;AM;Arabella
 4
 3 BLACKPINK My Top Three
 BLACKPINK;THE ALBUM;How You Like That
@@ -128,7 +156,8 @@ Arctic Monkeys;AM;Arabella
 Arctic Monkeys;Favourite Worst Nightmare;505
 Arctic Monkeys;Humbug;Pretty Visitors
 0 Mixed Playlist
-3 QIE
+4 SUSUS
 Arctic Monkeys;AM;Do I Wanna Know?
 Arctic Monkeys;AM;R U Mine?
 Arctic Monkeys;AM;Arabella
+Eve;Smile;Heikousen

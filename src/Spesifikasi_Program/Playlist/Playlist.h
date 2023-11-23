@@ -16,6 +16,8 @@
 
 /* *** ******** ******** ******** ******** ******** ****** ** COMMAND SPEK ** ****** ******** ******** ******** ******** ******** *** */
 
+boolean isNamaValid(Kalimat NamaPlaylist);
+
 void PlaylistCreate(ArrayDin * AP);
 
 void PlayListRemoveLagu(ArrayDin * AP, int idPlaylist, int idLagu);

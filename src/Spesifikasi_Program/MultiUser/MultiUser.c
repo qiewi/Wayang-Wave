@@ -12,6 +12,7 @@
 #include "../../ADT/LineMachine/linemachine.h"
 #include "../../ADT/pcolor/pcolor.h"
 
+#include "../Playlist/Playlist.h"
 #include "../Inisialisasi/inisialisasi.h"
 #include "../Play/Play.h"
 #include "MultiUser.h"
@@ -30,6 +31,13 @@ void RegisterUser(DataUser * DU)
     printf("\n%s=================== %s[ REGISTER ] %s===================\n", GREEN, YELLOW, GREEN);
     printf("\n%sMasukkan nama user: %s", WHITE, GREEN);
     STARTKALIMATINPUT();
+
+    while (!isNamaValid(CInput))
+    {   
+        printf("%sERROR: %sMinimal terdapat 3 karakter selain whitespace untuk nama User.\n", RED, WHITE);
+        printf("\nMasukkan nama user: %s", GREEN);
+        STARTKALIMATINPUT();
+    }
 
     int idUser = CekUser(DU, CInput);
 
