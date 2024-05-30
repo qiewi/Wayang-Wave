@@ -1,3 +1,10 @@
+![Static Badge](https://img.shields.io/badge/build-passing-brightgreen)
+![Static Badge](https://img.shields.io/badge/Release-2.0-green)
+![Static Badge](https://img.shields.io/badge/Copyright-Qie-blue)
+![Static Badge](https://img.shields.io/badge/Wayang-Wave-52AA1F)
+
+![Header](https://github.com/qiewi/Wayang-Wave/blob/main/res/banner.png)
+
 # **Tugas Besar Alstrukdat IF2111 K3 Kelompok 5**  
 _______
 
@@ -15,6 +22,20 @@ Buatlah sebuah aplikasi simulasi berbasis CLI (command-line interface). Sistem i
 > Mengatur urutan dimainkannya lagu
 
 > Menampilkan status dari aplikasi
+
+
+## Features
+_______
+
+> Animations
+> Load and Save Files
+> All Tubes Specifications
+
+
+## Preview
+_______
+
+![App Screenshot](https://github.com/qiewi/Wayang-Wave/blob/main/res/preview.png)
 
 ## Contributors:
 _______
