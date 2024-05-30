@@ -24,14 +24,14 @@ Buatlah sebuah aplikasi simulasi berbasis CLI (command-line interface). Sistem i
 > Menampilkan status dari aplikasi
 
 
-## Features
+## Extra Features:
 _______
 
 > Animations
 
 > Load and Save Files
 
-> All Tubes Specifications
+> Graph Implementation (User's Friends List)
 
 
 ## Preview
