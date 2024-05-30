@@ -28,7 +28,9 @@ Buatlah sebuah aplikasi simulasi berbasis CLI (command-line interface). Sistem i
 _______
 
 > Animations
+
 > Load and Save Files
+
 > All Tubes Specifications
 
 
